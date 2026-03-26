@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth scroll-pt-24">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa Sol de Mayo - Marketing Deportivo & Sponsors</title>
+    <meta name="description" content="Landing page oficial de la Copa Sol de Mayo. Activaciones de marca, patrocinio deportivo y experiencia de pádel con identidad argentina.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Copa Sol de Mayo - Marketing Deportivo">
+    <meta property="og:description" content="Unimos el deporte con la identidad nacional. Conocé nuestras propuestas de patrocinio.">
+    <meta property="og:image" content="input_file_0.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'event-blue': '#74ACDF',
+                        'event-green': '#4CAF50',
+                        'event-maroon': '#4A0E0E',
+                        'event-gold': '#f3b20e',
+                        'event-dark': '#1A1A1A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Archivo Black', 'sans-serif'],
+                        impact: ['Anton', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .bg-grid {
+            background-image: radial-gradient(circle, #00000010 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .section-title {
+            @apply text-5xl md:text-7xl font-display text-event-maroon uppercase tracking-tighter mb-8 leading-none;
+        }
+        .glass-card {
+            @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+        }
+        .btn-hover-effect {
+            @apply relative overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95;
+        }
+        .btn-hover-effect::after {
+            content: '';
+            @apply absolute inset-0 bg-white/20 translate-x-[-100%] transition-transform duration-300;
+        }
+        .btn-hover-effect:hover::after {
+            @apply translate-x-0;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans bg-grid">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent py-8">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-event-gold shadow-lg">
+                    <img src="input_file_0.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/logo/100/100'">
+                </div>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-10 text-white font-bold uppercase text-sm tracking-widest">
+                <a href="#nosotros" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Nosotros</a>
+                <a href="#ofrecemos" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Propuesta</a>
+                <a href="#sponsors" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Sponsors</a>
+                <a href="#contacto" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Contacto</a>
+                <a href="#casos" onclick="navigateTo('casos'); return false;" class="nav-link bg-event-blue text-white px-6 py-2.5 rounded-xl font-black hover:bg-white hover:text-event-blue transition-all shadow-md whitespace-nowrap" id="nav-casos-desktop">Casos de Éxito</a>
+                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="bg-event-gold text-event-maroon px-8 py-3 rounded-xl font-black hover:bg-white transition-all shadow-md whitespace-nowrap">
+                    Inscribirse
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-toggle" class="md:hidden text-white p-2" aria-label="Abrir menú">
+                <i data-lucide="menu" class="w-8 h-8" id="menu-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay (AHORA FUERA DEL NAV) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-event-maroon z-[60] flex flex-col items-center justify-center gap-8 text-white text-2xl font-display uppercase tracking-widest transition-all duration-500 translate-x-full" aria-hidden="true">
+        <button id="menu-close" class="absolute top-6 right-6 p-2" aria-label="Cerrar menú">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <a href="#nosotros" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Nosotros</a>
+        <a href="#ofrecemos" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Propuesta</a>
+        <a href="#sponsors" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Sponsors</a>
+        <a href="#contacto" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Contacto</a>
+        <a href="#casos" onclick="navigateTo('casos'); return false;" class="mobile-link bg-event-blue text-white px-8 py-3 rounded-2xl font-black shadow-lg whitespace-nowrap">Casos de Éxito</a>
+        <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="bg-event-gold text-event-maroon px-10 py-4 rounded-2xl font-black shadow-lg whitespace-nowrap">Inscribirse</a>
+    </div>
+
+    <!-- VISTA PRINCIPAL (Home) -->
+    <div id="view-home">
+
+    <!-- Hero Section -->
+    <section class="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-event-maroon z-0">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-event-blue rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-event-green rounded-full blur-[120px]"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-6xl md:text-8xl lg:text-[8rem] font-display text-white leading-[0.85] mb-8 tracking-tighter uppercase mt-16">
+                COPA <br>
+                <span class="text-event-gold">SOL</span> <span class="text-event-blue">DE</span> <br>
+                <span class="text-event-blue">MAYO</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-12 font-medium tracking-tight">
+                Más que un torneo, creamos una <span class="text-event-gold font-bold">experiencia</span> que une el <span class="text-event-gold font-bold">deporte</span> con nuestra <span class="text-event-gold font-bold">identidad nacional</span>.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                <a href="#sponsors" class="btn-hover-effect bg-event-gold text-event-maroon px-10 py-5 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3">
+                    Ser Sponsor <i data-lucide="award"></i>
+                </a>
+                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="btn-hover-effect bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3">
+                    Inscribirme <i data-lucide="user-plus"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenedor principal que se desliza por encima del Hero -->
+    <main class="relative z-10 bg-[#370606]">
+        <!-- Degradado de transición controlado matemáticamente por JS -->
+        <div id="scroll-gradient" class="absolute bottom-full left-0 w-full h-32 md:h-56 bg-gradient-to-t from-[#370606] via-[#370606]/80 to-transparent pointer-events-none" style="opacity: 0;"></div>
+
+        <!-- About Section -->
+        <section id="nosotros" class="py-24 bg-[#370606] overflow-hidden relative">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative">
+                        <div class="absolute -top-10 -left-10 w-40 h-40 bg-event-blue/20 rounded-full blur-3xl"></div>
+                        <h2 class="text-5xl md:text-7xl font-display text-white uppercase tracking-tighter mb-8 leading-none">¿Quiénes <span class="text-event-blue">Somos?</span></h2>
+                        <p class="text-lg text-white/80 mb-6 leading-relaxed">
+                            Somos un grupo de estudiantes de la <strong class="text-white">Universidad Argentina de la Empresa (UADE)</strong>, entusiastas del deporte y comprometidos con la organización de eventos de alta calidad.
+                        </p>
+                        <p class="text-lg text-white/80 mb-8 leading-relaxed">
+                            Nuestro diferencial radica en crear una experiencia que une el <strong class="text-white">pádel, la identidad y el espíritu patrio</strong>. Buscamos que cada partido sea competencia y celebración de nuestros valores.
+                        </p>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-start gap-3">
+                                <div class="p-2 bg-event-blue/20 rounded-lg text-event-blue">
+                                    <i data-lucide="calendar"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">16 de Mayo</h4>
+                                    <p class="text-sm text-white/60">Fecha Patriótica</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="p-2 bg-event-green/20 rounded-lg text-event-green">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Locación</h4>
+                                    <p class="text-sm text-white/60">A definir</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-square bg-event-maroon rounded-3xl overflow-hidden shadow-2xl relative group">
+                            <img src="https://picsum.photos/seed/padel/800/800" alt="Padel Experience" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 flex items-center justify-center p-12">
+                                <div class="text-center">
+                                    <h3 class="text-3xl font-black text-white uppercase tracking-tighter">Torneo Americano</h3>
+                                    <p class="text-white/70 mt-2">1 día de pura intensidad y pasión</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-white rounded-2xl shadow-xl p-4 flex flex-col items-center justify-center text-center border border-gray-100">
+                            <div class="w-20 h-20 bg-event-gold/20 rounded-full flex items-center justify-center mb-2">
+                                <i data-lucide="users" class="text-event-gold w-8 h-8"></i>
+                            </div>
+                            <span class="font-bold text-xs uppercase tracking-widest text-event-maroon">Hola, soy Gardelito!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="ofrecemos" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-7xl font-display text-event-maroon uppercase tracking-tighter mb-8 leading-none">¿Qué les <span class="text-event-blue">Ofrecemos?</span></h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto font-medium">
+                        Buscamos construir alianzas estratégicas con marcas que compartan nuestra visión de crecimiento, inclusión y compromiso con el deporte.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
+                        <div class="bg-event-blue w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+                            <i data-lucide="target"></i>
+                        </div>
+                        <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Visibilidad</h3>
+                        <p class="text-gray-500 leading-relaxed">Conexión directa con jóvenes aficionados al deporte y público potencial de la marca.</p>
+                    </div>
+                    <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
+                        <div class="bg-event-green w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Presencia Digital</h3>
+                        <p class="text-gray-500 leading-relaxed">Posteos, historias y presencia del logo en todas las comunicaciones oficiales y flyers.</p>
+                    </div>
+                    <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
+                        <div class="bg-event-gold w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Activaciones</h3>
+                        <p class="text-gray-500 leading-relaxed">Stands exclusivos y participación activa en premios y sorteos dentro del evento.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-16 bg-event-maroon rounded-[3rem] p-12 text-center text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-event-blue/20 rounded-full blur-3xl"></div>
+                    <h3 class="text-4xl font-black mb-4">+<span id="personas-counter" data-target="50">0</span> PERSONAS</h3>
+                    <p class="text-white/60 uppercase tracking-widest font-bold">Entre participantes, staff y espectadores</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="py-24 bg-[#370606] text-white relative overflow-hidden">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                    <div class="max-w-xl">
+                        <h2 class="text-5xl font-black uppercase tracking-tighter mb-4">La <span class="text-event-blue">Experiencia</span></h2>
+                        <p class="text-white/60">Creamos un ecosistema donde las marcas no solo están presentes, sino que interactúan con el público.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-center">
+                            <div class="text-4xl font-black text-event-gold">100%</div>
+                            <div class="text-xs uppercase tracking-widest opacity-50">Argentino</div>
+                        </div>
+                        <div class="w-px h-12 bg-white/20"></div>
+                        <div class="text-center">
+                            <div class="text-4xl font-black text-event-blue">1</div>
+                            <div class="text-xs uppercase tracking-widest opacity-50">Día de Torneo</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer">
+                        <img src="https://picsum.photos/seed/brand/400/600" alt="Activaciones" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-event-maroon via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h4 class="text-xl font-black uppercase tracking-tight leading-none">Activaciones de Marca</h4>
+                        </div>
+                    </div>
+                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer">
+                        <img src="https://picsum.photos/seed/argentina/400/600" alt="Ambientación" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-event-maroon via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h4 class="text-xl font-black uppercase tracking-tight leading-none">Ambientación Argentina</h4>
+                        </div>
+                    </div>
+                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer">
+                        <img src="https://picsum.photos/seed/raffle/400/600" alt="Sorteos" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-event-maroon via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h4 class="text-xl font-black uppercase tracking-tight leading-none">Sorteos Exclusivos</h4>
+                        </div>
+                    </div>
+                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer">
+                        <img src="https://picsum.photos/seed/prizes/400/600" alt="Premios" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-event-maroon via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h4 class="text-xl font-black uppercase tracking-tight leading-none">Premios de Calidad</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsorship Plans -->
+        <section id="sponsors" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-7xl font-display text-event-maroon uppercase tracking-tighter mb-8 leading-none">Planes de <span class="text-event-gold">Patrocinio</span></h2>
+                    <p class="text-gray-500 font-medium">Categorías inspiradas en nuestra cultura para una alianza ganadora.</p>
+                </div>
+                
+                <!-- Cambiamos a 4 columnas en pantallas grandes (lg:grid-cols-4) para acomodar el nuevo plan -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
+                    
+                    <!-- Plan 1: 1 Espada (Premium) -->
+                    <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-blue bg-event-maroon text-white shadow-2xl lg:scale-105 z-10 flex flex-col">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-event-gold text-event-maroon px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
+                            Premium
+                        </div>
+                        <div class="mb-5">
+                            <span class="text-xs font-bold uppercase tracking-widest text-event-gold">Oro</span>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1 Espada</h3>
+                        </div>
+                        <ul class="space-y-3 mb-6 flex-grow">
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white/80 leading-tight">Naming del evento</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white/80 leading-tight">Logo en colgante staff</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white/80 leading-tight">Stand exclusivo</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-white/80 leading-tight">Menciones en redes (3)</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-gold text-event-maroon shadow-lg mt-auto">
+                            Consultar Plan
+                        </a>
+                    </div>
+
+                    <!-- Plan 2: 1 Basto (Popular) -->
+                    <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-green bg-white text-event-maroon shadow-lg flex flex-col">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-event-gold text-event-maroon px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
+                            Popular
+                        </div>
+                        <div class="mb-5">
+                            <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Plata</span>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1 Basto</h3>
+                        </div>
+                        <ul class="space-y-3 mb-6 flex-grow">
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Stand exclusivo</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Naming en premiación</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Presencia en backdrop</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Banner en competencia</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">
+                            Consultar Plan
+                        </a>
+                    </div>
+
+                    <!-- Plan 3: 7 Espada (Kit de Bienvenida) -->
+                    <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-blue bg-white text-event-maroon shadow-lg flex flex-col">
+                        <div class="mb-5">
+                            <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Kit de Bienvenida</span>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7 Espada</h3>
+                        </div>
+                        <ul class="space-y-3 mb-6 flex-grow">
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Mención en ceremonia de apertura</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Logo en material gráfico</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Naming en Estación Competencia</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Menciones en redes + collab</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">
+                            Consultar Plan
+                        </a>
+                    </div>
+
+                    <!-- Plan 4: 7 Oro (Kit) -->
+                    <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-gold bg-white text-event-maroon shadow-lg flex flex-col">
+                        <div class="mb-5">
+                            <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Sorteo</span>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7 Oro</h3>
+                        </div>
+                        <ul class="space-y-3 mb-6 flex-grow">
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Presencia en backdrop</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Banner en zona competencia</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Mención en redes sociales (1)</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm">
+                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-600 leading-tight">Logo en material digital</span>
+                            </li>
+                        </ul>
+                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">
+                            Consultar Plan
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="bg-event-gold rounded-[4rem] p-12 md:p-24 relative overflow-hidden">
+                    <div class="absolute top-[-20%] right-[-10%] w-[60%] h-[120%] bg-white/10 rounded-full blur-[100px]"></div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-16 relative z-10">
+                        <div>
+                            <h2 class="text-5xl md:text-7xl font-black text-event-maroon uppercase tracking-tighter leading-none mb-8">
+                                ¿Les interesa <br>
+                                <span class="text-white">formar parte?</span>
+                            </h2>
+                            <p class="text-event-maroon/70 text-lg mb-12 max-w-md">
+                                Estamos listos para potenciar su marca en el evento de pádel más patriótico del año.
+                            </p>
+                            
+                            <div class="space-y-6">
+                                <a href="https://instagram.com/soldemayopadel" target="_blank" class="flex items-center gap-4 group">
+                                    <div class="w-12 h-12 bg-event-maroon text-white rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                                        </svg>
+                                    </div>
+                                    <span class="text-xl font-bold text-event-maroon">@soldemayopadel</span>
+                                </a>
+                                <a href="https://wa.me/5491125745419" target="_blank" class="flex items-center gap-4 group">
+                                    <div class="w-12 h-12 bg-event-maroon text-white rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-xl font-bold text-event-maroon">11 2574 5419</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-[3rem] p-10 shadow-2xl">
+                            <h3 class="text-2xl font-black uppercase tracking-tight mb-6 text-event-maroon">Inscripción Directa</h3>
+                            <p class="text-gray-500 mb-8">Si sos jugador y querés participar del torneo, completá el formulario oficial aquí:</p>
+                            <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="w-full bg-event-blue text-white py-6 px-4 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-event-maroon transition-all shadow-lg">
+                                <span class="text-center">Formulario de Inscripción</span> <i data-lucide="arrow-right" class="flex-shrink-0"></i>
+                            </a>
+                            <div class="mt-8 pt-8 border-t border-gray-100 flex items-center gap-4">
+                                <p class="text-xs text-gray-400 font-medium uppercase tracking-widest">Organizado por estudiantes UADE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    </div> <!-- Cierre de view-home -->
+
+    <!-- VISTA CASOS DE ÉXITO (Página separada, oculta por defecto) -->
+    <div id="view-casos" class="hidden relative z-20 bg-event-dark min-h-screen pt-32 pb-24 flex-col justify-center">
+        <section id="casos" class="text-white overflow-hidden flex-grow">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                    <div class="max-w-2xl">
+                        <span class="text-event-gold font-bold uppercase tracking-[0.3em] text-base md:text-lg mb-4 block">Portafolio de Activaciones</span>
+                        <h2 class="text-5xl md:text-7xl font-display uppercase leading-none tracking-tighter">Casos de <span class="text-event-blue">Éxito</span></h2>
+                    </div>
+                    <p class="text-white/40 max-w-xs text-sm uppercase tracking-widest font-bold">Cómo las marcas viven la Copa Sol de Mayo.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[800px] md:h-[600px]">
+                    <div class="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group">
+                        <img src="https://picsum.photos/seed/event1/800/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso 1">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-8 flex flex-col justify-end">
+                            <h4 class="text-3xl font-display uppercase">Branding en Cancha</h4>
+                            <p class="text-white/60 text-sm mt-2">Visibilidad 360° durante toda la jornada.</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 relative rounded-3xl overflow-hidden group">
+                        <img src="https://picsum.photos/seed/event2/800/400" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso 2">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+                            <h4 class="text-xl font-display uppercase">Sampling Directo</h4>
+                            <p class="text-white/60 text-xs mt-1">Más de 200 contactos directos por hora.</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-3xl overflow-hidden group">
+                        <img src="https://picsum.photos/seed/event3/400/400" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso 3">
+                        <div class="absolute inset-0 bg-event-blue/40 mix-blend-multiply"></div>
+                        <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                            <h4 class="text-lg font-display uppercase leading-none">Social Media</h4>
+                        </div>
+                    </div>
+                    <div class="relative rounded-3xl overflow-hidden group bg-event-gold p-6 flex flex-col justify-center items-center text-center">
+                        <i data-lucide="trending-up" class="w-12 h-12 text-event-maroon mb-4"></i>
+                        <h4 class="text-event-maroon font-display uppercase leading-none">ROI<br>Garantizado</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Botón para volver atrás -->
+        <div class="container mx-auto px-6 mt-16 text-center">
+            <button onclick="navigateTo('home'); window.scrollTo({top:0, behavior:'smooth'});" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-2xl font-black uppercase tracking-widest transition-all inline-flex items-center gap-3 cursor-pointer shadow-xl group">
+                <i data-lucide="arrow-left" class="group-hover:-translate-x-1 transition-transform"></i> Volver a la página principal
+            </button>
+        </div>
+    </div>
+
+    <!-- Botón de WhatsApp Flotante -->
+    <a href="https://wa.me/5491125745419" target="_blank" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl transition-all duration-300 z-50 hover:scale-110 hover:shadow-[#25D366]/50 focus:outline-none cursor-pointer flex items-center justify-center group" aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <!-- Botón Volver Arriba -->
+    <button id="back-to-top" class="fixed bottom-24 right-6 md:bottom-28 md:right-8 bg-event-gold text-event-maroon p-3 rounded-full shadow-2xl transition-all duration-300 translate-y-24 opacity-0 z-50 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-event-gold/50 cursor-pointer" aria-label="Volver arriba">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="relative z-20 bg-event-maroon py-12 text-white/40 text-center border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border border-event-gold">
+                        <img src="input_file_0.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/logo/100/100'">
+                    </div>
+                    <div class="font-black text-xl tracking-tighter text-white">
+                        COPA <span class="text-event-gold">SOL DE MAYO</span>
+                    </div>
+                </div>
+                <p class="text-sm font-medium uppercase tracking-widest">© 2026 Copa Sol de Mayo • Todos los derechos reservados</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i data-lucide="mail"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        const toggleMenu = () => {
+            mobileMenu.classList.toggle('translate-x-full');
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Navigation elements
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('back-to-top');
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const scrollGradient = document.getElementById('scroll-gradient');
+
+        // Función SPA para cambiar de vista (Navegación Interna)
+        function navigateTo(target) {
+            const homeView = document.getElementById('view-home');
+            const casosView = document.getElementById('view-casos');
+
+            // Cerrar menú móvil si está abierto
+            if (!mobileMenu.classList.contains('translate-x-full')) {
+                toggleMenu();
+            }
+
+            if (target === 'casos') {
+                homeView.style.display = 'none';
+                casosView.classList.remove('hidden');
+                casosView.classList.add('flex');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            } else if (target === 'home') {
+                if (homeView.style.display === 'none') {
+                    homeView.style.display = 'block';
+                    casosView.classList.add('hidden');
+                    casosView.classList.remove('flex');
+                }
+            }
+        }
+
+        // Scroll event listener for Navbar, Scrollspy and Back to Top
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+
+            // 1. Navbar style update
+            if (currentScroll > 50) {
+                navbar.classList.add('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
+                navbar.classList.remove('bg-transparent', 'py-8');
+            } else {
+                navbar.classList.remove('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
+                navbar.classList.add('bg-transparent', 'py-8');
+            }
+
+            // 1.5. Dynamic Gradient Visibility (Se desvanece al instante del scrolling)
+            if (scrollGradient) {
+                // Calcula la opacidad exacta basada en los píxeles (de 0 a 100px)
+                scrollGradient.style.opacity = Math.min(currentScroll / 100, 1);
+            }
+
+            // 2. Back to top button visibility
+            if (currentScroll > 500) {
+                backToTop.classList.remove('translate-y-24', 'opacity-0');
+            } else {
+                backToTop.classList.add('translate-y-24', 'opacity-0');
+            }
+
+            // 3. Scrollspy (Active link highlighting modificado para SPA)
+            let current = '';
+            
+            // Verificamos en qué vista estamos
+            const isCasosView = !document.getElementById('view-casos').classList.contains('hidden');
+            
+            if (isCasosView) {
+                current = 'casos';
+            } else {
+                sections.forEach(section => {
+                    // Solo considerar secciones visibles
+                    if (section.offsetHeight > 0 && section.id !== 'casos') {
+                        const sectionTop = section.offsetTop;
+                        if (window.pageYOffset >= (sectionTop - 200)) {
+                            current = section.getAttribute('id');
+                        }
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-event-gold');
+                // Lógica adaptada para identificar la vista "Casos" o links estándar
+                if (isCasosView && link.id === 'nav-casos-desktop') {
+                    link.classList.add('text-event-gold');
+                } else if (!isCasosView && link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-event-gold');
+                }
+            });
+        });
+
+        // Back to top click behavior
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Reveal on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+
+        // Counter Animation Logic
+        const counterElement = document.getElementById('personas-counter');
+        
+        if (counterElement) {
+            const targetNumber = parseInt(counterElement.getAttribute('data-target'));
+            const duration = 2500; // 2.5 segundos de animación
+            let hasAnimated = false; // Bandera para animar solo una vez
+
+            // Función para animar el número con aceleración y desaceleración suave
+            const animateCounter = (el, target, dur) => {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / dur, 1);
+                    // Efecto easeOutQuart para que frene suave al llegar al final
+                    const easeOutProgress = 1 - Math.pow(1 - progress, 4);
+                    el.innerText = Math.floor(easeOutProgress * target);
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        el.innerText = target; // Asegurarse de terminar exactamente en el número
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            // Observador para disparar la animación cuando la caja sea visible
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Si el contenedor es visible y aún no se animó
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+                        animateCounter(counterElement, targetNumber, duration);
+                        counterObserver.unobserve(entry.target); // Dejar de observar
+                    }
+                });
+            }, { threshold: 0.5 }); // Se activa cuando el 50% de la caja está en pantalla
+
+            // Observamos el contenedor padre (el div color granate)
+            counterObserver.observe(counterElement.closest('.bg-event-maroon'));
+        }
+    </script>
+</body>
+</html>
