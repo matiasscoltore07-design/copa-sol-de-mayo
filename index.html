@@ -36,6 +36,13 @@
                     },
                     animation: {
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scroll': 'scroll 35s linear infinite',
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
                     }
                 }
             }
@@ -69,11 +76,11 @@
     <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent py-8">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-event-gold shadow-lg">
-                    <img src="input_file_0.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/logo/100/100'">
+            <a href="#" onclick="navigateTo('home'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex items-center gap-3 group cursor-pointer" aria-label="Volver al inicio">
+                <div id="nav-logo" class="w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 flex-shrink-0 group-hover:scale-105">
+                    <img src="https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/logo/100/100'">
                 </div>
-            </div>
+            </a>
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-10 text-white font-bold uppercase text-sm tracking-widest">
@@ -124,7 +131,7 @@
                 <span class="text-event-blue">MAYO</span>
             </h1>
             <p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-12 font-medium tracking-tight">
-                Más que un torneo, creamos una <span class="text-event-gold font-bold">experiencia</span> que une el <span class="text-event-gold font-bold">deporte</span> con nuestra <span class="text-event-gold font-bold">identidad nacional</span>.
+                Más que un torneo, creamos una <span class="text-event-gold font-bold">experiencia</span> que une el <span class="text-event-gold font-bold">pádel</span> con nuestra <span class="text-event-gold font-bold">identidad nacional</span>.
             </p>
             <div class="flex flex-col md:flex-row items-center justify-center gap-6">
                 <a href="#sponsors" class="btn-hover-effect bg-event-gold text-event-maroon px-10 py-5 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3">
@@ -138,7 +145,7 @@
     </section>
 
     <!-- Contenedor principal que se desliza por encima del Hero -->
-    <main class="relative z-10 bg-[#370606]">
+    <main class="relative z-10 bg-[#370606] overflow-x-clip">
         <!-- Degradado de transición controlado matemáticamente por JS -->
         <div id="scroll-gradient" class="absolute bottom-full left-0 w-full h-32 md:h-56 bg-gradient-to-t from-[#370606] via-[#370606]/80 to-transparent pointer-events-none" style="opacity: 0;"></div>
 
@@ -179,18 +186,11 @@
                     <div class="relative">
                         <div class="aspect-square bg-event-maroon rounded-3xl overflow-hidden shadow-2xl relative group">
                             <img src="https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1" alt="Padel Experience" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 flex items-center justify-center p-12">
-                                <div class="text-center">
-                                    <h3 class="text-3xl font-black text-white uppercase tracking-tighter">Torneo Americano</h3>
-                                    <p class="text-white/70 mt-2">1 día de pura intensidad y pasión</p>
-                                </div>
-                            </div>
                         </div>
-                        <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-white rounded-2xl shadow-xl p-4 flex flex-col items-center justify-center text-center border border-gray-100">
-                            <div class="w-20 h-20 bg-event-gold/20 rounded-full flex items-center justify-center mb-2">
-                                <i data-lucide="users" class="text-event-gold w-8 h-8"></i>
-                            </div>
-                            <span class="font-bold text-xs uppercase tracking-widest text-event-maroon">Hola, soy Gardelito!</span>
+                        
+                        <!-- Imagen flotante entre las secciones -->
+                        <div class="absolute -bottom-20 right-4 md:-bottom-32 md:-right-12 w-48 md:w-72 z-30 hover:scale-105 transition-transform duration-500 drop-shadow-2xl pointer-events-none">
+                            <img src="https://lh3.googleusercontent.com/d/1QtxDc5uvR08Gi3ETQ9Lp0j9cJPzDPCMg" alt="Elemento decorativo" class="w-full h-auto">
                         </div>
                     </div>
                 </div>
@@ -263,33 +263,37 @@
                     </div>
                 </div>
                 
-                <div class="grid md:grid-cols-4 gap-4">
-                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer">
-                        <img src="https://picsum.photos/seed/brand/400/600" alt="Activaciones" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-event-maroon via-transparent to-transparent opacity-80"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h4 class="text-xl font-black uppercase tracking-tight leading-none">Activaciones de Marca</h4>
+                <!-- Nueva distribución: Texto + Imagen a Casos de Éxito -->
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center bg-white/5 rounded-[3rem] p-8 md:p-12 border border-white/10 group cursor-pointer transition-colors hover:bg-white/10" onclick="navigateTo('casos');">
+                    <div class="order-2 md:order-1 flex flex-col items-start">
+                        <div class="inline-block bg-event-gold/20 text-event-gold px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6">
+                            Portafolio
+                        </div>
+                        <h3 class="text-3xl md:text-5xl font-display uppercase tracking-tighter mb-6 text-white leading-none">
+                            Conocé nuestros <br><span class="text-event-blue">Casos de Éxito</span>
+                        </h3>
+                        <p class="text-white/70 mb-10 text-lg leading-relaxed">
+                            Mirá cómo interactúan las marcas con nuestro evento. 
+                        </p>
+                        <div class="bg-event-blue text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest flex items-center gap-3 shadow-lg group-hover:bg-white group-hover:text-event-blue transition-all">
+                            Ver Galería <i data-lucide="arrow-right" class="group-hover:translate-x-2 transition-transform"></i>
                         </div>
                     </div>
-                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer">
-                        <img src="https://picsum.photos/seed/argentina/400/600" alt="Ambientación" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-event-maroon via-transparent to-transparent opacity-80"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h4 class="text-xl font-black uppercase tracking-tight leading-none">Ambientación Argentina</h4>
+                    
+                    <div class="order-1 md:order-2 relative w-full aspect-[4/3] flex items-center justify-center">
+                        <!-- Carta Izquierda -->
+                        <div class="absolute w-[45%] md:w-[50%] aspect-[3/4] rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-500 z-10 -rotate-12 -translate-x-12 md:-translate-x-20 group-hover:-translate-x-16 md:group-hover:-translate-x-28 group-hover:-rotate-[15deg]">
+                            <img src="https://picsum.photos/seed/caso1/400/600" alt="Caso 1" class="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-white/10">
                         </div>
-                    </div>
-                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer">
-                        <img src="https://picsum.photos/seed/raffle/400/600" alt="Sorteos" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-event-maroon via-transparent to-transparent opacity-80"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h4 class="text-xl font-black uppercase tracking-tight leading-none">Sorteos Exclusivos</h4>
+                        
+                        <!-- Carta Derecha -->
+                        <div class="absolute w-[45%] md:w-[50%] aspect-[3/4] rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-500 z-10 rotate-12 translate-x-12 md:translate-x-20 group-hover:translate-x-16 md:group-hover:translate-x-28 group-hover:rotate-[15deg]">
+                            <img src="https://picsum.photos/seed/caso3/400/600" alt="Caso 3" class="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-white/10">
                         </div>
-                    </div>
-                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden group cursor-pointer">
-                        <img src="https://picsum.photos/seed/prizes/400/600" alt="Premios" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-event-maroon via-transparent to-transparent opacity-80"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h4 class="text-xl font-black uppercase tracking-tight leading-none">Premios de Calidad</h4>
+
+                        <!-- Carta Central -->
+                        <div class="absolute w-[45%] md:w-[50%] aspect-[3/4] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-500 z-20 -translate-y-4 group-hover:-translate-y-8 group-hover:scale-105">
+                            <img src="https://picsum.photos/seed/caso2/400/600" alt="Caso 2" class="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-white/10">
                         </div>
                     </div>
                 </div>
@@ -297,8 +301,8 @@
         </section>
 
         <!-- Sponsorship Plans -->
-        <section id="sponsors" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
+        <section id="sponsors" class="py-24 bg-white relative">
+            <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-16">
                     <h2 class="text-5xl md:text-7xl font-display text-event-maroon uppercase tracking-tighter mb-8 leading-none">Planes de <span class="text-event-gold">Patrocinio</span></h2>
                     <p class="text-gray-500 font-medium">Categorías inspiradas en nuestra cultura para una alianza ganadora.</p>
@@ -314,7 +318,7 @@
                         </div>
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-gold">Oro</span>
-                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1 Espada</h3>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1  Espada</h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
                             <li class="flex items-start gap-3 text-sm">
@@ -346,7 +350,7 @@
                         </div>
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Plata</span>
-                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1 Basto</h3>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1  Basto</h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
                             <li class="flex items-start gap-3 text-sm">
@@ -375,7 +379,7 @@
                     <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-blue bg-white text-event-maroon shadow-lg flex flex-col">
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Kit de Bienvenida</span>
-                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7 Espada</h3>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7  Espada</h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
                             <li class="flex items-start gap-3 text-sm">
@@ -433,6 +437,56 @@
             </div>
         </section>
 
+        <!-- Marcas / Sponsors Carousel -->
+        <div class="relative w-full bg-event-maroon py-6 flex flex-col items-center overflow-hidden border-t-2 border-event-gold/20">
+            <!-- Contenedor con movimiento continuo -->
+            <div class="w-full flex overflow-hidden group">
+                <div class="flex animate-scroll group-hover:[animation-play-state:paused] w-max items-center">
+                    
+                    <!-- Mitad 1: Suficientemente ancha para llenar cualquier monitor (14 logos) -->
+                    <div class="flex gap-8 md:gap-16 pr-8 md:pr-16 items-center min-w-max">
+                        <!-- Repetición A -->
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
+                        <!-- Repetición B -->
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
+                    </div>
+
+                    <!-- Mitad 2: Clon exacto de la Mitad 1 para lograr el bucle infinito (-50%) -->
+                    <div class="flex gap-8 md:gap-16 pr-8 md:pr-16 items-center min-w-max">
+                        <!-- Repetición A -->
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
+                        <!-- Repetición B -->
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <!-- Contact Section -->
         <section id="contacto" class="py-24 bg-white">
             <div class="container mx-auto px-6">
@@ -472,10 +526,10 @@
                         </div>
                         
                         <div class="bg-white rounded-[3rem] p-10 shadow-2xl">
-                            <h3 class="text-2xl font-black uppercase tracking-tight mb-6 text-event-maroon">Inscripción Directa</h3>
-                            <p class="text-gray-500 mb-8">Si sos jugador y querés participar del torneo, completá el formulario oficial aquí:</p>
-                            <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="w-full bg-event-blue text-white py-6 px-4 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-event-maroon transition-all shadow-lg">
-                                <span class="text-center">Formulario de Inscripción</span> <i data-lucide="arrow-right" class="flex-shrink-0"></i>
+                            <h3 class="text-2xl font-black uppercase tracking-tight mb-6 text-event-maroon">¡NO TE QUEDES AFUERA!</h3>
+                            <p class="text-gray-500 mb-8">Sumá tu marca y unite al equipo de Copa Sol de Mayo, completá el formulario oficial aquí:</p>
+                            <a href="https://forms.gle/YmhEhUJSvew1hE9i9" target="_blank" class="w-full bg-event-blue text-white py-6 px-4 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-event-maroon transition-all shadow-lg">
+                                <span class="text-center">Formulario para Marcas</span> <i data-lucide="arrow-right" class="flex-shrink-0"></i>
                             </a>
                             <div class="mt-8 pt-8 border-t border-gray-100 flex items-center gap-4">
                                 <p class="text-xs text-gray-400 font-medium uppercase tracking-widest">Organizado por estudiantes UADE</p>
@@ -490,7 +544,7 @@
     </div> <!-- Cierre de view-home -->
 
     <!-- VISTA CASOS DE ÉXITO (Página separada, oculta por defecto) -->
-    <div id="view-casos" class="hidden relative z-20 bg-event-dark min-h-screen pt-32 pb-24 flex-col justify-center">
+    <div id="view-casos" class="hidden relative z-20 bg-event-dark min-h-screen pt-48 md:pt-56 pb-24 flex-col justify-center">
         <section id="casos" class="text-white overflow-hidden flex-grow">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
@@ -501,31 +555,26 @@
                     <p class="text-white/40 max-w-xs text-sm uppercase tracking-widest font-bold">Cómo las marcas viven la Copa Sol de Mayo.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[800px] md:h-[600px]">
-                    <div class="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group">
-                        <img src="https://picsum.photos/seed/event1/800/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso 1">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-8 flex flex-col justify-end">
-                            <h4 class="text-3xl font-display uppercase">Branding en Cancha</h4>
-                            <p class="text-white/60 text-sm mt-2">Visibilidad 360° durante toda la jornada.</p>
-                        </div>
+                <!-- Título Colaboraciones -->
+                <div class="max-w-6xl mx-auto mb-8">
+                    <h3 class="text-3xl md:text-4xl font-display uppercase tracking-tighter text-event-gold">Colaboraciones</h3>
+                </div>
+
+                <!-- Nueva distribución: 3 Cartas -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 max-w-6xl mx-auto">
+                    <!-- Carta 1 -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] group cursor-pointer hover:-translate-y-3 transition-transform duration-300 border border-white/10">
+                        <img src="https://picsum.photos/seed/caso_exito_1/600/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso de Éxito 1">
                     </div>
-                    <div class="md:col-span-2 relative rounded-3xl overflow-hidden group">
-                        <img src="https://picsum.photos/seed/event2/800/400" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso 2">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end">
-                            <h4 class="text-xl font-display uppercase">Sampling Directo</h4>
-                            <p class="text-white/60 text-xs mt-1">Más de 200 contactos directos por hora.</p>
-                        </div>
+                    
+                    <!-- Carta 2 -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] group cursor-pointer hover:-translate-y-3 transition-transform duration-300 border border-white/10">
+                        <img src="https://picsum.photos/seed/caso_exito_2/600/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso de Éxito 2">
                     </div>
-                    <div class="relative rounded-3xl overflow-hidden group">
-                        <img src="https://picsum.photos/seed/event3/400/400" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso 3">
-                        <div class="absolute inset-0 bg-event-blue/40 mix-blend-multiply"></div>
-                        <div class="absolute inset-0 p-6 flex flex-col justify-end">
-                            <h4 class="text-lg font-display uppercase leading-none">Social Media</h4>
-                        </div>
-                    </div>
-                    <div class="relative rounded-3xl overflow-hidden group bg-event-gold p-6 flex flex-col justify-center items-center text-center">
-                        <i data-lucide="trending-up" class="w-12 h-12 text-event-maroon mb-4"></i>
-                        <h4 class="text-event-maroon font-display uppercase leading-none">ROI<br>Garantizado</h4>
+                    
+                    <!-- Carta 3 -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] group cursor-pointer hover:-translate-y-3 transition-transform duration-300 border border-white/10">
+                        <img src="https://picsum.photos/seed/caso_exito_3/600/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso de Éxito 3">
                     </div>
                 </div>
             </div>
@@ -556,8 +605,8 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border border-event-gold">
-                        <img src="input_file_0.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/logo/100/100'">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/logo/100/100'">
                     </div>
                     <div class="font-black text-xl tracking-tighter text-white">
                         COPA <span class="text-event-gold">SOL DE MAYO</span>
@@ -624,14 +673,23 @@
         // Scroll event listener for Navbar, Scrollspy and Back to Top
         window.addEventListener('scroll', () => {
             const currentScroll = window.scrollY;
+            const navLogo = document.getElementById('nav-logo');
 
             // 1. Navbar style update
             if (currentScroll > 50) {
                 navbar.classList.add('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
                 navbar.classList.remove('bg-transparent', 'py-8');
+                if (navLogo) {
+                    navLogo.classList.remove('w-24', 'h-24', 'md:w-28', 'md:h-28');
+                    navLogo.classList.add('w-14', 'h-14');
+                }
             } else {
                 navbar.classList.remove('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
                 navbar.classList.add('bg-transparent', 'py-8');
+                if (navLogo) {
+                    navLogo.classList.add('w-24', 'h-24', 'md:w-28', 'md:h-28');
+                    navLogo.classList.remove('w-14', 'h-14');
+                }
             }
 
             // 1.5. Dynamic Gradient Visibility (Se desvanece al instante del scrolling)
