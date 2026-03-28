@@ -111,33 +111,33 @@
         <a href="#sponsors" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Sponsors</a>
         <a href="#contacto" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Contacto</a>
         <a href="#casos" onclick="navigateTo('casos'); return false;" class="mobile-link bg-event-blue text-white px-8 py-3 rounded-2xl font-black shadow-lg whitespace-nowrap">Casos de Éxito</a>
-        <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="bg-event-gold text-event-maroon px-10 py-4 rounded-2xl font-black shadow-lg whitespace-nowrap">Inscribirse</a>
+        <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="mobile-link bg-event-gold text-event-maroon px-10 py-4 rounded-2xl font-black shadow-lg whitespace-nowrap">Inscribirse</a>
     </div>
 
     <!-- VISTA PRINCIPAL (Home) -->
     <div id="view-home">
 
     <!-- Hero Section -->
-    <section class="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden bg-event-maroon z-0">
+    <section class="sticky top-0 w-full h-[100dvh] md:h-screen flex items-center justify-center overflow-hidden bg-event-maroon z-0">
         <div class="absolute inset-0 opacity-20">
             <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-event-blue rounded-full blur-[120px]"></div>
             <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-event-green rounded-full blur-[120px]"></div>
         </div>
         
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <h1 class="text-6xl md:text-8xl lg:text-[8rem] font-display text-white leading-[0.85] mb-8 tracking-tighter uppercase mt-16">
+        <div class="container mx-auto px-6 relative z-10 text-center -translate-y-4 md:translate-y-0">
+            <h1 class="text-6xl md:text-8xl lg:text-[8rem] font-display text-white leading-[0.85] mb-5 md:mb-8 tracking-tighter uppercase mt-6 md:mt-16">
                 COPA <br>
                 <span class="text-event-gold">SOL</span> <span class="text-event-blue">DE</span> <br>
                 <span class="text-event-blue">MAYO</span>
             </h1>
-            <p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-12 font-medium tracking-tight">
+            <p class="text-lg md:text-2xl text-white/80 max-w-2xl mx-auto mb-8 md:mb-12 font-medium tracking-tight px-2">
                 Más que un torneo, creamos una <span class="text-event-gold font-bold">experiencia</span> que une el <span class="text-event-gold font-bold">pádel</span> con nuestra <span class="text-event-gold font-bold">identidad nacional</span>.
             </p>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                <a href="#sponsors" class="btn-hover-effect bg-event-gold text-event-maroon px-10 py-5 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+                <a href="#sponsors" class="btn-hover-effect bg-event-gold text-event-maroon px-10 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3">
                     Ser Sponsor <i data-lucide="award"></i>
                 </a>
-                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="btn-hover-effect bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-5 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3">
+                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="btn-hover-effect bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3">
                     Inscribirme <i data-lucide="user-plus"></i>
                 </a>
             </div>
@@ -145,102 +145,110 @@
     </section>
 
     <!-- Contenedor principal que se desliza por encima del Hero -->
-    <main class="relative z-10 bg-[#370606] overflow-x-clip">
+    <main class="relative z-10 bg-[#370606]">
         <!-- Degradado de transición controlado matemáticamente por JS -->
         <div id="scroll-gradient" class="absolute bottom-full left-0 w-full h-32 md:h-56 bg-gradient-to-t from-[#370606] via-[#370606]/80 to-transparent pointer-events-none" style="opacity: 0;"></div>
 
-        <!-- About Section -->
-        <section id="nosotros" class="py-24 bg-[#370606] overflow-hidden relative">
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="relative">
-                        <div class="absolute -top-10 -left-10 w-40 h-40 bg-event-blue/20 rounded-full blur-3xl"></div>
-                        <h2 class="text-5xl md:text-7xl font-display text-white uppercase tracking-tighter mb-8 leading-none">¿Quiénes <span class="text-event-blue">Somos?</span></h2>
-                        <p class="text-lg text-white/80 mb-6 leading-relaxed">
-                            Somos un grupo de estudiantes de la <strong class="text-white">Universidad Argentina de la Empresa (UADE)</strong>, entusiastas del deporte y comprometidos con la organización de eventos de alta calidad.
-                        </p>
-                        <p class="text-lg text-white/80 mb-8 leading-relaxed">
-                            Nuestro diferencial radica en crear una experiencia que une el <strong class="text-white">pádel, la identidad y el espíritu patrio</strong>. Buscamos que cada partido sea competencia y celebración de nuestros valores.
-                        </p>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="flex items-start gap-3">
-                                <div class="p-2 bg-event-blue/20 rounded-lg text-event-blue">
-                                    <i data-lucide="calendar"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-white">16 de Mayo</h4>
-                                    <p class="text-sm text-white/60">Fecha Patriótica</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="p-2 bg-event-green/20 rounded-lg text-event-green">
-                                    <i data-lucide="map-pin"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-white">Locación</h4>
-                                    <p class="text-sm text-white/60">A definir</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="aspect-square bg-event-maroon rounded-3xl overflow-hidden shadow-2xl relative group">
-                            <img src="https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1" alt="Padel Experience" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
-                        </div>
+        <!-- Contenedor para evitar scroll horizontal de elementos decorativos en mobile -->
+        <div class="w-full overflow-x-clip">
+            
+            <!-- About Section -->
+            <section id="nosotros" class="py-24 bg-[#370606] relative">
+                <div class="container mx-auto px-6 relative z-10">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
                         
-                        <!-- Imagen flotante entre las secciones -->
-                        <div class="absolute -bottom-20 right-4 md:-bottom-32 md:-right-12 w-48 md:w-72 z-30 hover:scale-105 transition-transform duration-500 drop-shadow-2xl pointer-events-none">
-                            <img src="https://lh3.googleusercontent.com/d/1QtxDc5uvR08Gi3ETQ9Lp0j9cJPzDPCMg" alt="Elemento decorativo" class="w-full h-auto">
+                        <!-- Columna de Texto Restaurada -->
+                        <div class="relative">
+                            <div class="absolute -top-10 -left-10 w-40 h-40 bg-event-blue/20 rounded-full blur-3xl"></div>
+                            <h2 class="text-5xl md:text-7xl font-display text-white uppercase tracking-tighter mb-8 leading-none">¿Quiénes <span class="text-event-blue">Somos?</span></h2>
+                            
+                            <p class="text-lg text-white/80 mb-6 leading-relaxed">
+                                Somos un grupo de estudiantes de la <strong class="text-white">Universidad Argentina de la Empresa (UADE)</strong>, entusiastas del deporte y comprometidos con la organización de eventos de alta calidad.
+                            </p>
+                            <p class="text-lg text-white/80 mb-8 leading-relaxed">
+                                Nuestro diferencial radica en crear una experiencia que une el <strong class="text-white">pádel, la identidad y el espíritu patrio</strong>. Buscamos que cada partido sea competencia y celebración de nuestros valores.
+                            </p>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="flex items-start gap-3">
+                                    <div class="p-2 bg-event-blue/20 rounded-lg text-event-blue">
+                                        <i data-lucide="calendar"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">16 de Mayo</h4>
+                                        <p class="text-sm text-white/60">Fecha Patriótica</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="p-2 bg-event-green/20 rounded-lg text-event-green">
+                                        <i data-lucide="map-pin"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Locación</h4>
+                                        <p class="text-sm text-white/60">A definir</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Services Section -->
-        <section id="ofrecemos" class="py-24 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl md:text-7xl font-display text-event-maroon uppercase tracking-tighter mb-8 leading-none">¿Qué les <span class="text-event-blue">Ofrecemos?</span></h2>
-                    <p class="text-gray-500 max-w-2xl mx-auto font-medium">
-                        Buscamos construir alianzas estratégicas con marcas que compartan nuestra visión de crecimiento, inclusión y compromiso con el deporte.
-                    </p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
-                        <div class="bg-event-blue w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
-                            <i data-lucide="target"></i>
+                        <!-- Columna de Imagen -->
+                        <div class="relative">
+                            <div class="aspect-square bg-event-maroon rounded-3xl overflow-hidden shadow-2xl relative group">
+                                <img src="https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1" alt="Padel Experience" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            
+                            <!-- Imagen flotante entre las secciones -->
+                            <div class="absolute -bottom-20 right-4 md:-bottom-32 md:-right-12 w-48 md:w-72 z-30 hover:scale-105 transition-transform duration-500 drop-shadow-2xl pointer-events-none">
+                                <img src="https://lh3.googleusercontent.com/d/1QtxDc5uvR08Gi3ETQ9Lp0j9cJPzDPCMg" alt="Elemento decorativo" class="w-full h-auto">
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Visibilidad</h3>
-                        <p class="text-gray-500 leading-relaxed">Conexión directa con jóvenes aficionados al deporte y público potencial de la marca.</p>
-                    </div>
-                    <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
-                        <div class="bg-event-green w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Presencia Digital</h3>
-                        <p class="text-gray-500 leading-relaxed">Posteos, historias y presencia del logo en todas las comunicaciones oficiales y flyers.</p>
-                    </div>
-                    <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
-                        <div class="bg-event-gold w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
-                            <i data-lucide="zap"></i>
-                        </div>
-                        <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Activaciones</h3>
-                        <p class="text-gray-500 leading-relaxed">Stands exclusivos y participación activa en premios y sorteos dentro del evento.</p>
                     </div>
                 </div>
-                
-                <div class="mt-16 bg-event-maroon rounded-[3rem] p-12 text-center text-white relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-event-blue/20 rounded-full blur-3xl"></div>
-                    <h3 class="text-4xl font-black mb-4">+<span id="personas-counter" data-target="100">0</span> PERSONAS</h3>
-                    <p class="text-white/60 uppercase tracking-widest font-bold">Entre participantes, staff y espectadores</p>
+            </section>
+
+            <!-- Services Section -->
+            <section id="ofrecemos" class="py-24 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-5xl md:text-7xl font-display text-event-maroon uppercase tracking-tighter mb-8 leading-none">¿Qué les <span class="text-event-blue">Ofrecemos?</span></h2>
+                        <p class="text-gray-500 max-w-2xl mx-auto font-medium">
+                            Buscamos construir alianzas estratégicas con marcas que compartan nuestra visión de crecimiento, inclusión y compromiso con el deporte.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
+                            <div class="bg-event-blue w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+                                <i data-lucide="target"></i>
+                            </div>
+                            <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Visibilidad</h3>
+                            <p class="text-gray-500 leading-relaxed">Conexión directa con jóvenes aficionados al deporte y público potencial de la marca.</p>
+                        </div>
+                        <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
+                            <div class="bg-event-green w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Presencia Digital</h3>
+                            <p class="text-gray-500 leading-relaxed">Posteos, historias y presencia del logo en todas las comunicaciones oficiales y flyers.</p>
+                        </div>
+                        <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
+                            <div class="bg-event-gold w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+                                <i data-lucide="zap"></i>
+                            </div>
+                            <h3 class="text-2xl font-display text-event-maroon uppercase mb-4 tracking-tight">Activaciones</h3>
+                            <p class="text-gray-500 leading-relaxed">Stands exclusivos y participación activa en premios y sorteos dentro del evento.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-16 bg-event-maroon rounded-[3rem] p-12 text-center text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-event-blue/20 rounded-full blur-3xl"></div>
+                        <h3 class="text-4xl font-black mb-4">+<span id="personas-counter" data-target="100">0</span> PERSONAS</h3>
+                        <p class="text-white/60 uppercase tracking-widest font-bold">Entre participantes, staff y espectadores</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
         <!-- Experience Section -->
         <section class="py-24 bg-[#370606] text-white relative overflow-hidden">
@@ -526,7 +534,7 @@
                         </div>
                         
                         <div class="bg-white rounded-[3rem] p-10 shadow-2xl">
-                            <h3 class="text-2xl font-black uppercase tracking-tight mb-6 text-event-maroon">¡NO TE QUEDES AFUERA!</h3>
+                            <h3 class="text-2xl font-black uppercase tracking-tight mb-6 text-event-maroon">NO TE QUEDES AFUERA</h3>
                             <p class="text-gray-500 mb-8">Sumá tu marca y unite al equipo de Copa Sol de Mayo, completá el formulario oficial aquí:</p>
                             <a href="https://forms.gle/YmhEhUJSvew1hE9i9" target="_blank" class="w-full bg-event-blue text-white py-6 px-4 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-event-maroon transition-all shadow-lg">
                                 <span class="text-center">Formulario para Marcas</span> <i data-lucide="arrow-right" class="flex-shrink-0"></i>
@@ -632,12 +640,16 @@
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
         const toggleMenu = () => {
-            mobileMenu.classList.toggle('translate-x-full');
+            if (mobileMenu) mobileMenu.classList.toggle('translate-x-full');
         };
 
-        menuToggle.addEventListener('click', toggleMenu);
-        menuClose.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+        const closeMenu = () => {
+            if (mobileMenu) mobileMenu.classList.add('translate-x-full');
+        };
+
+        if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
+        if (menuClose) menuClose.addEventListener('click', closeMenu);
+        if (mobileLinks) mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
         // Navigation elements
         const navbar = document.getElementById('navbar');
@@ -651,21 +663,23 @@
             const homeView = document.getElementById('view-home');
             const casosView = document.getElementById('view-casos');
 
-            // Cerrar menú móvil si está abierto
-            if (!mobileMenu.classList.contains('translate-x-full')) {
-                toggleMenu();
-            }
+            // Cerrar menú móvil siempre al navegar
+            closeMenu();
 
             if (target === 'casos') {
-                homeView.style.display = 'none';
-                casosView.classList.remove('hidden');
-                casosView.classList.add('flex');
+                if (homeView) homeView.style.display = 'none';
+                if (casosView) {
+                    casosView.classList.remove('hidden');
+                    casosView.classList.add('flex');
+                }
                 window.scrollTo({ top: 0, behavior: 'instant' });
             } else if (target === 'home') {
-                if (homeView.style.display === 'none') {
+                if (homeView && homeView.style.display === 'none') {
                     homeView.style.display = 'block';
-                    casosView.classList.add('hidden');
-                    casosView.classList.remove('flex');
+                    if (casosView) {
+                        casosView.classList.add('hidden');
+                        casosView.classList.remove('flex');
+                    }
                 }
             }
         }
@@ -676,47 +690,52 @@
             const navLogo = document.getElementById('nav-logo');
 
             // 1. Navbar style update
-            if (currentScroll > 50) {
-                navbar.classList.add('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
-                navbar.classList.remove('bg-transparent', 'py-8');
-                if (navLogo) {
-                    navLogo.classList.remove('w-24', 'h-24', 'md:w-28', 'md:h-28');
-                    navLogo.classList.add('w-14', 'h-14');
-                }
-            } else {
-                navbar.classList.remove('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
-                navbar.classList.add('bg-transparent', 'py-8');
-                if (navLogo) {
-                    navLogo.classList.add('w-24', 'h-24', 'md:w-28', 'md:h-28');
-                    navLogo.classList.remove('w-14', 'h-14');
+            if (navbar) {
+                if (currentScroll > 50) {
+                    navbar.classList.add('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
+                    navbar.classList.remove('bg-transparent', 'py-8');
+                    if (navLogo) {
+                        navLogo.classList.remove('w-24', 'h-24', 'md:w-28', 'md:h-28');
+                        navLogo.classList.add('w-14', 'h-14');
+                    }
+                } else {
+                    navbar.classList.remove('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
+                    navbar.classList.add('bg-transparent', 'py-8');
+                    if (navLogo) {
+                        navLogo.classList.add('w-24', 'h-24', 'md:w-28', 'md:h-28');
+                        navLogo.classList.remove('w-14', 'h-14');
+                    }
                 }
             }
 
-            // 1.5. Dynamic Gradient Visibility (Se desvanece al instante del scrolling)
+            // 1.5. Dynamic Gradient Visibility
             if (scrollGradient) {
                 // Calcula la opacidad exacta basada en los píxeles (de 0 a 100px)
                 scrollGradient.style.opacity = Math.min(currentScroll / 100, 1);
             }
 
             // 2. Back to top button visibility
-            if (currentScroll > 500) {
-                backToTop.classList.remove('translate-y-24', 'opacity-0');
-            } else {
-                backToTop.classList.add('translate-y-24', 'opacity-0');
+            if (backToTop) {
+                if (currentScroll > 500) {
+                    backToTop.classList.remove('translate-y-24', 'opacity-0');
+                } else {
+                    backToTop.classList.add('translate-y-24', 'opacity-0');
+                }
             }
 
             // 3. Scrollspy (Active link highlighting modificado para SPA)
             let current = '';
             
-            // Verificamos en qué vista estamos
-            const isCasosView = !document.getElementById('view-casos').classList.contains('hidden');
+            // Verificamos en qué vista estamos (con chequeo de nulos)
+            const viewCasosEl = document.getElementById('view-casos');
+            const isCasosView = viewCasosEl ? !viewCasosEl.classList.contains('hidden') : false;
             
             if (isCasosView) {
                 current = 'casos';
             } else {
                 sections.forEach(section => {
                     // Solo considerar secciones visibles
-                    if (section.offsetHeight > 0 && section.id !== 'casos') {
+                    if (section && section.offsetHeight > 0 && section.id !== 'casos') {
                         const sectionTop = section.offsetTop;
                         if (window.pageYOffset >= (sectionTop - 200)) {
                             current = section.getAttribute('id');
@@ -725,21 +744,27 @@
                 });
             }
 
-            navLinks.forEach(link => {
-                link.classList.remove('text-event-gold');
-                // Lógica adaptada para identificar la vista "Casos" o links estándar
-                if (isCasosView && link.id === 'nav-casos-desktop') {
-                    link.classList.add('text-event-gold');
-                } else if (!isCasosView && link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('text-event-gold');
-                }
-            });
+            if (navLinks) {
+                navLinks.forEach(link => {
+                    if (link) {
+                        link.classList.remove('text-event-gold');
+                        // Lógica adaptada para identificar la vista "Casos" o links estándar
+                        if (isCasosView && link.id === 'nav-casos-desktop') {
+                            link.classList.add('text-event-gold');
+                        } else if (!isCasosView && link.getAttribute('href') === `#${current}`) {
+                            link.classList.add('text-event-gold');
+                        }
+                    }
+                });
+            }
         });
 
         // Back to top click behavior
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        if (backToTop) {
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
 
         // Reveal on scroll
         const observerOptions = {
@@ -748,7 +773,7 @@
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry && entry.isIntersecting && entry.target) {
                     entry.target.classList.add('opacity-100', 'translate-y-0');
                     entry.target.classList.remove('opacity-0', 'translate-y-10');
                 }
@@ -756,15 +781,17 @@
         }, observerOptions);
 
         document.querySelectorAll('section > div').forEach(section => {
-            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-            observer.observe(section);
+            if (section) {
+                section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            }
         });
 
         // Counter Animation Logic
         const counterElement = document.getElementById('personas-counter');
         
         if (counterElement) {
-            const targetNumber = parseInt(counterElement.getAttribute('data-target'));
+            const targetNumber = parseInt(counterElement.getAttribute('data-target') || '0');
             const duration = 1500; // 1.5 segundos de animación para que sea rápida
             let animationFrameId = null;
 
@@ -772,7 +799,7 @@
             const animateCounter = (el, target, dur) => {
                 // Cancelar cualquier animación previa por si el usuario scrollea rápido
                 if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
-                el.innerText = '0'; // Reiniciar visualmente
+                if (el) el.innerText = '0'; // Reiniciar visualmente
                 
                 let startTimestamp = null;
                 const step = (timestamp) => {
@@ -780,12 +807,12 @@
                     const progress = Math.min((timestamp - startTimestamp) / dur, 1);
                     // Efecto easeOutQuart para que frene suave al llegar al final
                     const easeOutProgress = 1 - Math.pow(1 - progress, 4);
-                    el.innerText = Math.floor(easeOutProgress * target);
+                    if (el) el.innerText = Math.floor(easeOutProgress * target);
                     
                     if (progress < 1) {
                         animationFrameId = window.requestAnimationFrame(step);
                     } else {
-                        el.innerText = target; // Asegurarse de terminar exactamente en el número
+                        if (el) el.innerText = target; // Asegurarse de terminar exactamente en el número
                     }
                 };
                 animationFrameId = window.requestAnimationFrame(step);
@@ -795,14 +822,17 @@
             const counterObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     // Si el contenedor es visible, disparamos la animación siempre
-                    if (entry.isIntersecting) {
+                    if (entry && entry.isIntersecting) {
                         animateCounter(counterElement, targetNumber, duration);
                     }
                 });
             }, { threshold: 0.5 }); // Se activa cuando el 50% de la caja está en pantalla
 
             // Observamos el contenedor padre (el div color granate)
-            counterObserver.observe(counterElement.closest('.bg-event-maroon'));
+            const parentBg = counterElement.closest('.bg-event-maroon');
+            if (parentBg) {
+                counterObserver.observe(parentBg);
+            }
         }
     </script>
 </body>
