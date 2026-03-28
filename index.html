@@ -146,8 +146,8 @@
 
     <!-- Contenedor principal que se desliza por encima del Hero -->
     <main class="relative z-10 bg-[#370606]">
-        <!-- Degradado de transición controlado matemáticamente por JS -->
-        <div id="scroll-gradient" class="absolute bottom-full left-0 w-full h-32 md:h-56 bg-gradient-to-t from-[#370606] via-[#370606]/80 to-transparent pointer-events-none" style="opacity: 0;"></div>
+        <!-- Degradado de transición controlado matemáticamente por JS (Optimizado para GPU) -->
+        <div id="scroll-gradient" class="absolute bottom-full left-0 w-full h-32 md:h-56 bg-gradient-to-t from-[#370606] via-[#370606]/80 to-transparent pointer-events-none" style="opacity: 0; transform: translateZ(0); will-change: opacity;"></div>
 
         <!-- Contenedor para evitar scroll horizontal de elementos decorativos en mobile -->
         <div class="w-full overflow-x-clip">
@@ -684,8 +684,22 @@
             }
         }
 
-        // Scroll event listener for Navbar, Scrollspy and Back to Top
+        // Variable para optimizar el rendimiento del scroll (Throttling)
+        let isScrolling = false;
+
+        // Scroll event listener optimizado con requestAnimationFrame y passive flag
         window.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    procesarScroll();
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        }, { passive: true }); // passive: true mejora radicalmente el scroll táctil
+
+        // Toda la lógica pesada se mueve a esta función controlada
+        function procesarScroll() {
             const currentScroll = window.scrollY;
             const navLogo = document.getElementById('nav-logo');
 
@@ -757,7 +771,7 @@
                     }
                 });
             }
-        });
+        }
 
         // Back to top click behavior
         if (backToTop) {
