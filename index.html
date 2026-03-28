@@ -118,7 +118,8 @@
     <div id="view-home">
 
     <!-- Hero Section -->
-    <section class="sticky top-0 w-full h-[100dvh] md:h-screen flex items-center justify-center overflow-hidden bg-event-maroon z-0">
+    <!-- OPTIMIZACIÓN MÓVIL: Cambiamos h-[100dvh] a h-[100svh] para evitar que el redimensionamiento de las barras del navegador trabe el scroll -->
+    <section class="sticky top-0 w-full h-[100svh] md:h-screen flex items-center justify-center overflow-hidden bg-event-maroon z-0">
         <div class="absolute inset-0 opacity-20">
             <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-event-blue rounded-full blur-[120px]"></div>
             <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-event-green rounded-full blur-[120px]"></div>
@@ -651,34 +652,34 @@
         if (menuClose) menuClose.addEventListener('click', closeMenu);
         if (mobileLinks) mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-        // Navigation elements
+        // CACHÉ DE ELEMENTOS DEL DOM (OPTIMIZACIÓN PARA EVITAR LAG AL SCROLLEAR)
         const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('nav-logo');
         const backToTop = document.getElementById('back-to-top');
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
         const scrollGradient = document.getElementById('scroll-gradient');
+        const viewCasosEl = document.getElementById('view-casos');
+        const homeView = document.getElementById('view-home');
 
         // Función SPA para cambiar de vista (Navegación Interna)
         function navigateTo(target) {
-            const homeView = document.getElementById('view-home');
-            const casosView = document.getElementById('view-casos');
-
             // Cerrar menú móvil siempre al navegar
             closeMenu();
 
             if (target === 'casos') {
                 if (homeView) homeView.style.display = 'none';
-                if (casosView) {
-                    casosView.classList.remove('hidden');
-                    casosView.classList.add('flex');
+                if (viewCasosEl) {
+                    viewCasosEl.classList.remove('hidden');
+                    viewCasosEl.classList.add('flex');
                 }
                 window.scrollTo({ top: 0, behavior: 'instant' });
             } else if (target === 'home') {
                 if (homeView && homeView.style.display === 'none') {
                     homeView.style.display = 'block';
-                    if (casosView) {
-                        casosView.classList.add('hidden');
-                        casosView.classList.remove('flex');
+                    if (viewCasosEl) {
+                        viewCasosEl.classList.add('hidden');
+                        viewCasosEl.classList.remove('flex');
                     }
                 }
             }
@@ -701,7 +702,6 @@
         // Toda la lógica pesada se mueve a esta función controlada
         function procesarScroll() {
             const currentScroll = window.scrollY;
-            const navLogo = document.getElementById('nav-logo');
 
             // 1. Navbar style update
             if (navbar) {
@@ -740,8 +740,7 @@
             // 3. Scrollspy (Active link highlighting modificado para SPA)
             let current = '';
             
-            // Verificamos en qué vista estamos (con chequeo de nulos)
-            const viewCasosEl = document.getElementById('view-casos');
+            // Verificamos en qué vista estamos usando las variables cacheadas
             const isCasosView = viewCasosEl ? !viewCasosEl.classList.contains('hidden') : false;
             
             if (isCasosView) {
