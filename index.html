@@ -236,7 +236,7 @@
                 
                 <div class="mt-16 bg-event-maroon rounded-[3rem] p-12 text-center text-white relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-event-blue/20 rounded-full blur-3xl"></div>
-                    <h3 class="text-4xl font-black mb-4">+<span id="personas-counter" data-target="50">0</span> PERSONAS</h3>
+                    <h3 class="text-4xl font-black mb-4">+<span id="personas-counter" data-target="100">0</span> PERSONAS</h3>
                     <p class="text-white/60 uppercase tracking-widest font-bold">Entre participantes, staff y espectadores</p>
                 </div>
             </div>
@@ -765,11 +765,15 @@
         
         if (counterElement) {
             const targetNumber = parseInt(counterElement.getAttribute('data-target'));
-            const duration = 2500; // 2.5 segundos de animación
-            let hasAnimated = false; // Bandera para animar solo una vez
+            const duration = 1500; // 1.5 segundos de animación para que sea rápida
+            let animationFrameId = null;
 
             // Función para animar el número con aceleración y desaceleración suave
             const animateCounter = (el, target, dur) => {
+                // Cancelar cualquier animación previa por si el usuario scrollea rápido
+                if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
+                el.innerText = '0'; // Reiniciar visualmente
+                
                 let startTimestamp = null;
                 const step = (timestamp) => {
                     if (!startTimestamp) startTimestamp = timestamp;
@@ -779,22 +783,20 @@
                     el.innerText = Math.floor(easeOutProgress * target);
                     
                     if (progress < 1) {
-                        window.requestAnimationFrame(step);
+                        animationFrameId = window.requestAnimationFrame(step);
                     } else {
                         el.innerText = target; // Asegurarse de terminar exactamente en el número
                     }
                 };
-                window.requestAnimationFrame(step);
+                animationFrameId = window.requestAnimationFrame(step);
             };
 
             // Observador para disparar la animación cuando la caja sea visible
             const counterObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    // Si el contenedor es visible y aún no se animó
-                    if (entry.isIntersecting && !hasAnimated) {
-                        hasAnimated = true;
+                    // Si el contenedor es visible, disparamos la animación siempre
+                    if (entry.isIntersecting) {
                         animateCounter(counterElement, targetNumber, duration);
-                        counterObserver.unobserve(entry.target); // Dejar de observar
                     }
                 });
             }, { threshold: 0.5 }); // Se activa cuando el 50% de la caja está en pantalla
