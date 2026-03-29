@@ -333,7 +333,7 @@
                         </div>
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-gold">Oro</span>
-                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1  Espada</h3>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1 <span class="ml-2">Espada</span></h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
                             <li class="flex items-start gap-3 text-sm">
@@ -365,7 +365,7 @@
                         </div>
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Plata</span>
-                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1  Basto</h3>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1 <span class="ml-2">Basto</span></h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
                             <li class="flex items-start gap-3 text-sm">
@@ -394,7 +394,7 @@
                     <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-blue bg-white text-event-maroon shadow-lg flex flex-col">
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Kit de Bienvenida</span>
-                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7  Espada</h3>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7 <span class="ml-2">Espada</span></h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
                             <li class="flex items-start gap-3 text-sm">
@@ -423,7 +423,7 @@
                     <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-gold bg-white text-event-maroon shadow-lg flex flex-col">
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Sorteo</span>
-                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7 Oro</h3>
+                            <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7 <span class="ml-2">Oro</span></h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
                             <li class="flex items-start gap-3 text-sm">
@@ -453,49 +453,49 @@
         </section>
 
         <!-- Marcas / Sponsors Carousel -->
-        <div class="relative w-full bg-event-maroon py-6 flex flex-col items-center overflow-hidden border-t-2 border-event-gold/20">
-            <!-- Contenedor con movimiento continuo -->
-            <div class="w-full flex overflow-hidden group">
-                <div class="flex animate-scroll group-hover:[animation-play-state:paused] w-max items-center">
+        <div id="carousel-container" class="relative w-full bg-event-maroon py-6 flex flex-col items-center overflow-hidden border-t-2 border-event-gold/20 select-none cursor-grab">
+            <!-- Contenedor con movimiento continuo manejado por JS -->
+            <div class="w-full flex overflow-hidden">
+                <div id="carousel-track" class="flex w-max items-center will-change-transform">
                     
                     <!-- Mitad 1: Suficientemente ancha para llenar cualquier monitor (14 logos) -->
-                    <div class="flex gap-8 md:gap-16 pr-8 md:pr-16 items-center min-w-max">
+                    <div class="flex gap-8 md:gap-16 pr-8 md:pr-16 items-center min-w-max pointer-events-none">
                         <!-- Repetición A -->
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
                         <!-- Repetición B -->
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
                     </div>
 
-                    <!-- Mitad 2: Clon exacto de la Mitad 1 para lograr el bucle infinito (-50%) -->
-                    <div class="flex gap-8 md:gap-16 pr-8 md:pr-16 items-center min-w-max">
+                    <!-- Mitad 2: Clon exacto de la Mitad 1 para lograr el bucle infinito -->
+                    <div class="flex gap-8 md:gap-16 pr-8 md:pr-16 items-center min-w-max pointer-events-none">
                         <!-- Repetición A -->
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
                         <!-- Repetición B -->
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all hover:bg-white/10 hover:scale-105 cursor-pointer"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>4</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
                     </div>
 
                 </div>
@@ -628,7 +628,7 @@
                         COPA <span class="text-event-gold">SOL DE MAYO</span>
                     </div>
                 </div>
-                <p class="text-sm font-medium uppercase tracking-widest">© 2026 Copa Sol de Mayo • Todos los derechos reservados • Desarrollado por: Matías Scoltore</p>
+                <p class="text-sm font-medium uppercase tracking-widest">© 2026 Copa Sol de Mayo • Todos los derechos reservados • Desarrolado por: Matías Scoltore</p>
                 <div class="flex gap-6">
                     <a href="#" class="hover:text-white transition-colors"><i data-lucide="instagram"></i></a>
                     <a href="#" class="hover:text-white transition-colors"><i data-lucide="mail"></i></a>
@@ -853,6 +853,86 @@
             if (parentBg) {
                 counterObserver.observe(parentBg);
             }
+        }
+
+        // --- NUEVO: Lógica del Carrusel Arrastrable e Infinito ---
+        const carouselTrack = document.getElementById('carousel-track');
+        const carouselContainer = document.getElementById('carousel-container');
+
+        if (carouselTrack && carouselContainer) {
+            let isDragging = false;
+            let startX;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationId;
+            let isHovered = false;
+
+            const animateCarousel = () => {
+                // Si no se está arrastrando ni pasando el mouse, avanzar automáticamente
+                if (!isDragging && !isHovered) {
+                    currentTranslate -= 0.8; // Velocidad del movimiento
+                }
+
+                // Lógica mágica del bucle infinito
+                const halfWidth = carouselTrack.scrollWidth / 2;
+
+                // Si llegó al final de la primera mitad, volver a 0 sin que se note
+                if (currentTranslate <= -halfWidth) {
+                    currentTranslate += halfWidth;
+                } else if (currentTranslate > 0) { // O si lo arrastraron muy a la derecha
+                    currentTranslate -= halfWidth;
+                }
+
+                carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
+                animationId = requestAnimationFrame(animateCarousel);
+            };
+
+            // Eventos de pausa al pasar el mouse (para la PC)
+            carouselContainer.addEventListener('mouseenter', () => isHovered = true);
+            carouselContainer.addEventListener('mouseleave', () => {
+                isHovered = false;
+                isDragging = false; // Cancelar arrastre si el cursor sale
+                carouselContainer.classList.add('cursor-grab');
+                carouselContainer.classList.remove('cursor-grabbing');
+            });
+
+            // Inicio de arrastre (Mouse / Táctil)
+            const dragStart = (e) => {
+                isDragging = true;
+                carouselContainer.classList.remove('cursor-grab');
+                carouselContainer.classList.add('cursor-grabbing');
+                // Detectar si es mouse o dedo
+                startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                prevTranslate = currentTranslate;
+            };
+
+            // Durante el arrastre
+            const dragMove = (e) => {
+                if (!isDragging) return;
+                const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                const deltaX = currentPosition - startX;
+                currentTranslate = prevTranslate + deltaX;
+            };
+
+            // Fin de arrastre
+            const dragEnd = () => {
+                isDragging = false;
+                carouselContainer.classList.add('cursor-grab');
+                carouselContainer.classList.remove('cursor-grabbing');
+            };
+
+            // Asignar listeners del Mouse
+            carouselContainer.addEventListener('mousedown', dragStart);
+            carouselContainer.addEventListener('mousemove', dragMove);
+            window.addEventListener('mouseup', dragEnd);
+
+            // Asignar listeners Táctiles (Móvil)
+            carouselContainer.addEventListener('touchstart', dragStart, { passive: true });
+            carouselContainer.addEventListener('touchmove', dragMove, { passive: true });
+            window.addEventListener('touchend', dragEnd);
+
+            // Encender el motor
+            animateCarousel();
         }
     </script>
 </body>
