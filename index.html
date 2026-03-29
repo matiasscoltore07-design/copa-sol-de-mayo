@@ -76,9 +76,17 @@
     <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent py-8">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" onclick="navigateTo('home'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex items-center gap-3 group cursor-pointer" aria-label="Volver al inicio">
+            <!-- Quitamos 'gap-3' de aquí para que no haya espacios fantasma cuando el texto está oculto -->
+            <a href="#" onclick="navigateTo('home'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex items-center group cursor-pointer" aria-label="Volver al inicio">
                 <div id="nav-logo" class="w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 flex-shrink-0 group-hover:scale-105">
                     <img src="https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/logo/100/100'">
+                </div>
+                
+                <!-- Nuevo Título Móvil (Solo aparece al scrollear) -->
+                <div id="nav-mobile-title" class="md:hidden opacity-0 max-w-0 overflow-hidden transition-all duration-500 flex items-center">
+                    <span class="font-display text-[1.1rem] sm:text-xl uppercase tracking-tighter whitespace-nowrap ml-3 mt-1">
+                        <span class="text-white">COPA </span><span class="text-event-gold">SOL </span><span class="text-event-blue">DE MAYO</span>
+                    </span>
                 </div>
             </a>
             
@@ -680,6 +688,7 @@
         // CACHÉ DE ELEMENTOS DEL DOM (OPTIMIZACIÓN PARA EVITAR LAG AL SCROLLEAR)
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
+        const navMobileTitle = document.getElementById('nav-mobile-title');
         const backToTop = document.getElementById('back-to-top');
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -737,12 +746,20 @@
                         navLogo.classList.remove('w-24', 'h-24', 'md:w-28', 'md:h-28');
                         navLogo.classList.add('w-14', 'h-14');
                     }
+                    if (navMobileTitle) {
+                        navMobileTitle.classList.remove('max-w-0', 'opacity-0');
+                        navMobileTitle.classList.add('max-w-[300px]', 'opacity-100');
+                    }
                 } else {
                     navbar.classList.remove('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
                     navbar.classList.add('bg-transparent', 'py-8');
                     if (navLogo) {
                         navLogo.classList.add('w-24', 'h-24', 'md:w-28', 'md:h-28');
                         navLogo.classList.remove('w-14', 'h-14');
+                    }
+                    if (navMobileTitle) {
+                        navMobileTitle.classList.add('max-w-0', 'opacity-0');
+                        navMobileTitle.classList.remove('max-w-[300px]', 'opacity-100');
                     }
                 }
             }
