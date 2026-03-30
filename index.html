@@ -91,19 +91,21 @@
             </a>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-10 text-white font-bold uppercase text-sm tracking-widest">
+            <!-- OPTIMIZADO: Cambiado a 'lg:flex' y 'gap-4 xl:gap-10' para evitar superposición en laptops chicas -->
+            <div class="hidden lg:flex items-center gap-4 xl:gap-10 text-white font-bold uppercase text-xs xl:text-sm tracking-widest">
                 <a href="#nosotros" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Nosotros</a>
                 <a href="#ofrecemos" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Propuesta</a>
                 <a href="#sponsors" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Sponsors</a>
                 <a href="#contacto" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Contacto</a>
-                <a href="#casos" onclick="navigateTo('casos'); return false;" class="nav-link bg-event-blue text-white px-6 py-2.5 rounded-xl font-black hover:bg-white hover:text-event-blue transition-all shadow-md whitespace-nowrap" id="nav-casos-desktop">Casos de Éxito</a>
-                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="bg-event-gold text-event-maroon px-8 py-3 rounded-xl font-black hover:bg-white transition-all shadow-md whitespace-nowrap">
+                <a href="#casos" onclick="navigateTo('casos'); return false;" class="nav-link bg-event-blue text-white px-5 py-2.5 xl:px-6 xl:py-2.5 rounded-xl font-black hover:bg-white hover:text-event-blue transition-all shadow-md whitespace-nowrap" id="nav-casos-desktop">Casos de Éxito</a>
+                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="bg-event-gold text-event-maroon px-6 py-2.5 xl:px-8 xl:py-3 rounded-xl font-black hover:bg-white transition-all shadow-md whitespace-nowrap">
                     Inscribirse
                 </a>
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button id="menu-toggle" class="md:hidden text-white p-2" aria-label="Abrir menú">
+            <!-- OPTIMIZADO: Ahora visible en 'lg' hacia abajo -->
+            <button id="menu-toggle" class="lg:hidden text-white p-2" aria-label="Abrir menú">
                 <i data-lucide="menu" class="w-8 h-8" id="menu-icon"></i>
             </button>
         </div>
@@ -133,8 +135,9 @@
             <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-event-green rounded-full blur-[120px]"></div>
         </div>
         
-        <div class="container mx-auto px-6 relative z-10 text-center -translate-y-4 md:translate-y-0">
-            <h1 class="text-6xl md:text-8xl lg:text-[8rem] font-display text-white leading-[0.85] mb-0 md:mb-4 tracking-tighter uppercase mt-6 md:mt-16">
+        <!-- OPTIMIZADO: Agregado 'pt-24 md:pt-36 lg:pt-40' para empujar el contenido debajo del navbar -->
+        <div class="container mx-auto px-6 relative z-10 text-center -translate-y-4 md:translate-y-0 pt-24 md:pt-36 lg:pt-40">
+            <h1 class="text-6xl md:text-8xl lg:text-[8rem] font-display text-white leading-[0.85] mb-0 md:mb-4 tracking-tighter uppercase mt-6">
                 COPA <br>
                 <span class="text-event-gold">SOL</span> <span class="text-event-blue">DE</span> <br>
                 <span class="text-event-blue">MAYO</span>
