@@ -91,8 +91,8 @@
             </a>
             
             <!-- Desktop Menu -->
-            <!-- OPTIMIZADO: Cambiado a 'lg:flex' y 'gap-4 xl:gap-10' para evitar superposición en laptops chicas -->
-            <div class="hidden lg:flex items-center gap-4 xl:gap-10 text-white font-bold uppercase text-xs xl:text-sm tracking-widest">
+            <!-- OPTIMIZADO: Agregamos id="desktop-menu" y clases de translación inicial (-translate-y-4 lg:-translate-y-6) -->
+            <div id="desktop-menu" class="hidden lg:flex items-center gap-4 xl:gap-10 text-white font-bold uppercase text-xs xl:text-sm tracking-widest transition-all duration-500 -translate-y-4 lg:-translate-y-6">
                 <a href="#nosotros" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Nosotros</a>
                 <a href="#ofrecemos" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Propuesta</a>
                 <a href="#sponsors" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Sponsors</a>
@@ -691,6 +691,7 @@
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
         const navMobileTitle = document.getElementById('nav-mobile-title');
+        const desktopMenu = document.getElementById('desktop-menu');
         const backToTop = document.getElementById('back-to-top');
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -752,6 +753,9 @@
                         navMobileTitle.classList.remove('max-w-0', 'opacity-0');
                         navMobileTitle.classList.add('max-w-[300px]', 'opacity-100');
                     }
+                    if (desktopMenu) {
+                        desktopMenu.classList.remove('-translate-y-4', 'lg:-translate-y-6');
+                    }
                 } else {
                     navbar.classList.remove('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
                     navbar.classList.add('bg-transparent', 'py-8');
@@ -762,6 +766,9 @@
                     if (navMobileTitle) {
                         navMobileTitle.classList.add('max-w-0', 'opacity-0');
                         navMobileTitle.classList.remove('max-w-[300px]', 'opacity-100');
+                    }
+                    if (desktopMenu) {
+                        desktopMenu.classList.add('-translate-y-4', 'lg:-translate-y-6');
                     }
                 }
             }
