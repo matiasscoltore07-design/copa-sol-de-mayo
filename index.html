@@ -851,8 +851,26 @@
             formData.append('Password', pass); // ENVIAMOS LA CONTRASEÑA PARA GUARDARLA
 
             try {
-                await fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' });
+                // OPTIMIZADO: Quitamos "mode: 'no-cors'" para poder leer lo que nos responde Google
+                const response = await fetch(scriptURL, { method: 'POST', body: formData });
+                const text = await response.text();
 
+                // --- NUEVO: REVISAMOS SI GOOGLE DETECTÓ CORREOS REPETIDOS ---
+                if (text === "EmailActivo") {
+                    if(signupError) {
+                        signupError.innerText = "El mail ya está registrado y su cuenta se encuentra activa. Por favor, inicia sesión.";
+                        signupError.classList.remove('hidden');
+                    }
+                    return; // Detenemos el registro
+                } else if (text === "EmailPendiente") {
+                    if(signupError) {
+                        signupError.innerText = "Este mail ya está registrado pero falta verificarlo. Revisa tu correo para ingresar el código.";
+                        signupError.classList.remove('hidden');
+                    }
+                    return; // Detenemos el registro
+                }
+
+                // Si no hay errores y la respuesta fue "Exito", seguimos:
                 pendingUser = { name, email, phone, pass, code: verificationCode };
                 e.target.reset();
                 switchAuth('verify');
