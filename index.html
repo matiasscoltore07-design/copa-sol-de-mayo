@@ -939,6 +939,11 @@
         const navLoginMobile = document.getElementById('nav-login-mobile');
         const navBeneficiosMobile = document.getElementById('nav-beneficios-mobile');
         const navLogoutMobile = document.getElementById('nav-logout-mobile');
+        
+        // NUEVOS: Íconos del encabezado en celular
+        const navLoginIconMobile = document.getElementById('nav-login-icon-mobile'); 
+        const navBeneficiosIconMobile = document.getElementById('nav-beneficios-icon-mobile');
+        
         const heroLoginBtn = document.getElementById('hero-login-btn');
         const heroBeneficiosBtn = document.getElementById('hero-beneficios-btn');
 
@@ -1196,6 +1201,10 @@
                 if(navBeneficiosMobile) navBeneficiosMobile.classList.remove('hidden');
                 if(navBeneficiosMobile) navBeneficiosMobile.classList.add('flex');
                 if(navLogoutMobile) navLogoutMobile.classList.remove('hidden');
+                
+                // NUEVO: Cambia el ícono en el header
+                if(navLoginIconMobile) navLoginIconMobile.classList.add('hidden'); 
+                if(navBeneficiosIconMobile) navBeneficiosIconMobile.classList.remove('hidden'); 
 
                 if(heroLoginBtn) heroLoginBtn.classList.add('hidden');
                 if(heroBeneficiosBtn) heroBeneficiosBtn.classList.remove('hidden');
@@ -1210,6 +1219,10 @@
                 if(navBeneficiosMobile) navBeneficiosMobile.classList.add('hidden');
                 if(navBeneficiosMobile) navBeneficiosMobile.classList.remove('flex');
                 if(navLogoutMobile) navLogoutMobile.classList.add('hidden');
+                
+                // NUEVO: Cambia el ícono en el header
+                if(navLoginIconMobile) navLoginIconMobile.classList.remove('hidden'); 
+                if(navBeneficiosIconMobile) navBeneficiosIconMobile.classList.add('hidden'); 
 
                 if(heroLoginBtn) heroLoginBtn.classList.remove('hidden');
                 if(heroBeneficiosBtn) heroBeneficiosBtn.classList.add('hidden');
