@@ -848,6 +848,7 @@
             formData.append('Email', email);
             formData.append('Telefono', phone);
             formData.append('Codigo', verificationCode); 
+            formData.append('Password', pass); // ENVIAMOS LA CONTRASEÑA PARA GUARDARLA
 
             try {
                 await fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' });
@@ -926,22 +927,47 @@
             }
         }
 
-        function handleLogin(e) {
+        async function handleLogin(e) {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const pass = document.getElementById('login-pass').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
 
-            const user = usersDB.find(u => u.email === email && u.pass === pass);
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx7_3PVPlCdBBD85uH9KoxNJUXWGN-4Q7KVWvxMzBKzrBy3Pce5z29Wk1JJ7ygM6mZEVA/exec'; 
 
-            if (user) {
-                currentUser = user;
-                loginError.classList.add('hidden');
-                updateAuthUI();
-                closeAuthModal();
-                navigateTo('beneficios');
-            } else {
-                loginError.innerText = "Correo o contraseña incorrectos. Si no tienes cuenta, regístrate abajo.";
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Ingresando...';
+            submitBtn.disabled = true;
+
+            try {
+                // Consultamos a Google Sheets si el usuario y contraseña son correctos usando GET
+                const response = await fetch(`${scriptURL}?Accion=Login&Email=${encodeURIComponent(email)}&Password=${encodeURIComponent(pass)}`);
+                const text = await response.text();
+
+                if (text.startsWith("Exito")) {
+                    const nombre = text.split("|")[1];
+                    currentUser = { name: nombre, email: email };
+                    loginError.classList.add('hidden');
+                    updateAuthUI();
+                    closeAuthModal();
+                    navigateTo('beneficios');
+                } else if (text === "Pendiente") {
+                    loginError.innerText = "Tu cuenta aún no está verificada. Regístrate de nuevo para recibir el código.";
+                    loginError.classList.remove('hidden');
+                } else if (text === "PassIncorrecta") {
+                    loginError.innerText = "Contraseña incorrecta.";
+                    loginError.classList.remove('hidden');
+                } else {
+                    loginError.innerText = "No existe una cuenta con este correo.";
+                    loginError.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error(error);
+                loginError.innerText = "Hubo un error de conexión al iniciar sesión.";
                 loginError.classList.remove('hidden');
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
             }
         }
 
