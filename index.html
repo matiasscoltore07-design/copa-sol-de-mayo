@@ -643,8 +643,8 @@
                     
                     <div class="relative">
                         <i data-lucide="key" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
-                        <!-- OPTIMIZADO: Se agregaron clases "placeholder:..." para que el texto gris se lea perfecto, pero los números sigan siendo grandes -->
-                        <input type="text" id="verify-code" placeholder="Ingresa tu código" required maxlength="4" pattern="\d{4}" class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-black text-center text-2xl tracking-[0.2em] placeholder:text-sm placeholder:font-medium placeholder:tracking-normal">
+                        <!-- OPTIMIZADO: Cambiamos pl-12 pr-4 por px-12 para equilibrar los márgenes y que el texto quede perfectamente centrado -->
+                        <input type="text" id="verify-code" placeholder="Ingresa tu código" required maxlength="4" pattern="\d{4}" class="w-full px-12 py-3 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-black text-center text-2xl tracking-[0.2em] placeholder:text-sm placeholder:font-medium placeholder:tracking-normal">
                     </div>
                     
                     <button type="submit" class="w-full bg-event-green text-white hover:bg-green-600 font-black py-4 rounded-xl uppercase tracking-widest transition-colors mt-2 shadow-lg">
