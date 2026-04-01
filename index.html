@@ -467,9 +467,6 @@
                         <span class="text-event-gold font-bold uppercase tracking-[0.3em] text-base md:text-lg mb-4 block">Conocé a los organizadores</span>
                         <h2 class="text-5xl md:text-7xl font-display uppercase leading-none tracking-tighter">Nuestro <span class="text-event-blue">Equipo</span></h2>
                     </div>
-                    <button onclick="navigateTo('home')" class="bg-white/10 border border-white/20 text-white hover:bg-white hover:text-event-maroon px-6 py-3 rounded-xl font-bold uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver
-                    </button>
                 </div>
 
                 <!-- SECCIÓN 1: Equipo de Marketing (5 personas) -->
@@ -626,6 +623,13 @@
                     </div>
                 </div>
 
+                <!-- BOTÓN VOLVER (NUESTRO EQUIPO) -->
+                <div class="mt-16 text-center">
+                    <button onclick="navigateTo('home'); window.scrollTo({top:0, behavior:'smooth'});" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-2xl font-black uppercase tracking-widest transition-all inline-flex items-center gap-3 cursor-pointer shadow-xl group">
+                        <i data-lucide="arrow-left" class="group-hover:-translate-x-1 transition-transform"></i> Volver a la página principal
+                    </button>
+                </div>
+
             </div>
         </section>
     </div>
@@ -670,14 +674,11 @@
         <section class="flex-grow">
             <div class="container mx-auto px-6">
                 <div class="mb-16 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6 border-b border-white/10 pb-10">
-                    <div>
+                    <div class="w-full">
                         <span class="text-event-gold font-black uppercase tracking-[0.2em] text-sm mb-2 block">Club Copa Sol de Mayo</span>
                         <h2 class="text-5xl md:text-6xl font-display uppercase tracking-tighter text-white leading-none">Mis <span class="text-event-blue">Beneficios</span></h2>
                         <p class="text-white/80 text-lg mt-4 font-medium">¡Hola, <span id="user-greeting" class="font-bold text-white">Jugador</span>! Disfrutá de estos descuentos exclusivos.</p>
                     </div>
-                    <button onclick="navigateTo('home')" class="bg-white/10 border border-white/20 text-white hover:bg-white hover:text-event-maroon px-6 py-3 rounded-xl font-bold uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver
-                    </button>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -716,6 +717,14 @@
                     </div>
 
                 </div>
+
+                <!-- BOTÓN VOLVER (BENEFICIOS) -->
+                <div class="mt-16 text-center">
+                    <button onclick="navigateTo('home'); window.scrollTo({top:0, behavior:'smooth'});" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-2xl font-black uppercase tracking-widest transition-all inline-flex items-center gap-3 cursor-pointer shadow-xl group">
+                        <i data-lucide="arrow-left" class="group-hover:-translate-x-1 transition-transform"></i> Volver a la página principal
+                    </button>
+                </div>
+
             </div>
         </section>
     </div>
