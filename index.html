@@ -5,18 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Copa Sol de Mayo - Marketing Deportivo & Sponsors</title>
     <meta name="description" content="Landing page oficial de la Copa Sol de Mayo. Activaciones de marca, patrocinio deportivo y experiencia de pádel con identidad argentina.">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Copa Sol de Mayo - Marketing Deportivo">
-    <meta property="og:description" content="Unimos el deporte con la identidad nacional. Conocé nuestras propuestas de patrocinio.">
-    <meta property="og:image" content="input_file_0.png">
     
-    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
@@ -32,17 +25,6 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         display: ['Archivo Black', 'sans-serif'],
-                        impact: ['Anton', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'scroll': 'scroll 35s linear infinite',
-                    },
-                    keyframes: {
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' },
-                        }
                     }
                 }
             }
@@ -52,12 +34,6 @@
         .bg-grid {
             background-image: radial-gradient(circle, #00000010 1px, transparent 1px);
             background-size: 30px 30px;
-        }
-        .section-title {
-            @apply text-5xl md:text-7xl font-display text-event-maroon uppercase tracking-tighter mb-8 leading-none;
-        }
-        .glass-card {
-            @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
         }
         .btn-hover-effect {
             @apply relative overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95;
@@ -73,16 +49,13 @@
 </head>
 <body class="bg-white text-gray-900 font-sans bg-grid">
 
-    <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent py-8">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <!-- Quitamos 'gap-3' de aquí para que no haya espacios fantasma cuando el texto está oculto -->
             <a href="#" onclick="navigateTo('home'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex items-center group cursor-pointer" aria-label="Volver al inicio">
                 <div id="nav-logo" class="w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 flex-shrink-0 group-hover:scale-105">
                     <img src="https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/logo/100/100'">
                 </div>
                 
-                <!-- Nuevo Título Móvil (Solo aparece al scrollear) -->
                 <div id="nav-mobile-title" class="md:hidden opacity-0 max-w-0 overflow-hidden transition-all duration-500 flex items-center">
                     <span class="font-display text-[1.1rem] sm:text-xl uppercase tracking-tighter whitespace-nowrap ml-3 mt-1">
                         <span class="text-white">COPA </span><span class="text-event-gold">SOL </span><span class="text-event-blue">DE MAYO</span>
@@ -90,52 +63,53 @@
                 </div>
             </a>
             
-            <!-- Desktop Menu -->
-            <!-- OPTIMIZADO: Restauramos la alineación vertical centrada quitando el translate-y -->
-            <div id="desktop-menu" class="hidden lg:flex items-center gap-4 xl:gap-10 text-white font-bold uppercase text-xs xl:text-sm tracking-widest transition-all duration-500">
+            <div id="desktop-menu" class="hidden lg:flex items-center gap-3 xl:gap-8 text-white font-bold uppercase text-[10px] xl:text-xs tracking-widest transition-all duration-500">
                 <a href="#nosotros" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Nosotros</a>
                 <a href="#ofrecemos" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Propuesta</a>
                 <a href="#sponsors" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Sponsors</a>
                 <a href="#contacto" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Contacto</a>
-                <a href="#casos" onclick="navigateTo('casos'); return false;" class="nav-link bg-event-blue text-white px-5 py-2.5 xl:px-6 xl:py-2.5 rounded-xl font-black hover:bg-white hover:text-event-blue transition-all shadow-md whitespace-nowrap" id="nav-casos-desktop">Casos de Éxito</a>
-                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="bg-event-gold text-event-maroon px-6 py-2.5 xl:px-8 xl:py-3 rounded-xl font-black hover:bg-white transition-all shadow-md whitespace-nowrap">
-                    Inscribirse
-                </a>
+                <a href="#casos" onclick="navigateTo('casos'); return false;" class="nav-link bg-event-blue text-white px-4 py-2 xl:px-5 xl:py-2.5 rounded-xl font-black hover:bg-white hover:text-event-blue transition-all shadow-md whitespace-nowrap" id="nav-casos-desktop">Casos de Éxito</a>
+                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="bg-event-gold text-event-maroon px-4 py-2 xl:px-6 xl:py-2.5 rounded-xl font-black hover:bg-white transition-all shadow-md whitespace-nowrap">Inscribirse</a>
+                
+                <div class="h-6 w-px bg-white/30 mx-1"></div>
+                
+                <a href="#" id="nav-login-desktop" onclick="openAuthModal('login'); return false;" class="text-white hover:text-event-gold transition-colors whitespace-nowrap flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4"></i> Acceder</a>
+                <a href="#" id="nav-beneficios-desktop" onclick="navigateTo('beneficios'); return false;" class="hidden bg-white text-event-maroon px-4 py-2 xl:px-5 xl:py-2.5 rounded-xl font-black hover:bg-event-gold transition-all shadow-md whitespace-nowrap flex items-center gap-2"><i data-lucide="gift" class="w-4 h-4"></i> Beneficios</a>
+                <a href="#" id="nav-logout-desktop" onclick="handleLogout(); return false;" class="hidden text-white/50 hover:text-white transition-colors text-[10px] whitespace-nowrap">Salir</a>
             </div>
 
-            <!-- Mobile Menu Toggle -->
-            <!-- OPTIMIZADO: Ahora visible en 'lg' hacia abajo -->
             <button id="menu-toggle" class="lg:hidden text-white p-2" aria-label="Abrir menú">
                 <i data-lucide="menu" class="w-8 h-8" id="menu-icon"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay (AHORA FUERA DEL NAV) -->
-    <div id="mobile-menu" class="fixed inset-0 bg-event-maroon z-[60] flex flex-col items-center justify-center gap-8 text-white text-2xl font-display uppercase tracking-widest transition-all duration-500 translate-x-full" aria-hidden="true">
+    <div id="mobile-menu" class="fixed inset-0 bg-event-maroon z-[60] flex flex-col items-center justify-center gap-6 text-white text-xl font-display uppercase tracking-widest transition-all duration-500 translate-x-full overflow-y-auto py-10" aria-hidden="true">
         <button id="menu-close" class="absolute top-6 right-6 p-2" aria-label="Cerrar menú">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <a href="#nosotros" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Nosotros</a>
+        <a href="#nosotros" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors mt-8">Nosotros</a>
         <a href="#ofrecemos" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Propuesta</a>
         <a href="#sponsors" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Sponsors</a>
         <a href="#contacto" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Contacto</a>
         <a href="#casos" onclick="navigateTo('casos'); return false;" class="mobile-link bg-event-blue text-white px-8 py-3 rounded-2xl font-black shadow-lg whitespace-nowrap">Casos de Éxito</a>
-        <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="mobile-link bg-event-gold text-event-maroon px-10 py-4 rounded-2xl font-black shadow-lg whitespace-nowrap">Inscribirse</a>
+        <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="mobile-link bg-event-gold text-event-maroon px-10 py-4 rounded-2xl font-black shadow-lg whitespace-nowrap mb-4">Inscribirse</a>
+        
+        <div class="w-24 h-px bg-white/20 my-2"></div>
+        
+        <a href="#" id="nav-login-mobile" onclick="openAuthModal('login'); return false;" class="mobile-link flex items-center gap-2 text-white hover:text-event-gold transition-colors"><i data-lucide="user"></i> Acceder</a>
+        <a href="#" id="nav-beneficios-mobile" onclick="navigateTo('beneficios'); return false;" class="hidden mobile-link flex items-center gap-2 bg-white text-event-maroon px-8 py-3 rounded-2xl font-black shadow-lg whitespace-nowrap"><i data-lucide="gift"></i> Mis Beneficios</a>
+        <a href="#" id="nav-logout-mobile" onclick="handleLogout(); return false;" class="hidden mobile-link text-sm text-white/50 hover:text-white transition-colors mt-2">Cerrar Sesión</a>
     </div>
 
-    <!-- VISTA PRINCIPAL (Home) -->
     <div id="view-home">
 
-    <!-- Hero Section -->
-    <!-- OPTIMIZACIÓN ESCALADO: Agregamos pt-20 lg:pt-24 para compensar el navbar y evitar superposiciones -->
     <section class="sticky top-0 w-full h-[100svh] md:h-screen flex items-center justify-center overflow-hidden bg-event-maroon z-0 pt-20 lg:pt-24">
         <div class="absolute inset-0 opacity-20">
             <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-event-blue rounded-full blur-[120px]"></div>
             <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-event-green rounded-full blur-[120px]"></div>
         </div>
         
-        <!-- OPTIMIZADO: Eliminamos los márgenes (mt-*) y usamos Flexbox puro. Los textos ahora usan unidades de altura 'vh' para escalar automáticamente con el zoom de Windows/Mac -->
         <div class="container mx-auto px-6 relative z-10 text-center w-full flex flex-col items-center justify-center">
             <h1 class="font-display text-white leading-[0.85] tracking-tighter uppercase mb-2 lg:mb-4" style="font-size: clamp(3.5rem, min(10vw, 15vh), 8rem);">
                 COPA <br>
@@ -151,31 +125,31 @@
                 Más que un torneo, creamos una <span class="text-event-gold font-bold">experiencia</span> que une el <span class="text-event-gold font-bold">pádel</span> con nuestra <span class="text-event-gold font-bold">identidad nacional</span>.
             </p>
             
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 lg:gap-6 mt-2">
-                <a href="#sponsors" class="btn-hover-effect bg-event-gold text-event-maroon px-8 py-3.5 lg:px-10 lg:py-4 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3 text-sm lg:text-base">
-                    Ser Sponsor <i data-lucide="award"></i>
+            <div class="flex flex-row flex-wrap items-center justify-center gap-3 lg:gap-4 mt-2">
+                <a href="#sponsors" class="btn-hover-effect bg-event-gold text-event-maroon px-6 py-3 lg:px-8 lg:py-4 rounded-xl lg:rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-2 text-xs lg:text-sm">
+                    Ser Sponsor <i data-lucide="award" class="w-4 h-4 lg:w-5 lg:h-5"></i>
                 </a>
-                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="btn-hover-effect bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-3.5 lg:px-10 lg:py-4 rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-3 text-sm lg:text-base">
-                    Inscribirme <i data-lucide="user-plus"></i>
+                <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="btn-hover-effect bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-3 lg:px-8 lg:py-4 rounded-xl lg:rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-2 text-xs lg:text-sm">
+                    Inscribirme <i data-lucide="user-plus" class="w-4 h-4 lg:w-5 lg:h-5"></i>
                 </a>
+                <button id="hero-login-btn" onclick="openAuthModal('login')" class="btn-hover-effect bg-white text-event-maroon px-6 py-3 lg:px-8 lg:py-4 rounded-xl lg:rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-2 text-xs lg:text-sm">
+                    Iniciar Sesión <i data-lucide="log-in" class="w-4 h-4 lg:w-5 lg:h-5"></i>
+                </button>
+                <button id="hero-beneficios-btn" onclick="navigateTo('beneficios')" class="hidden btn-hover-effect bg-event-blue text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl lg:rounded-2xl font-black uppercase tracking-widest shadow-2xl flex items-center gap-2 text-xs lg:text-sm">
+                    Mis Beneficios <i data-lucide="gift" class="w-4 h-4 lg:w-5 lg:h-5"></i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Contenedor principal que se desliza por encima del Hero -->
     <main class="relative z-10 bg-[#370606]">
-        <!-- Degradado de transición controlado matemáticamente por JS (Optimizado para GPU) -->
         <div id="scroll-gradient" class="absolute bottom-full left-0 w-full h-32 md:h-56 bg-gradient-to-t from-[#370606] via-[#370606]/80 to-transparent pointer-events-none" style="opacity: 0; transform: translateZ(0); will-change: opacity;"></div>
 
-        <!-- Contenedor para evitar scroll horizontal de elementos decorativos en mobile -->
         <div class="w-full overflow-x-clip">
             
-            <!-- About Section -->
             <section id="nosotros" class="py-24 bg-[#370606] relative">
                 <div class="container mx-auto px-6 relative z-10">
                     <div class="grid lg:grid-cols-2 gap-16 items-center">
-                        
-                        <!-- Columna de Texto Restaurada -->
                         <div class="relative">
                             <div class="absolute -top-10 -left-10 w-40 h-40 bg-event-blue/20 rounded-full blur-3xl"></div>
                             <h2 class="text-5xl md:text-7xl font-display text-white uppercase tracking-tighter mb-8 leading-none">¿Quiénes <span class="text-event-blue">Somos?</span></h2>
@@ -208,13 +182,11 @@
                             </div>
                         </div>
 
-                        <!-- Columna de Imagen -->
                         <div class="relative">
                             <div class="aspect-square bg-event-maroon rounded-3xl overflow-hidden shadow-2xl relative group">
                                 <img src="https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1" alt="Padel Experience" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
                             </div>
                             
-                            <!-- Imagen flotante entre las secciones -->
                             <div class="absolute -bottom-20 right-4 md:-bottom-32 md:-right-12 w-48 md:w-72 z-30 hover:scale-105 transition-transform duration-500 drop-shadow-2xl pointer-events-none">
                                 <img src="https://lh3.googleusercontent.com/d/1QtxDc5uvR08Gi3ETQ9Lp0j9cJPzDPCMg" alt="Elemento decorativo" class="w-full h-auto">
                             </div>
@@ -223,7 +195,6 @@
                 </div>
             </section>
 
-            <!-- Services Section -->
             <section id="ofrecemos" class="py-24 bg-gray-50">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16">
@@ -268,7 +239,6 @@
                 </div>
             </section>
 
-        <!-- Experience Section -->
         <section class="py-24 bg-[#370606] text-white relative overflow-hidden">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
@@ -289,7 +259,6 @@
                     </div>
                 </div>
                 
-                <!-- Nueva distribución: Texto + Imagen a Casos de Éxito -->
                 <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center bg-white/5 rounded-[3rem] p-8 md:p-12 border border-white/10 group cursor-pointer transition-colors hover:bg-white/10" onclick="navigateTo('casos');">
                     <div class="order-2 md:order-1 flex flex-col items-start">
                         <div class="inline-block bg-event-gold/20 text-event-gold px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6">
@@ -307,17 +276,12 @@
                     </div>
                     
                     <div class="order-1 md:order-2 relative w-full aspect-[4/3] flex items-center justify-center">
-                        <!-- Carta Izquierda -->
                         <div class="absolute w-[45%] md:w-[50%] aspect-[3/4] rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-500 z-10 -rotate-12 -translate-x-12 md:-translate-x-20 group-hover:-translate-x-16 md:group-hover:-translate-x-28 group-hover:-rotate-[15deg]">
                             <img src="https://picsum.photos/seed/caso1/400/600" alt="Caso 1" class="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-white/10">
                         </div>
-                        
-                        <!-- Carta Derecha -->
                         <div class="absolute w-[45%] md:w-[50%] aspect-[3/4] rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] transition-all duration-500 z-10 rotate-12 translate-x-12 md:translate-x-20 group-hover:translate-x-16 md:group-hover:translate-x-28 group-hover:rotate-[15deg]">
                             <img src="https://picsum.photos/seed/caso3/400/600" alt="Caso 3" class="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-white/10">
                         </div>
-
-                        <!-- Carta Central -->
                         <div class="absolute w-[45%] md:w-[50%] aspect-[3/4] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-500 z-20 -translate-y-4 group-hover:-translate-y-8 group-hover:scale-105">
                             <img src="https://picsum.photos/seed/caso2/400/600" alt="Caso 2" class="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-white/10">
                         </div>
@@ -326,7 +290,6 @@
             </div>
         </section>
 
-        <!-- Sponsorship Plans -->
         <section id="sponsors" class="py-24 bg-white relative">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-16">
@@ -334,144 +297,72 @@
                     <p class="text-gray-500 font-medium">Categorías inspiradas en nuestra cultura para una alianza ganadora.</p>
                 </div>
                 
-                <!-- Cambiamos a 4 columnas en pantallas grandes (lg:grid-cols-4) para acomodar el nuevo plan -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
-                    
-                    <!-- Plan 1: 1 Espada (Premium) -->
                     <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-blue bg-event-maroon text-white shadow-2xl lg:scale-105 z-10 flex flex-col">
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-event-gold text-event-maroon px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
-                            Premium
-                        </div>
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-event-gold text-event-maroon px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">Premium</div>
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-gold">Oro</span>
                             <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1 <span class="ml-2">Espada</span></h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-white/80 leading-tight">Naming del evento</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-white/80 leading-tight">Logo en colgante staff</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-white/80 leading-tight">Stand exclusivo</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-white/80 leading-tight">Menciones en redes (3)</span>
-                            </li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-white/80 leading-tight">Naming del evento</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-white/80 leading-tight">Logo en colgante staff</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-white/80 leading-tight">Stand exclusivo</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-gold w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-white/80 leading-tight">Menciones en redes (3)</span></li>
                         </ul>
-                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-gold text-event-maroon shadow-lg mt-auto">
-                            Consultar Plan
-                        </a>
+                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-gold text-event-maroon shadow-lg mt-auto">Consultar Plan</a>
                     </div>
 
-                    <!-- Plan 2: 1 Basto (Popular) -->
                     <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-green bg-white text-event-maroon shadow-lg flex flex-col">
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-event-gold text-event-maroon px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
-                            Popular
-                        </div>
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-event-gold text-event-maroon px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">Popular</div>
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Plata</span>
                             <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">1 <span class="ml-2">Basto</span></h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Stand exclusivo</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Naming en premiación</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Presencia en backdrop</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Banner en competencia</span>
-                            </li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Stand exclusivo</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Naming en premiación</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Presencia en backdrop</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Banner en competencia</span></li>
                         </ul>
-                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">
-                            Consultar Plan
-                        </a>
+                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">Consultar Plan</a>
                     </div>
 
-                    <!-- Plan 3: 7 Espada (Kit de Bienvenida) -->
                     <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-blue bg-white text-event-maroon shadow-lg flex flex-col">
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Kit de Bienvenida</span>
                             <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7 <span class="ml-2">Espada</span></h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Mención en ceremonia de apertura</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Logo en material gráfico</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Naming en Estación Competencia</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Menciones en redes + collab</span>
-                            </li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Mención en ceremonia de apertura</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Logo en material gráfico</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Naming en Estación Competencia</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Menciones en redes + collab</span></li>
                         </ul>
-                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">
-                            Consultar Plan
-                        </a>
+                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">Consultar Plan</a>
                     </div>
 
-                    <!-- Plan 4: 7 Oro (Kit) -->
                     <div class="relative p-5 xl:p-6 rounded-[2rem] border-2 border-event-gold bg-white text-event-maroon shadow-lg flex flex-col">
                         <div class="mb-5">
                             <span class="text-xs font-bold uppercase tracking-widest text-event-blue">Sorteo</span>
                             <h3 class="text-3xl xl:text-4xl font-black uppercase tracking-tighter mt-1 whitespace-nowrap">7 <span class="ml-2">Oro</span></h3>
                         </div>
                         <ul class="space-y-3 mb-6 flex-grow">
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Presencia en backdrop</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Banner en zona competencia</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Mención en redes sociales (1)</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm">
-                                <i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                                <span class="text-gray-600 leading-tight">Logo en material digital</span>
-                            </li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Presencia en backdrop</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Banner en zona competencia</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Mención en redes sociales (1)</span></li>
+                            <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle-2" class="text-event-green w-5 h-5 flex-shrink-0 mt-0.5"></i><span class="text-gray-600 leading-tight">Logo en material digital</span></li>
                         </ul>
-                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">
-                            Consultar Plan
-                        </a>
+                        <a href="#contacto" class="btn-hover-effect w-full block text-center py-3 rounded-2xl font-black uppercase tracking-widest bg-event-maroon text-white shadow-lg mt-auto">Consultar Plan</a>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- Marcas / Sponsors Carousel -->
         <div id="carousel-container" class="relative w-full bg-event-maroon py-6 flex flex-col items-center overflow-hidden border-t-2 border-event-gold/20 select-none cursor-grab">
-            <!-- Contenedor con movimiento continuo manejado por JS -->
             <div class="w-full flex overflow-hidden">
                 <div id="carousel-track" class="flex w-max items-center will-change-transform">
-                    
-                    <!-- Mitad 1: Suficientemente ancha para llenar cualquier monitor (14 logos) -->
                     <div class="flex gap-8 md:gap-16 pr-8 md:pr-16 items-center min-w-max pointer-events-none">
-                        <!-- Repetición A -->
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
@@ -479,7 +370,6 @@
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
-                        <!-- Repetición B -->
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
@@ -488,10 +378,7 @@
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
                     </div>
-
-                    <!-- Mitad 2: Clon exacto de la Mitad 1 para lograr el bucle infinito -->
                     <div class="flex gap-8 md:gap-16 pr-8 md:pr-16 items-center min-w-max pointer-events-none">
-                        <!-- Repetición A -->
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
@@ -499,7 +386,6 @@
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>5</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
-                        <!-- Repetición B -->
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>1</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>2</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>3</span></div>
@@ -508,12 +394,10 @@
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>6</span></div>
                         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/5 border-2 border-dashed border-white/30 flex items-center justify-center flex-shrink-0 transition-all"><span class="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-widest text-center">Sponsor<br>7</span></div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- Contact Section -->
         <section id="contacto" class="py-24 bg-white">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="bg-event-gold rounded-[3rem] md:rounded-[4rem] px-6 py-12 sm:p-12 md:p-24 relative overflow-hidden">
@@ -551,7 +435,6 @@
                             </div>
                         </div>
                         
-                        <!-- Contenedor blanco centrado y optimizado -->
                         <div class="bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 shadow-2xl w-full max-w-md mx-auto lg:max-w-none">
                             <h3 class="text-2xl font-black uppercase tracking-tight mb-6 text-event-maroon">¡NO TE QUEDES AFUERA!</h3>
                             <p class="text-gray-500 mb-8">Sumá tu marca y unite al equipo de Copa Sol de Mayo, completá el formulario oficial aquí:</p>
@@ -566,11 +449,9 @@
                 </div>
             </div>
         </section>
-
     </main>
-    </div> <!-- Cierre de view-home -->
+    </div>
 
-    <!-- VISTA CASOS DE ÉXITO (Página separada, oculta por defecto) -->
     <div id="view-casos" class="hidden relative z-20 bg-event-dark min-h-screen pt-48 md:pt-56 pb-24 flex-col justify-center">
         <section id="casos" class="text-white overflow-hidden flex-grow">
             <div class="container mx-auto px-6">
@@ -582,24 +463,17 @@
                     <p class="text-white/40 max-w-xs text-sm uppercase tracking-widest font-bold">Cómo las marcas viven la Copa Sol de Mayo.</p>
                 </div>
 
-                <!-- Título Colaboraciones -->
                 <div class="max-w-6xl mx-auto mb-8">
                     <h3 class="text-3xl md:text-4xl font-display uppercase tracking-tighter text-event-gold">Colaboraciones</h3>
                 </div>
 
-                <!-- Nueva distribución: 3 Cartas -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 max-w-6xl mx-auto">
-                    <!-- Carta 1 -->
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] group cursor-pointer hover:-translate-y-3 transition-transform duration-300 border border-white/10">
                         <img src="https://picsum.photos/seed/caso_exito_1/600/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso de Éxito 1">
                     </div>
-                    
-                    <!-- Carta 2 -->
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] group cursor-pointer hover:-translate-y-3 transition-transform duration-300 border border-white/10">
                         <img src="https://picsum.photos/seed/caso_exito_2/600/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso de Éxito 2">
                     </div>
-                    
-                    <!-- Carta 3 -->
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] group cursor-pointer hover:-translate-y-3 transition-transform duration-300 border border-white/10">
                         <img src="https://picsum.photos/seed/caso_exito_3/600/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caso de Éxito 3">
                     </div>
@@ -607,7 +481,6 @@
             </div>
         </section>
         
-        <!-- Botón para volver atrás -->
         <div class="container mx-auto px-6 mt-16 text-center">
             <button onclick="navigateTo('home'); window.scrollTo({top:0, behavior:'smooth'});" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-2xl font-black uppercase tracking-widest transition-all inline-flex items-center gap-3 cursor-pointer shadow-xl group">
                 <i data-lucide="arrow-left" class="group-hover:-translate-x-1 transition-transform"></i> Volver a la página principal
@@ -615,10 +488,200 @@
         </div>
     </div>
 
-    <!-- Redes Sociales Flotantes (Solo Desktop) -->
+    <div id="view-beneficios" class="hidden relative z-20 bg-[#370606] min-h-screen pt-48 md:pt-56 pb-24 flex-col">
+        <section class="flex-grow">
+            <div class="container mx-auto px-6">
+                <div class="mb-16 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6 border-b border-white/10 pb-10">
+                    <div>
+                        <span class="text-event-gold font-black uppercase tracking-[0.2em] text-sm mb-2 block">Club Copa Sol de Mayo</span>
+                        <h2 class="text-5xl md:text-6xl font-display uppercase tracking-tighter text-white leading-none">Mis <span class="text-event-blue">Beneficios</span></h2>
+                        <p class="text-white/80 text-lg mt-4 font-medium">¡Hola, <span id="user-greeting" class="font-bold text-white">Jugador</span>! Disfrutá de estos descuentos exclusivos.</p>
+                    </div>
+                    <button onclick="navigateTo('home')" class="bg-white/10 border border-white/20 text-white hover:bg-white hover:text-event-maroon px-6 py-3 rounded-xl font-bold uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 bg-event-maroon rounded-2xl flex items-center justify-center text-event-gold mb-6 shadow-md">
+                            <i data-lucide="tag" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-black uppercase tracking-tight text-event-maroon mb-2">15% OFF</h3>
+                        <p class="text-gray-600 mb-8 flex-grow leading-relaxed">En todas las paletas y accesorios Bullpadel comprando en la tienda oficial online.</p>
+                        <button onclick="this.innerText = 'CÓDIGO: SOLBULL15'; this.classList.remove('bg-event-gold', 'text-event-maroon'); this.classList.add('bg-event-green', 'text-white'); this.disabled = true;" class="bg-event-gold text-event-maroon hover:bg-event-maroon hover:text-white font-black py-4 rounded-xl uppercase tracking-widest w-full transition-colors shadow-md">
+                            Revelar Código
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 bg-event-blue rounded-2xl flex items-center justify-center text-white mb-6 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-black uppercase tracking-tight text-event-maroon mb-2">Envío Gratis</h3>
+                        <p class="text-gray-600 mb-8 flex-grow leading-relaxed">En compras superiores a $50.000 en indumentaria deportiva patrocinadora del evento.</p>
+                        <button onclick="this.innerText = 'CÓDIGO: ENVIOSOL'; this.classList.remove('bg-event-gold', 'text-event-maroon'); this.classList.add('bg-event-green', 'text-white'); this.disabled = true;" class="bg-event-gold text-event-maroon hover:bg-event-maroon hover:text-white font-black py-4 rounded-xl uppercase tracking-widest w-full transition-colors shadow-md">
+                            Revelar Código
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 bg-event-green rounded-2xl flex items-center justify-center text-white mb-6 shadow-md">
+                            <i data-lucide="ticket" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-black uppercase tracking-tight text-event-maroon mb-2">2x1 Turnos</h3>
+                        <p class="text-gray-600 mb-8 flex-grow leading-relaxed">Reserva 2 horas de cancha pagando solo 1 en clubes adheridos presentando este cupón.</p>
+                        <button onclick="this.innerText = 'CÓDIGO: PADEL2X1'; this.classList.remove('bg-event-gold', 'text-event-maroon'); this.classList.add('bg-event-green', 'text-white'); this.disabled = true;" class="bg-event-gold text-event-maroon hover:bg-event-maroon hover:text-white font-black py-4 rounded-xl uppercase tracking-widest w-full transition-colors shadow-md">
+                            Revelar Código
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="auth-modal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-event-dark/80 backdrop-blur-sm" onclick="closeAuthModal()"></div>
+        
+        <div class="bg-white rounded-[2rem] p-8 md:p-10 max-w-md w-[90%] relative z-10 shadow-2xl overflow-hidden border border-gray-100">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-event-gold/20 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-gray-400 hover:text-event-maroon transition-colors bg-gray-50 rounded-full p-2 z-20">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div id="login-section">
+                <div class="text-center mb-8">
+                    <div class="w-12 h-12 bg-event-maroon rounded-full mx-auto mb-4 flex items-center justify-center text-event-gold">
+                        <i data-lucide="log-in"></i>
+                    </div>
+                    <h3 class="text-3xl font-display text-event-maroon uppercase tracking-tight">Bienvenido</h3>
+                    <p class="text-gray-500 mt-2 font-medium">Ingresa para ver tus beneficios</p>
+                </div>
+                
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <div id="login-error" class="hidden bg-red-100 text-red-600 text-sm font-bold p-3 rounded-xl text-center mb-4"></div>
+                    
+                    <div class="relative">
+                        <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                        <input type="email" id="login-email" placeholder="Correo electrónico" required class="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-medium">
+                    </div>
+                    <div class="relative">
+                        <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                        <input type="password" id="login-pass" placeholder="Contraseña" required class="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-medium">
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-event-maroon text-event-gold hover:bg-event-gold hover:text-event-maroon font-black py-4 rounded-xl uppercase tracking-widest transition-colors mt-2 shadow-lg">
+                        Ingresar
+                    </button>
+                </form>
+                
+                <p class="text-center mt-6 text-gray-500 font-medium">
+                    ¿No tienes cuenta? <button onclick="switchAuth('signup')" class="text-event-blue font-black hover:underline">Regístrate</button>
+                </p>
+            </div>
+
+            <div id="signup-section" class="hidden">
+                <div class="text-center mb-6">
+                    <div class="w-12 h-12 bg-event-blue rounded-full mx-auto mb-4 flex items-center justify-center text-white">
+                        <i data-lucide="user-plus"></i>
+                    </div>
+                    <h3 class="text-3xl font-display text-event-maroon uppercase tracking-tight">Crear Cuenta</h3>
+                    <p class="text-gray-500 mt-2 font-medium text-sm">Únete a la comunidad de la Copa</p>
+                </div>
+                
+                <form onsubmit="handleSignup(event)" class="space-y-3">
+                    <div id="signup-error" class="hidden bg-red-100 text-red-600 text-sm font-bold p-3 rounded-xl text-center mb-4"></div>
+                    
+                    <div class="relative">
+                        <i data-lucide="user" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                        <input type="text" id="signup-name" placeholder="Nombre completo" required class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-medium text-sm">
+                    </div>
+                    <div class="relative">
+                        <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                        <input type="email" id="signup-email" placeholder="Correo electrónico" required class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-medium text-sm">
+                    </div>
+                    <div class="relative">
+                        <i data-lucide="phone" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                        <input type="tel" id="signup-phone" placeholder="Teléfono / WhatsApp" required class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-medium text-sm">
+                    </div>
+                    <div class="relative">
+                        <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                        <input type="password" id="signup-pass" placeholder="Crear contraseña" required minlength="6" class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-medium text-sm">
+                    </div>
+                    
+                    <div class="flex items-start gap-3 mt-4 mb-2">
+                        <input type="checkbox" id="signup-terms" required class="mt-1 w-4 h-4 text-event-blue bg-gray-100 border-gray-300 rounded focus:ring-event-blue focus:ring-2 cursor-pointer">
+                        <label for="signup-terms" class="text-[11px] text-gray-500 leading-tight">
+                            Acepto los <button type="button" onclick="openTermsModal()" class="text-event-blue font-bold hover:underline">Términos y Condiciones</button> y consiento el uso de mis datos para comunicaciones y beneficios exclusivos.
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-event-blue text-white hover:bg-event-maroon font-black py-4 rounded-xl uppercase tracking-widest transition-colors mt-2 shadow-lg text-sm">
+                        Registrarme
+                    </button>
+                </form>
+                
+                <p class="text-center mt-4 text-gray-500 font-medium text-sm">
+                    ¿Ya tienes cuenta? <button onclick="switchAuth('login')" class="text-event-gold font-black hover:underline">Ingresa</button>
+                </p>
+            </div>
+
+            <div id="verify-section" class="hidden">
+                <div class="text-center mb-8">
+                    <div class="w-12 h-12 bg-event-green rounded-full mx-auto mb-4 flex items-center justify-center text-white">
+                        <i data-lucide="check-circle"></i>
+                    </div>
+                    <h3 class="text-3xl font-display text-event-maroon uppercase tracking-tight">Verificar Correo</h3>
+                    <p class="text-gray-500 mt-2 font-medium">Te enviamos un código de 4 dígitos</p>
+                </div>
+                
+                <form onsubmit="handleVerify(event)" class="space-y-4">
+                    <div id="verify-error" class="hidden bg-red-100 text-red-600 text-sm font-bold p-3 rounded-xl text-center mb-4"></div>
+                    
+                    <div class="relative">
+                        <i data-lucide="key" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                        <input type="text" id="verify-code" placeholder="Ingresa tu código" required maxlength="4" pattern="\d{4}" class="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 focus:ring-event-blue/20 outline-none transition-all font-black text-center tracking-[0.5em] text-2xl">
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-event-green text-white hover:bg-green-600 font-black py-4 rounded-xl uppercase tracking-widest transition-colors mt-2 shadow-lg">
+                        Activar Cuenta
+                    </button>
+                </form>
+                
+                <p class="text-center mt-6 text-gray-500 font-medium">
+                    ¿No te llegó? <button onclick="switchAuth('signup')" class="text-event-gold font-black hover:underline">Volver a intentar</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="fixed inset-0 z-[110] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-event-dark/80 backdrop-blur-sm" onclick="closeTermsModal()"></div>
+        <div class="bg-white rounded-[2rem] p-8 md:p-10 max-w-2xl w-[90%] max-h-[80vh] relative z-10 shadow-2xl overflow-hidden border border-gray-100 flex flex-col">
+            <button onclick="closeTermsModal()" class="absolute top-5 right-5 text-gray-400 hover:text-event-maroon transition-colors bg-gray-50 rounded-full p-2 z-20">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <h3 class="text-2xl font-display text-event-maroon uppercase tracking-tight mb-4 flex-shrink-0">Términos y Condiciones</h3>
+            
+            <div class="overflow-y-auto pr-4 text-sm text-gray-600 space-y-4 font-medium custom-scrollbar">
+                <p><strong>1. Uso de Datos Personales:</strong> Al registrarte en la plataforma, aceptas que la Copa Sol de Mayo recopile tu nombre, correo electrónico y número de teléfono proporcionados voluntariamente.</p>
+                <p><strong>2. Finalidad de la Recopilación:</strong> Los datos serán utilizados exclusivamente para enviarte el código de acceso, notificaciones oficiales sobre el evento deportivo, y para brindarte beneficios o cupones de descuento otorgados por nuestros sponsors oficiales vinculados al torneo.</p>
+                <p><strong>3. Privacidad y Terceros:</strong> Tu información personal NO será vendida ni cedida comercialmente a terceros no relacionados. Los sponsors del evento solo tendrán acceso a métricas generales o se comunicarán contigo a través de nuestros canales oficiales. Solo en el caso de que decidas utilizar un cupón directamente en las plataformas de los sponsors, estarás sujeto a las políticas de privacidad de dicha marca.</p>
+                <p><strong>4. Ley de Protección de Datos Personales:</strong> De acuerdo con la normativa vigente en la República Argentina (Ley N° 25.326 de Protección de Datos Personales), tienes el derecho irrenunciable a solicitar el acceso, actualización, modificación o eliminación de tus datos de nuestra base en cualquier momento enviando un correo electrónico a soldemayopadel@gmail.com.</p>
+            </div>
+            
+            <button onclick="closeTermsModal()" class="mt-6 w-full bg-event-maroon text-white hover:bg-event-gold hover:text-event-maroon font-black py-4 rounded-xl uppercase tracking-widest transition-colors shadow-lg flex-shrink-0">
+                Entendido
+            </button>
+        </div>
+    </div>
+
     <div class="hidden md:flex fixed top-1/2 right-6 -translate-y-1/2 z-50 flex-col gap-4">
         <a href="https://instagram.com/soldemayopadel" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-event-gold text-[#370606] hover:bg-[#370606] hover:text-event-gold transition-all duration-300 shadow-lg group hover:scale-110" aria-label="Instagram">
-            <!-- Logo de Instagram en formato SVG directo para asegurar que siempre se vea -->
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform">
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -626,26 +689,22 @@
             </svg>
         </a>
         <a href="https://wa.me/5491125745419?text=%C2%A1Hola!%20Me%20contacto%20desde%20la%20p%C3%A1gina%20web%20de%20la%20Copa%20Sol%20de%20Mayo.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-event-gold text-[#370606] hover:bg-[#370606] hover:text-event-gold transition-all duration-300 shadow-lg group hover:scale-110" aria-label="WhatsApp">
-            <!-- Logo de WhatsApp en formato SVG directo -->
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="transition-transform">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
         </a>
     </div>
 
-    <!-- Botón de WhatsApp Flotante -->
     <a href="https://wa.me/5491125745419?text=%C2%A1Hola!%20Me%20contacto%20desde%20la%20p%C3%A1gina%20web%20de%20la%20Copa%20Sol%20de%20Mayo.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl transition-all duration-300 z-50 hover:scale-110 hover:shadow-[#25D366]/50 focus:outline-none cursor-pointer flex items-center justify-center group" aria-label="Contactar por WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
     </a>
 
-    <!-- Botón Volver Arriba -->
     <button id="back-to-top" class="fixed bottom-24 right-6 md:bottom-28 md:right-8 bg-event-gold text-event-maroon p-3 rounded-full shadow-2xl transition-all duration-300 translate-y-24 opacity-0 z-50 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-event-gold/50 cursor-pointer" aria-label="Volver arriba">
         <i data-lucide="arrow-up"></i>
     </button>
 
-    <!-- Footer -->
     <footer class="relative z-20 bg-event-maroon py-12 text-white/40 text-center border-t border-white/5">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -667,66 +726,317 @@
     </footer>
 
     <script>
-        // Initialize Lucide icons
+        // Inicializar Iconos
         lucide.createIcons();
 
-        // Mobile Menu Logic
+        // --- SISTEMA DE AUTENTICACIÓN Y BASE DE DATOS ---
+        let usersDB = []; 
+        let currentUser = null;
+        let pendingUser = null;
+
+        // Referencias a UI
+        const authModal = document.getElementById('auth-modal');
+        const loginSection = document.getElementById('login-section');
+        const signupSection = document.getElementById('signup-section');
+        const verifySection = document.getElementById('verify-section');
+        const loginError = document.getElementById('login-error');
+        const signupError = document.getElementById('signup-error');
+        const verifyError = document.getElementById('verify-error');
+        const userGreeting = document.getElementById('user-greeting');
+
+        // Botones que cambian según el estado
+        const navLoginDesktop = document.getElementById('nav-login-desktop');
+        const navBeneficiosDesktop = document.getElementById('nav-beneficios-desktop');
+        const navLogoutDesktop = document.getElementById('nav-logout-desktop');
+        const navLoginMobile = document.getElementById('nav-login-mobile');
+        const navBeneficiosMobile = document.getElementById('nav-beneficios-mobile');
+        const navLogoutMobile = document.getElementById('nav-logout-mobile');
+        const heroLoginBtn = document.getElementById('hero-login-btn');
+        const heroBeneficiosBtn = document.getElementById('hero-beneficios-btn');
+
+        // Funciones del Modal General
+        function openAuthModal(type = 'login') {
+            authModal.classList.remove('hidden');
+            authModal.classList.add('flex');
+            switchAuth(type);
+        }
+
+        function closeAuthModal() {
+            authModal.classList.add('hidden');
+            authModal.classList.remove('flex');
+            loginError.classList.add('hidden');
+            if(signupError) signupError.classList.add('hidden');
+            if(verifyError) verifyError.classList.add('hidden');
+            loginError.classList.remove('bg-green-100', 'text-green-600');
+            loginError.classList.add('bg-red-100', 'text-red-600');
+            pendingUser = null; 
+        }
+
+        // Funciones del Modal de Términos
+        function openTermsModal() {
+            document.getElementById('terms-modal').classList.remove('hidden');
+            document.getElementById('terms-modal').classList.add('flex');
+        }
+
+        function closeTermsModal() {
+            document.getElementById('terms-modal').classList.add('hidden');
+            document.getElementById('terms-modal').classList.remove('flex');
+        }
+
+        function switchAuth(type) {
+            loginError.classList.add('hidden');
+            if(signupError) signupError.classList.add('hidden');
+            if(verifyError) verifyError.classList.add('hidden');
+            
+            loginError.classList.remove('bg-green-100', 'text-green-600');
+            loginError.classList.add('bg-red-100', 'text-red-600');
+            
+            loginSection.classList.add('hidden');
+            signupSection.classList.add('hidden');
+            if(verifySection) verifySection.classList.add('hidden');
+            
+            if (type === 'login') {
+                loginSection.classList.remove('hidden');
+            } else if (type === 'verify') {
+                if(verifySection) verifySection.classList.remove('hidden');
+                lucide.createIcons();
+            } else {
+                signupSection.classList.remove('hidden');
+            }
+        }
+
+        // Lógica de Formularios
+        async function handleSignup(e) {
+            e.preventDefault();
+            if(signupError) signupError.classList.add('hidden');
+            
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const phone = document.getElementById('signup-phone').value;
+            const pass = document.getElementById('signup-pass').value;
+            const termsAccepted = document.getElementById('signup-terms').checked;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+
+            if (!termsAccepted) {
+                return; // El form ya debería bloquearlo el navegador, pero por si acaso
+            }
+
+            const validDomains = ['@gmail.com', '@yahoo.com', '@yahoo.com.ar'];
+            const isValidEmail = validDomains.some(domain => email.toLowerCase().endsWith(domain));
+
+            if (!isValidEmail) {
+                if(signupError) {
+                    signupError.innerText = "Por favor, ingresa un correo válido (@gmail.com, @yahoo.com o @yahoo.com.ar)";
+                    signupError.classList.remove('hidden');
+                }
+                return;
+            }
+
+            // Generar código
+            const verificationCode = Math.floor(1000 + Math.random() * 9000).toString();
+
+            // NUEVA URL ACTUALIZADA
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx7_3PVPlCdBBD85uH9KoxNJUXWGN-4Q7KVWvxMzBKzrBy3Pce5z29Wk1JJ7ygM6mZEVA/exec'; 
+            
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Enviando código...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('Accion', 'Registro'); // AVISAMOS A GOOGLE QUE ESTO ES UN REGISTRO
+            formData.append('Nombre', name);
+            formData.append('Email', email);
+            formData.append('Telefono', phone);
+            formData.append('Codigo', verificationCode); 
+
+            try {
+                await fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' });
+
+                pendingUser = { name, email, phone, pass, code: verificationCode };
+                e.target.reset();
+                switchAuth('verify');
+
+            } catch (error) {
+                console.error('Error:', error);
+                if(signupError) {
+                    signupError.innerText = "Hubo un error de conexión. Intenta nuevamente.";
+                    signupError.classList.remove('hidden');
+                }
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // OPTIMIZADO: Ahora es "async" para poder llamar a Google
+        async function handleVerify(e) {
+            e.preventDefault();
+            if(verifyError) verifyError.classList.add('hidden');
+            
+            const inputCode = document.getElementById('verify-code').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+
+            if (pendingUser && inputCode === pendingUser.code) {
+                
+                // --- INICIO DE CONEXIÓN CON GOOGLE PARA CONFIRMAR ---
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbx7_3PVPlCdBBD85uH9KoxNJUXWGN-4Q7KVWvxMzBKzrBy3Pce5z29Wk1JJ7ygM6mZEVA/exec'; 
+                
+                const originalBtnText = submitBtn.innerText;
+                submitBtn.innerText = 'Verificando...';
+                submitBtn.disabled = true;
+
+                const formData = new FormData();
+                formData.append('Accion', 'Verificar'); // AVISAMOS A GOOGLE QUE DEBE CAMBIAR A "ACTIVO"
+                formData.append('Email', pendingUser.email); // Le mandamos el email para que lo encuentre
+
+                try {
+                    await fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' });
+
+                    // Guardamos oficialmente en la app
+                    usersDB.push({
+                        name: pendingUser.name,
+                        email: pendingUser.email,
+                        phone: pendingUser.phone,
+                        pass: pendingUser.pass
+                    });
+                    
+                    pendingUser = null; 
+                    e.target.reset();
+                    
+                    switchAuth('login');
+                    loginError.innerText = "¡Cuenta verificada exitosamente! Ahora puedes iniciar sesión.";
+                    loginError.classList.remove('hidden', 'bg-red-100', 'text-red-600');
+                    loginError.classList.add('bg-green-100', 'text-green-600');
+                } catch (error) {
+                    console.error('Error:', error);
+                    if(verifyError) {
+                        verifyError.innerText = "Hubo un problema de conexión. Intenta nuevamente.";
+                        verifyError.classList.remove('hidden');
+                    }
+                } finally {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+                
+            } else {
+                if(verifyError) {
+                    verifyError.innerText = "El código ingresado es incorrecto.";
+                    verifyError.classList.remove('hidden');
+                }
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-pass').value;
+
+            const user = usersDB.find(u => u.email === email && u.pass === pass);
+
+            if (user) {
+                currentUser = user;
+                loginError.classList.add('hidden');
+                updateAuthUI();
+                closeAuthModal();
+                navigateTo('beneficios');
+            } else {
+                loginError.innerText = "Correo o contraseña incorrectos. Si no tienes cuenta, regístrate abajo.";
+                loginError.classList.remove('hidden');
+            }
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            updateAuthUI();
+            navigateTo('home');
+        }
+
+        function updateAuthUI() {
+            if (currentUser) {
+                if(userGreeting) userGreeting.innerText = currentUser.name.split(' ')[0];
+
+                if(navLoginDesktop) navLoginDesktop.classList.add('hidden');
+                if(navBeneficiosDesktop) navBeneficiosDesktop.classList.remove('hidden');
+                if(navLogoutDesktop) navLogoutDesktop.classList.remove('hidden');
+                if(navLogoutDesktop) navLogoutDesktop.classList.add('flex');
+
+                if(navLoginMobile) navLoginMobile.classList.add('hidden');
+                if(navBeneficiosMobile) navBeneficiosMobile.classList.remove('hidden');
+                if(navBeneficiosMobile) navBeneficiosMobile.classList.add('flex');
+                if(navLogoutMobile) navLogoutMobile.classList.remove('hidden');
+
+                if(heroLoginBtn) heroLoginBtn.classList.add('hidden');
+                if(heroBeneficiosBtn) heroBeneficiosBtn.classList.remove('hidden');
+                if(heroBeneficiosBtn) heroBeneficiosBtn.classList.add('flex');
+            } else {
+                if(navLoginDesktop) navLoginDesktop.classList.remove('hidden');
+                if(navBeneficiosDesktop) navBeneficiosDesktop.classList.add('hidden');
+                if(navLogoutDesktop) navLogoutDesktop.classList.add('hidden');
+                if(navLogoutDesktop) navLogoutDesktop.classList.remove('flex');
+
+                if(navLoginMobile) navLoginMobile.classList.remove('hidden');
+                if(navBeneficiosMobile) navBeneficiosMobile.classList.add('hidden');
+                if(navBeneficiosMobile) navBeneficiosMobile.classList.remove('flex');
+                if(navLogoutMobile) navLogoutMobile.classList.add('hidden');
+
+                if(heroLoginBtn) heroLoginBtn.classList.remove('hidden');
+                if(heroBeneficiosBtn) heroBeneficiosBtn.classList.add('hidden');
+                if(heroBeneficiosBtn) heroBeneficiosBtn.classList.remove('flex');
+            }
+        }
+
+        // --- NAVEGACIÓN Y VISTAS (SPA) ---
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        const toggleMenu = () => {
-            if (mobileMenu) mobileMenu.classList.toggle('translate-x-full');
-        };
-
-        const closeMenu = () => {
-            if (mobileMenu) mobileMenu.classList.add('translate-x-full');
-        };
+        const toggleMenu = () => { if (mobileMenu) mobileMenu.classList.toggle('translate-x-full'); };
+        const closeMenu = () => { if (mobileMenu) mobileMenu.classList.add('translate-x-full'); };
 
         if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
         if (menuClose) menuClose.addEventListener('click', closeMenu);
         if (mobileLinks) mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-        // CACHÉ DE ELEMENTOS DEL DOM (OPTIMIZACIÓN PARA EVITAR LAG AL SCROLLEAR)
+        const homeView = document.getElementById('view-home');
+        const viewCasosEl = document.getElementById('view-casos');
+        const viewBeneficiosEl = document.getElementById('view-beneficios');
+
+        function navigateTo(target) {
+            closeMenu();
+
+            if (target === 'beneficios' && !currentUser) {
+                openAuthModal('login');
+                return; 
+            }
+
+            if (homeView) homeView.style.display = 'none';
+            if (viewCasosEl) { viewCasosEl.classList.add('hidden'); viewCasosEl.classList.remove('flex'); }
+            if (viewBeneficiosEl) { viewBeneficiosEl.classList.add('hidden'); viewBeneficiosEl.classList.remove('flex'); }
+
+            if (target === 'casos') {
+                if (viewCasosEl) { viewCasosEl.classList.remove('hidden'); viewCasosEl.classList.add('flex'); }
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            } else if (target === 'beneficios') {
+                if (viewBeneficiosEl) { viewBeneficiosEl.classList.remove('hidden'); viewBeneficiosEl.classList.add('flex'); }
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            } else {
+                if (homeView) homeView.style.display = 'block';
+                if(target === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // --- SCROLL, NAVBAR Y CARRUSEL ---
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
         const navMobileTitle = document.getElementById('nav-mobile-title');
-        const desktopMenu = document.getElementById('desktop-menu');
         const backToTop = document.getElementById('back-to-top');
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
         const scrollGradient = document.getElementById('scroll-gradient');
-        const viewCasosEl = document.getElementById('view-casos');
-        const homeView = document.getElementById('view-home');
-
-        // Función SPA para cambiar de vista (Navegación Interna)
-        function navigateTo(target) {
-            // Cerrar menú móvil siempre al navegar
-            closeMenu();
-
-            if (target === 'casos') {
-                if (homeView) homeView.style.display = 'none';
-                if (viewCasosEl) {
-                    viewCasosEl.classList.remove('hidden');
-                    viewCasosEl.classList.add('flex');
-                }
-                window.scrollTo({ top: 0, behavior: 'instant' });
-            } else if (target === 'home') {
-                if (homeView && homeView.style.display === 'none') {
-                    homeView.style.display = 'block';
-                    if (viewCasosEl) {
-                        viewCasosEl.classList.add('hidden');
-                        viewCasosEl.classList.remove('flex');
-                    }
-                }
-            }
-        }
-
-        // Variable para optimizar el rendimiento del scroll (Throttling)
+        
         let isScrolling = false;
 
-        // Scroll event listener optimizado con requestAnimationFrame y passive flag
         window.addEventListener('scroll', () => {
             if (!isScrolling) {
                 window.requestAnimationFrame(() => {
@@ -735,70 +1045,45 @@
                 });
                 isScrolling = true;
             }
-        }, { passive: true }); // passive: true mejora radicalmente el scroll táctil
+        }, { passive: true }); 
 
-        // Toda la lógica pesada se mueve a esta función controlada
         function procesarScroll() {
             const currentScroll = window.scrollY;
 
-            // 1. Navbar style update
             if (navbar) {
                 if (currentScroll > 50) {
                     navbar.classList.add('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
                     navbar.classList.remove('bg-transparent', 'py-8');
-                    if (navLogo) {
-                        navLogo.classList.remove('w-24', 'h-24', 'md:w-28', 'md:h-28');
-                        navLogo.classList.add('w-14', 'h-14');
-                    }
-                    if (navMobileTitle) {
-                        navMobileTitle.classList.remove('max-w-0', 'opacity-0');
-                        navMobileTitle.classList.add('max-w-[300px]', 'opacity-100');
-                    }
+                    if (navLogo) { navLogo.classList.remove('w-24', 'h-24', 'md:w-28', 'md:h-28'); navLogo.classList.add('w-14', 'h-14'); }
+                    if (navMobileTitle) { navMobileTitle.classList.remove('max-w-0', 'opacity-0'); navMobileTitle.classList.add('max-w-[300px]', 'opacity-100'); }
                 } else {
                     navbar.classList.remove('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
                     navbar.classList.add('bg-transparent', 'py-8');
-                    if (navLogo) {
-                        navLogo.classList.add('w-24', 'h-24', 'md:w-28', 'md:h-28');
-                        navLogo.classList.remove('w-14', 'h-14');
-                    }
-                    if (navMobileTitle) {
-                        navMobileTitle.classList.add('max-w-0', 'opacity-0');
-                        navMobileTitle.classList.remove('max-w-[300px]', 'opacity-100');
-                    }
+                    if (navLogo) { navLogo.classList.add('w-24', 'h-24', 'md:w-28', 'md:h-28'); navLogo.classList.remove('w-14', 'h-14'); }
+                    if (navMobileTitle) { navMobileTitle.classList.add('max-w-0', 'opacity-0'); navMobileTitle.classList.remove('max-w-[300px]', 'opacity-100'); }
                 }
             }
 
-            // 1.5. Dynamic Gradient Visibility
-            if (scrollGradient) {
-                // Calcula la opacidad exacta basada en los píxeles (de 0 a 100px)
-                scrollGradient.style.opacity = Math.min(currentScroll / 100, 1);
-            }
+            if (scrollGradient) scrollGradient.style.opacity = Math.min(currentScroll / 100, 1);
 
-            // 2. Back to top button visibility
             if (backToTop) {
-                if (currentScroll > 500) {
-                    backToTop.classList.remove('translate-y-24', 'opacity-0');
-                } else {
-                    backToTop.classList.add('translate-y-24', 'opacity-0');
-                }
+                if (currentScroll > 500) backToTop.classList.remove('translate-y-24', 'opacity-0');
+                else backToTop.classList.add('translate-y-24', 'opacity-0');
             }
 
-            // 3. Scrollspy (Active link highlighting modificado para SPA)
             let current = '';
-            
-            // Verificamos en qué vista estamos usando las variables cacheadas
             const isCasosView = viewCasosEl ? !viewCasosEl.classList.contains('hidden') : false;
+            const isBeneficiosView = viewBeneficiosEl ? !viewBeneficiosEl.classList.contains('hidden') : false;
             
             if (isCasosView) {
                 current = 'casos';
+            } else if (isBeneficiosView) {
+                current = 'beneficios';
             } else {
                 sections.forEach(section => {
-                    // Solo considerar secciones visibles
-                    if (section && section.offsetHeight > 0 && section.id !== 'casos') {
+                    if (section && section.offsetHeight > 0 && section.id !== 'casos' && section.id !== 'beneficios') {
                         const sectionTop = section.offsetTop;
-                        if (window.pageYOffset >= (sectionTop - 200)) {
-                            current = section.getAttribute('id');
-                        }
+                        if (window.pageYOffset >= (sectionTop - 200)) current = section.getAttribute('id');
                     }
                 });
             }
@@ -807,29 +1092,16 @@
                 navLinks.forEach(link => {
                     if (link) {
                         link.classList.remove('text-event-gold');
-                        // Lógica adaptada para identificar la vista "Casos" o links estándar
-                        if (isCasosView && link.id === 'nav-casos-desktop') {
-                            link.classList.add('text-event-gold');
-                        } else if (!isCasosView && link.getAttribute('href') === `#${current}`) {
-                            link.classList.add('text-event-gold');
-                        }
+                        if (isCasosView && link.id === 'nav-casos-desktop') link.classList.add('text-event-gold');
+                        else if (!isCasosView && !isBeneficiosView && link.getAttribute('href') === `#${current}`) link.classList.add('text-event-gold');
                     }
                 });
             }
         }
 
-        // Back to top click behavior
-        if (backToTop) {
-            backToTop.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
+        if (backToTop) backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-        // Reveal on scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry && entry.isIntersecting && entry.target) {
@@ -846,131 +1118,80 @@
             }
         });
 
-        // Counter Animation Logic
+        // Counter Logic
         const counterElement = document.getElementById('personas-counter');
-        
         if (counterElement) {
             const targetNumber = parseInt(counterElement.getAttribute('data-target') || '0');
-            const duration = 1500; // 1.5 segundos de animación para que sea rápida
             let animationFrameId = null;
-
-            // Función para animar el número con aceleración y desaceleración suave
             const animateCounter = (el, target, dur) => {
-                // Cancelar cualquier animación previa por si el usuario scrollea rápido
                 if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
-                if (el) el.innerText = '0'; // Reiniciar visualmente
-                
+                if (el) el.innerText = '0'; 
                 let startTimestamp = null;
                 const step = (timestamp) => {
                     if (!startTimestamp) startTimestamp = timestamp;
                     const progress = Math.min((timestamp - startTimestamp) / dur, 1);
-                    // Efecto easeOutQuart para que frene suave al llegar al final
                     const easeOutProgress = 1 - Math.pow(1 - progress, 4);
                     if (el) el.innerText = Math.floor(easeOutProgress * target);
-                    
-                    if (progress < 1) {
-                        animationFrameId = window.requestAnimationFrame(step);
-                    } else {
-                        if (el) el.innerText = target; // Asegurarse de terminar exactamente en el número
-                    }
+                    if (progress < 1) animationFrameId = window.requestAnimationFrame(step);
+                    else if (el) el.innerText = target; 
                 };
                 animationFrameId = window.requestAnimationFrame(step);
             };
 
-            // Observador para disparar la animación cuando la caja sea visible
             const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // Si el contenedor es visible, disparamos la animación siempre
-                    if (entry && entry.isIntersecting) {
-                        animateCounter(counterElement, targetNumber, duration);
-                    }
-                });
-            }, { threshold: 0.5 }); // Se activa cuando el 50% de la caja está en pantalla
-
-            // Observamos el contenedor padre (el div color granate)
+                entries.forEach(entry => { if (entry && entry.isIntersecting) animateCounter(counterElement, targetNumber, 1500); });
+            }, { threshold: 0.5 }); 
             const parentBg = counterElement.closest('.bg-event-maroon');
-            if (parentBg) {
-                counterObserver.observe(parentBg);
-            }
+            if (parentBg) counterObserver.observe(parentBg);
         }
 
-        // --- NUEVO: Lógica del Carrusel Arrastrable e Infinito ---
+        // Carrusel
         const carouselTrack = document.getElementById('carousel-track');
         const carouselContainer = document.getElementById('carousel-container');
 
         if (carouselTrack && carouselContainer) {
-            let isDragging = false;
-            let startX;
-            let currentTranslate = 0;
-            let prevTranslate = 0;
-            let animationId;
-            let isHovered = false;
+            let isDragging = false, startX, currentTranslate = 0, prevTranslate = 0, animationId, isHovered = false;
 
             const animateCarousel = () => {
-                // Si no se está arrastrando ni pasando el mouse, avanzar automáticamente
-                if (!isDragging && !isHovered) {
-                    currentTranslate -= 0.8; // Velocidad del movimiento
-                }
-
-                // Lógica mágica del bucle infinito
+                if (!isDragging && !isHovered) currentTranslate -= 0.8;
                 const halfWidth = carouselTrack.scrollWidth / 2;
-
-                // Si llegó al final de la primera mitad, volver a 0 sin que se note
-                if (currentTranslate <= -halfWidth) {
-                    currentTranslate += halfWidth;
-                } else if (currentTranslate > 0) { // O si lo arrastraron muy a la derecha
-                    currentTranslate -= halfWidth;
-                }
-
+                if (currentTranslate <= -halfWidth) currentTranslate += halfWidth;
+                else if (currentTranslate > 0) currentTranslate -= halfWidth;
                 carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
                 animationId = requestAnimationFrame(animateCarousel);
             };
 
-            // Eventos de pausa al pasar el mouse (para la PC)
             carouselContainer.addEventListener('mouseenter', () => isHovered = true);
             carouselContainer.addEventListener('mouseleave', () => {
-                isHovered = false;
-                isDragging = false; // Cancelar arrastre si el cursor sale
-                carouselContainer.classList.add('cursor-grab');
-                carouselContainer.classList.remove('cursor-grabbing');
+                isHovered = false; isDragging = false;
+                carouselContainer.classList.add('cursor-grab'); carouselContainer.classList.remove('cursor-grabbing');
             });
 
-            // Inicio de arrastre (Mouse / Táctil)
             const dragStart = (e) => {
                 isDragging = true;
-                carouselContainer.classList.remove('cursor-grab');
-                carouselContainer.classList.add('cursor-grabbing');
-                // Detectar si es mouse o dedo
+                carouselContainer.classList.remove('cursor-grab'); carouselContainer.classList.add('cursor-grabbing');
                 startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
                 prevTranslate = currentTranslate;
             };
 
-            // Durante el arrastre
             const dragMove = (e) => {
                 if (!isDragging) return;
                 const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-                const deltaX = currentPosition - startX;
-                currentTranslate = prevTranslate + deltaX;
+                currentTranslate = prevTranslate + (currentPosition - startX);
             };
 
-            // Fin de arrastre
             const dragEnd = () => {
                 isDragging = false;
-                carouselContainer.classList.add('cursor-grab');
-                carouselContainer.classList.remove('cursor-grabbing');
+                carouselContainer.classList.add('cursor-grab'); carouselContainer.classList.remove('cursor-grabbing');
             };
 
-            // Asignar listeners del Mouse
             carouselContainer.addEventListener('mousedown', dragStart);
             carouselContainer.addEventListener('mousemove', dragMove);
             window.addEventListener('mouseup', dragEnd);
-
-            // Asignar listeners Táctiles (Móvil)
             carouselContainer.addEventListener('touchstart', dragStart, { passive: true });
             carouselContainer.addEventListener('touchmove', dragMove, { passive: true });
             window.addEventListener('touchend', dragEnd);
 
-            // Encender el motor
             animateCarousel();
         }
     </script>
