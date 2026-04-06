@@ -61,6 +61,28 @@
         .btn-hover-effect:hover::after {
             @apply translate-x-0;
         }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 font-sans bg-grid">
@@ -604,7 +626,7 @@
                 <div class="mb-10">
                     <h3 class="text-3xl font-display uppercase tracking-widest text-event-green mb-10 text-center md:text-left">Equipo de Campeonato</h3>
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto md:mx-0">
-                        <!-- 1. Agustín Iturbe -->
+                        <!-- 1. Renzo Civile -->
                         <div class="flex flex-col items-center group">
                             <div class="w-full aspect-square rounded-[2rem] overflow-hidden shadow-xl mb-3 border-2 border-transparent group-hover:border-event-blue transition-all duration-300 bg-white/5 flex items-center justify-center">
                                 <i data-lucide="user" class="w-16 h-16 text-white/20"></i>
@@ -892,6 +914,7 @@
         </div>
     </div>
 
+    <!-- BOTONES FLOTANTES LATERALES DERECHOS -->
     <div class="hidden md:flex fixed top-1/2 right-6 -translate-y-1/2 z-50 flex-col gap-4">
         <a href="https://instagram.com/soldemayopadel" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-event-gold text-[#370606] hover:bg-[#370606] hover:text-event-gold transition-all duration-300 shadow-lg group hover:scale-110" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform">
@@ -900,19 +923,63 @@
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
             </svg>
         </a>
-        <a href="https://chat.whatsapp.com/JRqr4VDMwMaK3eMraaBHJr?mode=gi_t" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-event-gold text-[#370606] hover:bg-[#370606] hover:text-event-gold transition-all duration-300 shadow-lg group hover:scale-110" aria-label="WhatsApp">
+        <a href="https://wa.me/5491125745419?text=%C2%A1Hola!%20Me%20contacto%20desde%20la%20p%C3%A1gina%20web%20de%20la%20Copa%20Sol%20de%20Mayo.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-event-gold text-[#370606] hover:bg-[#370606] hover:text-event-gold transition-all duration-300 shadow-lg group hover:scale-110" aria-label="WhatsApp">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="transition-transform">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
         </a>
     </div>
 
-    <a href="https://chat.whatsapp.com/JRqr4VDMwMaK3eMraaBHJr?mode=gi_t" target="_blank" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl transition-all duration-300 z-50 hover:scale-110 hover:shadow-[#25D366]/50 focus:outline-none cursor-pointer flex items-center justify-center group" aria-label="Contactar por WhatsApp">
+    <!-- BOTÓN WSP INFERIOR DERECHO -->
+    <a href="https://wa.me/5491125745419?text=%C2%A1Hola!%20Me%20contacto%20desde%20la%20p%C3%A1gina%20web%20de%20la%20Copa%20Sol%20de%20Mayo.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white w-14 h-14 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300 z-50 hover:scale-110 hover:shadow-[#25D366]/50 focus:outline-none cursor-pointer group" aria-label="Contactar por WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
     </a>
 
+    <!-- CHATBOT DE GARDELITO (BOTÓN INFERIOR IZQUIERDO) -->
+    <button id="gardelito-btn" class="fixed bottom-6 left-6 md:bottom-8 md:left-8 w-16 h-16 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300 z-[60] hover:scale-110 focus:outline-none cursor-pointer p-0 bg-transparent border-none">
+        <img src="https://lh3.googleusercontent.com/d/1LgeiyrcW5XUCVL7zTTaolamBgVG1uCTg" alt="Gardelito Mascot" class="w-full h-full object-contain drop-shadow-xl">
+        <!-- Puntito rojo de notificación -->
+        <span class="absolute top-1 right-1 flex h-4 w-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+        </span>
+    </button>
+
+    <!-- VENTANA DEL CHATBOT -->
+    <div id="gardelito-chat" class="fixed bottom-24 left-0 right-0 mx-auto md:bottom-28 md:left-8 md:right-auto md:mx-0 w-[92vw] max-w-[380px] md:w-[85vw] md:max-w-[340px] h-[80vh] max-h-[600px] md:h-[500px] md:max-h-[65vh] bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-[60] flex flex-col border-2 border-event-blue overflow-hidden transition-all duration-300 transform origin-bottom md:origin-bottom-left scale-0 opacity-0 pointer-events-none">
+        <!-- Header -->
+        <div class="bg-event-maroon text-white p-4 flex justify-between items-center shrink-0 border-b border-white/10">
+            <div class="flex items-center gap-3">
+                <img src="https://lh3.googleusercontent.com/d/1LgeiyrcW5XUCVL7zTTaolamBgVG1uCTg" class="w-12 h-12 object-contain drop-shadow-sm">
+                <div>
+                    <h4 class="font-display uppercase tracking-tight leading-none text-lg">Gardelito</h4>
+                    <span class="text-[10px] text-event-gold uppercase tracking-widest font-bold flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> En línea
+                    </span>
+                </div>
+            </div>
+            <button id="close-chat" class="text-white/70 hover:text-white transition-colors p-1 bg-white/5 rounded-full hover:bg-white/20">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+        
+        <!-- Mensajes -->
+        <div id="chat-messages" class="flex-grow p-4 overflow-y-auto bg-gray-50/50 flex flex-col gap-4 custom-scrollbar text-sm">
+            <!-- Los mensajes y burbujas se inyectan acá vía JS -->
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 bg-white border-t border-gray-100 flex gap-2 shrink-0 items-center">
+            <input type="text" id="chat-input" placeholder="Escribí acá..." class="flex-grow bg-gray-100/80 rounded-full pl-4 pr-2 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-event-blue/30 font-medium text-gray-700">
+            <button id="chat-send" class="w-11 h-11 bg-event-blue text-white rounded-full flex items-center justify-center hover:bg-event-maroon transition-colors shrink-0 shadow-md hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-ml-0.5 mt-0.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- BOTÓN DE VOLVER ARRIBA -->
     <button id="back-to-top" class="fixed bottom-24 right-6 md:bottom-28 md:right-8 bg-event-gold text-event-maroon p-3 rounded-full shadow-2xl transition-all duration-300 translate-y-24 opacity-0 z-50 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-event-gold/50 cursor-pointer" aria-label="Volver arriba">
         <i data-lucide="arrow-up"></i>
     </button>
@@ -964,7 +1031,7 @@
         const navBeneficiosMobile = document.getElementById('nav-beneficios-mobile');
         const navLogoutMobile = document.getElementById('nav-logout-mobile');
         
-        // NUEVOS: Íconos del encabezado en celular
+        // Íconos del encabezado en celular
         const navLoginIconMobile = document.getElementById('nav-login-icon-mobile'); 
         const navBeneficiosIconMobile = document.getElementById('nav-beneficios-icon-mobile');
         
@@ -1035,7 +1102,7 @@
             const submitBtn = e.target.querySelector('button[type="submit"]');
 
             if (!termsAccepted) {
-                return; // El form ya debería bloquearlo el navegador, pero por si acaso
+                return; // El form ya debería bloquearlo el navegador
             }
 
             const validDomains = ['@gmail.com', '@yahoo.com', '@yahoo.com.ar'];
@@ -1052,7 +1119,6 @@
             // Generar código
             const verificationCode = Math.floor(1000 + Math.random() * 9000).toString();
 
-            // NUEVA URL ACTUALIZADA
             const scriptURL = 'https://script.google.com/macros/s/AKfycbx7_3PVPlCdBBD85uH9KoxNJUXWGN-4Q7KVWvxMzBKzrBy3Pce5z29Wk1JJ7ygM6mZEVA/exec'; 
             
             const originalBtnText = submitBtn.innerText;
@@ -1060,34 +1126,31 @@
             submitBtn.disabled = true;
 
             const formData = new FormData();
-            formData.append('Accion', 'Registro'); // AVISAMOS A GOOGLE QUE ESTO ES UN REGISTRO
+            formData.append('Accion', 'Registro'); 
             formData.append('Nombre', name);
             formData.append('Email', email);
             formData.append('Telefono', phone);
             formData.append('Codigo', verificationCode); 
-            formData.append('Password', pass); // ENVIAMOS LA CONTRASEÑA PARA GUARDARLA
+            formData.append('Password', pass); 
 
             try {
-                // OPTIMIZADO: Quitamos "mode: 'no-cors'" para poder leer lo que nos responde Google
                 const response = await fetch(scriptURL, { method: 'POST', body: formData });
                 const text = await response.text();
 
-                // --- NUEVO: REVISAMOS SI GOOGLE DETECTÓ CORREOS REPETIDOS ---
                 if (text === "EmailActivo") {
                     if(signupError) {
                         signupError.innerText = "El mail ya está registrado y su cuenta se encuentra activa. Por favor, inicia sesión.";
                         signupError.classList.remove('hidden');
                     }
-                    return; // Detenemos el registro
+                    return;
                 } else if (text === "EmailPendiente") {
                     if(signupError) {
                         signupError.innerText = "Este mail ya está registrado pero falta verificarlo. Revisa tu correo para ingresar el código.";
                         signupError.classList.remove('hidden');
                     }
-                    return; // Detenemos el registro
+                    return; 
                 }
 
-                // Si no hay errores y la respuesta fue "Exito", seguimos:
                 pendingUser = { name, email, phone, pass, code: verificationCode };
                 e.target.reset();
                 switchAuth('verify');
@@ -1104,7 +1167,6 @@
             }
         }
 
-        // OPTIMIZADO: Ahora es "async" para poder llamar a Google
         async function handleVerify(e) {
             e.preventDefault();
             if(verifyError) verifyError.classList.add('hidden');
@@ -1114,7 +1176,6 @@
 
             if (pendingUser && inputCode === pendingUser.code) {
                 
-                // --- INICIO DE CONEXIÓN CON GOOGLE PARA CONFIRMAR ---
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbx7_3PVPlCdBBD85uH9KoxNJUXWGN-4Q7KVWvxMzBKzrBy3Pce5z29Wk1JJ7ygM6mZEVA/exec'; 
                 
                 const originalBtnText = submitBtn.innerText;
@@ -1122,13 +1183,12 @@
                 submitBtn.disabled = true;
 
                 const formData = new FormData();
-                formData.append('Accion', 'Verificar'); // AVISAMOS A GOOGLE QUE DEBE CAMBIAR A "ACTIVO"
-                formData.append('Email', pendingUser.email); // Le mandamos el email para que lo encuentre
+                formData.append('Accion', 'Verificar'); 
+                formData.append('Email', pendingUser.email);
 
                 try {
                     await fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' });
 
-                    // Guardamos oficialmente en la app
                     usersDB.push({
                         name: pendingUser.name,
                         email: pendingUser.email,
@@ -1175,7 +1235,6 @@
             submitBtn.disabled = true;
 
             try {
-                // Consultamos a Google Sheets si el usuario y contraseña son correctos usando GET
                 const response = await fetch(`${scriptURL}?Accion=Login&Email=${encodeURIComponent(email)}&Password=${encodeURIComponent(pass)}`);
                 const text = await response.text();
 
@@ -1226,7 +1285,6 @@
                 if(navBeneficiosMobile) navBeneficiosMobile.classList.add('flex');
                 if(navLogoutMobile) navLogoutMobile.classList.remove('hidden');
                 
-                // NUEVO: Cambia el ícono en el header
                 if(navLoginIconMobile) navLoginIconMobile.classList.add('hidden'); 
                 if(navBeneficiosIconMobile) navBeneficiosIconMobile.classList.remove('hidden'); 
 
@@ -1244,7 +1302,6 @@
                 if(navBeneficiosMobile) navBeneficiosMobile.classList.remove('flex');
                 if(navLogoutMobile) navLogoutMobile.classList.add('hidden');
                 
-                // NUEVO: Cambia el ícono en el header
                 if(navLoginIconMobile) navLoginIconMobile.classList.remove('hidden'); 
                 if(navBeneficiosIconMobile) navBeneficiosIconMobile.classList.add('hidden'); 
 
@@ -1270,7 +1327,7 @@
         const homeView = document.getElementById('view-home');
         const viewCasosEl = document.getElementById('view-casos');
         const viewBeneficiosEl = document.getElementById('view-beneficios');
-        const viewEquipoEl = document.getElementById('view-equipo'); // NUEVO
+        const viewEquipoEl = document.getElementById('view-equipo');
 
         function navigateTo(target) {
             closeMenu();
@@ -1283,7 +1340,7 @@
             if (homeView) homeView.style.display = 'none';
             if (viewCasosEl) { viewCasosEl.classList.add('hidden'); viewCasosEl.classList.remove('flex'); }
             if (viewBeneficiosEl) { viewBeneficiosEl.classList.add('hidden'); viewBeneficiosEl.classList.remove('flex'); }
-            if (viewEquipoEl) { viewEquipoEl.classList.add('hidden'); viewEquipoEl.classList.remove('flex'); } // NUEVO
+            if (viewEquipoEl) { viewEquipoEl.classList.add('hidden'); viewEquipoEl.classList.remove('flex'); } 
 
             if (target === 'casos') {
                 if (viewCasosEl) { viewCasosEl.classList.remove('hidden'); viewCasosEl.classList.add('flex'); }
@@ -1291,7 +1348,7 @@
             } else if (target === 'beneficios') {
                 if (viewBeneficiosEl) { viewBeneficiosEl.classList.remove('hidden'); viewBeneficiosEl.classList.add('flex'); }
                 window.scrollTo({ top: 0, behavior: 'instant' });
-            } else if (target === 'equipo') { // NUEVO
+            } else if (target === 'equipo') { 
                 if (viewEquipoEl) { viewEquipoEl.classList.remove('hidden'); viewEquipoEl.classList.add('flex'); }
                 window.scrollTo({ top: 0, behavior: 'instant' });
             } else {
@@ -1300,7 +1357,7 @@
             }
         }
 
-        // --- SCROLL, NAVBAR Y CARRUSEL ---
+        // --- SCROLL Y NAVBAR ---
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
         const navMobileTitle = document.getElementById('nav-mobile-title');
@@ -1348,13 +1405,13 @@
             let current = '';
             const isCasosView = viewCasosEl ? !viewCasosEl.classList.contains('hidden') : false;
             const isBeneficiosView = viewBeneficiosEl ? !viewBeneficiosEl.classList.contains('hidden') : false;
-            const isEquipoView = viewEquipoEl ? !viewEquipoEl.classList.contains('hidden') : false; // NUEVO
+            const isEquipoView = viewEquipoEl ? !viewEquipoEl.classList.contains('hidden') : false; 
             
             if (isCasosView) {
                 current = 'casos';
             } else if (isBeneficiosView) {
                 current = 'beneficios';
-            } else if (isEquipoView) { // NUEVO
+            } else if (isEquipoView) { 
                 current = 'equipo';
             } else {
                 sections.forEach(section => {
@@ -1370,7 +1427,7 @@
                     if (link) {
                         link.classList.remove('text-event-gold');
                         if (isCasosView && link.id === 'nav-casos-desktop') link.classList.add('text-event-gold');
-                        else if (isEquipoView && link.id === 'nav-equipo-desktop') link.classList.add('text-event-gold'); // NUEVO
+                        else if (isEquipoView && link.id === 'nav-equipo-desktop') link.classList.add('text-event-gold');
                         else if (!isCasosView && !isBeneficiosView && !isEquipoView && link.getAttribute('href') === `#${current}`) link.classList.add('text-event-gold');
                     }
                 });
@@ -1472,6 +1529,204 @@
 
             animateCarousel();
         }
+
+        // --- SISTEMA DE CHATBOT (GARDELITO) ---
+        const gardelitoBtn = document.getElementById('gardelito-btn');
+        const gardelitoChat = document.getElementById('gardelito-chat');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        
+        let chatOpen = false;
+        let botRole = null; // 'participante' o 'sponsor'
+
+        // Base de conocimientos de Gardelito actualizada con TODO el contenido de la web
+        const knowledgeBase = [
+            { keys: ["registro", "registrar", "registrarme", "cuenta", "sesion", "iniciar"], text: "Para registrarte, hacé clic en 'Iniciar sesión' y luego seleccioná la opción 'Regístrate'. Allí vas a tener que completar tus datos personales (nombre completo, mail, DNI y celular) y crear una contraseña. Al finalizar, te enviaremos un correo con un código de verificación. Una vez que valides tu cuenta con ese código, ¡ya podés iniciar sesión con normalidad!" },
+            { keys: ["anotar", "inscribir", "inscripcion", "anoto", "participar", "jugar"], text: "¡Fácil, rey! Entrá a este link y llená el <a href='https://forms.gle/VC9WNUZxbsNEakkd9' target='_blank' class='text-event-blue font-bold hover:underline'>formulario de inscripción</a>. Después nosotros te chiflamos para el pago. Tenés tiempo hasta el 08/05." },
+            { keys: ["costo", "precio", "pagar", "cuotas", "sale", "pago", "plata", "cuesta"], text: "El precio de la inscripción es de $35.000 ARS por persona. Tené en cuenta que se debe abonar el total correspondiente de la pareja en un único pago." },
+            { keys: ["pareja", "compañero", "solo", "cambiar", "compa"], text: "El torneo es 100% en parejas, crack. Así que andá buscando un buen ladero porque no podés anotarte solo. Y guarda: una vez inscriptos no se cambia de compañero." },
+            { keys: ["nivel", "categoria", "categorias"], text: "Jugamos en categoría C6-C7, papá. Igual somos un toque flexibles para que todos jueguen y se arme lindo el picadito." },
+            { keys: ["formato", "partidos", "minimo", "juega"], text: "Es un Americano masculino. Te recontra aseguro que como mínimo cada pareja juega 3 partidos. ¡A dejar todo en la cancha!" },
+            { keys: ["donde", "cuando", "fecha", "lugar", "locacion", "ubicacion", "dia"], text: "Anotá, fiera: 16 de Mayo. Una fecha bien patriótica para un torneo 100% argentino. La locación exacta la estamos por confirmar, así que atento a nuestras redes." },
+            { keys: ["horario", "tarde", "hora", "horarios"], text: "Los horarios de los partidos te los pasamos el mismo día. ¡Ojo con dormirte! Hay 5 minutitos de tolerancia y después es un game en contra por cada minuto tarde." },
+            { keys: ["llueve", "lluvia", "clima", "suspende"], text: "¡Olvidate! Jugamos en canchas techadas, acá no se suspende por lluvia ni locos. El torneo sale con fritas igual." },
+            { keys: ["premio", "premios", "ganar", "ganador", "trofeo"], text: "¡Obvio, papá! Hay una banda de premios para los ganadores y el podio. Vale la pena romperse el lomo y dejar la vida." },
+            { keys: ["sponsor", "marca", "sponsoreo", "patrocinio", "planes", "auspiciar", "propuesta", "formulario"], text: "¡Es por acá, jefe! Tenemos 4 planazos: Premium (1 Espada), Popular (1 Basto), Kit de Bienvenida (7 Espada) y Sorteo (7 Oro). Te dan naming del evento, stands y difusión a full. Chequeá la pestaña de Sponsors o llená el <a href='https://forms.gle/YmhEhUJSvew1hE9i9' target='_blank' class='text-event-blue font-bold hover:underline'>formulario para marcas</a>." },
+            { keys: ["beneficio", "beneficios", "descuento", "descuentos", "regalo", "regalos", "club"], text: "Uf, creándote la cuenta tenés altos beneficios: 15% OFF en Bullpadel, envío gratis en indumentaria superando los $50k, y un 2x1 en turnos de canchas adheridas. Registrate y activalos, fiera." },
+            { keys: ["organiza", "quienes", "quien", "equipo", "uade"], text: "La batuta la llevamos los estudiantes de Gestión Deportiva de la UADE. En Marketing están Matías, Morella, Juli, Fiona e Inés; en Producción están Gabi, Lola, Tais y Agus; y en Campeonato Renzo, Rory, Máximo y Vic. ¡Pura sangre argentina organizando esto!" },
+            { keys: ["contacto", "instagram", "redes", "mail", "correo", "email"], text: "Nos podés chiflar por Instagram en @soldemayopadel o mandarnos un mail a soldemayopadel@gmail.com. También podés sumarte a nuestro WhatsApp tocando el ícono verde de la página. ¡No hay excusas!" },
+            { keys: ["publico", "gente", "asiste", "personas", "cuantos"], text: "Esperamos +100 personas entre jugadores, staff y espectadores. Viene gente joven, re activa y súper manija del pádel. ¡Un público de oro para que tu marca la rompa toda!" },
+            { keys: ["resultado", "resultados", "fixture", "llave"], text: "Los resultados y cómo sigue el fixture los vamos avisando nosotros el mismo día del torneo. ¡Vos solo preocupate por dejar la vida en la cancha!" },
+            { keys: ["hola", "buenas", "que tal", "como andas", "todo bien", "q onda", "holaa", "buenas tardes", "buen dia"], text: "¡Qué hacés, máquina! Todo de diez por acá. Soy Gardelito. ¿En qué te puedo dar una mano hoy?" },
+            { keys: ["gracias", "genial", "listo", "joya", "perfecto", "dale", "buenisimo", "de una"], text: "¡De nada, rey! Cualquier otra cosita que necesites, chiflame. ¡Abrazo grande y aguante el pádel!" }
+        ];
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            if(chatOpen) {
+                gardelitoChat.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+                gardelitoChat.classList.add('scale-100', 'opacity-100');
+                
+                // Si es la primera vez que se abre
+                if(chatMessages.children.length === 0) {
+                    addMessage('bot', '¡Qué hacés, fiera! 🧉 Soy Gardelito, la mascota oficial de la Copa Sol de Mayo. Decime, ¿Venís a transpirar la camiseta o querés sumar tu marca como sponsor?');
+                    appendOptions([
+                        { text: 'Quiero jugar 🎾', action: () => handleInitialRole('participante') },
+                        { text: 'Quiero ser sponsor 🤝', action: () => handleInitialRole('sponsor') }
+                    ]);
+                }
+            } else {
+                gardelitoChat.classList.remove('scale-100', 'opacity-100');
+                gardelitoChat.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function handleInitialRole(role) {
+            botRole = role;
+            const userMsg = role === 'participante' ? 'Quiero jugar 🎾' : 'Quiero ser sponsor 🤝';
+            processUserMessage(userMsg, false);
+        }
+
+        function addMessage(sender, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `max-w-[85%] rounded-2xl px-4 py-2 ${sender === 'bot' ? 'bg-white border border-gray-100 shadow-sm self-start text-gray-700 rounded-bl-none' : 'bg-event-blue text-white shadow-md self-end rounded-br-none'}`;
+            msgDiv.innerHTML = text;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Función para generar opciones dinámicas y aleatorias sin repetir la última
+        function getNextOptions(role, excludeText, count = 3) {
+            if (!role) {
+                return [
+                    { text: 'Quiero jugar 🎾', action: () => handleInitialRole('participante') },
+                    { text: 'Quiero ser sponsor 🤝', action: () => handleInitialRole('sponsor') }
+                ];
+            }
+
+            let pool = [];
+            if (role === 'participante') {
+                pool = [
+                    { text: '¿Cómo me anoto?', action: () => processUserMessage('¿Cómo me anoto?') },
+                    { text: '¿Cómo me registro?', action: () => processUserMessage('¿Cómo me registro?') },
+                    { text: '¿Cuál es el formato?', action: () => processUserMessage('¿Cuál es el formato?') },
+                    { text: '¿Cuál es el precio?', action: () => processUserMessage('¿Cuál es el precio?') },
+                    { text: '¿Se juega en pareja?', action: () => processUserMessage('¿Se juega en pareja?') },
+                    { text: '¿Cuándo y dónde es?', action: () => processUserMessage('¿Cuándo y dónde es?') },
+                    { text: '¿Qué premios hay?', action: () => processUserMessage('¿Qué premios hay?') },
+                    { text: '¿Qué pasa si llueve?', action: () => processUserMessage('¿Qué pasa si llueve?') },
+                    { text: '¿Qué pasa si llego tarde?', action: () => processUserMessage('¿Qué pasa si llego tarde?') },
+                    { text: '¿Tengo beneficios?', action: () => processUserMessage('¿Tengo beneficios?') },
+                    { text: 'Quiero ser sponsor 🤝', action: () => { botRole = 'sponsor'; processUserMessage('Quiero ser sponsor'); } }
+                ];
+            } else if (role === 'sponsor') {
+                pool = [
+                    { text: '¿Qué planes hay?', action: () => processUserMessage('¿Qué planes hay?') },
+                    { text: '¿Quiénes organizan?', action: () => processUserMessage('¿Quiénes organizan?') },
+                    { text: '¿Qué público asiste?', action: () => processUserMessage('¿Qué público asiste?') },
+                    { text: 'Ir al Formulario', action: () => { window.open('https://forms.gle/YmhEhUJSvew1hE9i9', '_blank'); processUserMessage('Ir al Formulario', true); addMessage('bot', '¡Excelente! Te abrí el formulario en una pestaña nueva.'); appendOptions(getNextOptions('sponsor', 'Ir al Formulario')); } },
+                    { text: '¿Cuáles son los beneficios?', action: () => processUserMessage('¿Cuáles son los beneficios?') },
+                    { text: 'Quiero jugar 🎾', action: () => { botRole = 'participante'; processUserMessage('Quiero jugar'); } }
+                ];
+            }
+
+            // Filtramos la opción que acaba de tocar el usuario para no mostrarla de nuevo
+            let filteredPool = pool.filter(item => item.text !== excludeText);
+
+            // Mezclamos el array aleatoriamente
+            filteredPool = filteredPool.sort(() => 0.5 - Math.random());
+
+            // Devolvemos la cantidad solicitada
+            return filteredPool.slice(0, count);
+        }
+
+        // Agrega las opciones de burbujas dentro de los mensajes estilo CARPi
+        function appendOptions(replies) {
+            if (!replies || replies.length === 0) return;
+            
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'chat-options-container flex flex-col gap-2 mt-1 mb-2 w-[85%] self-start';
+            
+            replies.forEach(reply => {
+                const btn = document.createElement('button');
+                // Estilo "River/CARPi" (borde outline que se rellena al pasar el mouse)
+                btn.className = 'bg-white border border-event-maroon text-event-maroon hover:bg-event-maroon hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-colors w-full text-center shadow-sm option-btn';
+                btn.innerText = reply.text;
+                btn.onclick = () => {
+                    reply.action();
+                };
+                optionsDiv.appendChild(btn);
+            });
+            
+            chatMessages.appendChild(optionsDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function processUserMessage(msgText, skipUserMsgRendering = false) {
+            if(!msgText.trim()) return;
+            
+            // Eliminamos chips/burbujas anteriores para que desaparezcan de la pantalla al hacer clic
+            document.querySelectorAll('.chat-options-container').forEach(el => el.remove());
+            
+            if(!skipUserMsgRendering) {
+                addMessage('user', msgText);
+                if(msgText === chatInput.value) chatInput.value = '';
+            }
+            
+            // Simulamos delay del bot
+            setTimeout(() => {
+                const cleanMsg = msgText.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                
+                // Cambiar el contexto (botRole) dinámicamente
+                const isSponsorMsg = ["sponsor", "marca", "sponsoreo", "patrocinio", "auspiciar", "planes", "plan"].some(k => cleanMsg.includes(k));
+                const isPlayerMsg = ["jugar", "participar", "jugador", "anotar", "inscribir", "inscribirme", "torneo", "formato", "partido", "pareja", "costo", "precio", "premios", "ganador"].some(k => cleanMsg.includes(k));
+
+                if (isSponsorMsg) {
+                    botRole = 'sponsor';
+                } else if (isPlayerMsg) {
+                    botRole = 'participante';
+                }
+
+                let foundMatch = false;
+
+                // Casos especiales para el saludo inicial desde los botones
+                if (msgText === 'Quiero jugar 🎾') {
+                    addMessage('bot', '¡Esa es la actitud, papá! 🚀 ¿Qué duda tenés sobre el torneo?');
+                    foundMatch = true;
+                } else if (msgText === 'Quiero ser sponsor 🤝') {
+                    addMessage('bot', '¡Excelente, jefe! 💼 Las mejores marcas están con nosotros. ¿Qué te gustaría saber?');
+                    foundMatch = true;
+                } else {
+                    for (const item of knowledgeBase) {
+                        if (item.keys.some(key => cleanMsg.includes(key))) {
+                            addMessage('bot', item.text);
+                            foundMatch = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!foundMatch) {
+                    addMessage('bot', 'Che, me mataste con esa fiera... 🤔 Escribimelo de otra forma o pegale una leída a la web que ahí está toda la data. Si no, tocá el botón de WhatsApp y los pibes te responden al toque.');
+                }
+
+                // Generamos y mostramos nuevas burbujas dinámicamente sin repetir la actual
+                appendOptions(getNextOptions(botRole, msgText, 3));
+
+            }, 800);
+        }
+
+        // Listeners del chat
+        if (gardelitoBtn) gardelitoBtn.addEventListener('click', toggleChat);
+        if (closeChatBtn) closeChatBtn.addEventListener('click', toggleChat);
+        
+        if (chatSend) chatSend.addEventListener('click', () => processUserMessage(chatInput.value));
+        if (chatInput) chatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') processUserMessage(chatInput.value);
+        });
+
     </script>
 </body>
 </html>
