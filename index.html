@@ -930,61 +930,69 @@
         </a>
     </div>
 
-    <!-- BOTÓN WSP INFERIOR DERECHO -->
-    <a href="https://wa.me/5491125745419?text=%C2%A1Hola!%20Me%20contacto%20desde%20la%20p%C3%A1gina%20web%20de%20la%20Copa%20Sol%20de%20Mayo.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#25D366] text-white w-14 h-14 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300 z-50 hover:scale-110 hover:shadow-[#25D366]/50 focus:outline-none cursor-pointer group" aria-label="Contactar por WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-        </svg>
-    </a>
+    <!-- BOTÓN WSP INFERIOR DERECHO (CON ENVOLTORIO PARA EVITAR EL FOOTER) -->
+    <div class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 pointer-events-none" style="transform: translateY(calc(-1 * var(--footer-offset, 0px)));">
+        <a id="whatsapp-btn" href="https://wa.me/5491125745419?text=%C2%A1Hola!%20Me%20contacto%20desde%20la%20p%C3%A1gina%20web%20de%20la%20Copa%20Sol%20de%20Mayo.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="pointer-events-auto bg-[#25D366] text-white w-14 h-14 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300 hover:scale-110 hover:shadow-[#25D366]/50 focus:outline-none cursor-pointer group" aria-label="Contactar por WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+        </a>
+    </div>
 
-    <!-- CHATBOT DE GARDELITO (BOTÓN INFERIOR IZQUIERDO) -->
-    <button id="gardelito-btn" class="fixed bottom-6 left-6 md:bottom-8 md:left-8 w-16 h-16 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300 z-[60] hover:scale-110 focus:outline-none cursor-pointer p-0 bg-transparent border-none">
-        <img src="https://lh3.googleusercontent.com/d/1LgeiyrcW5XUCVL7zTTaolamBgVG1uCTg" alt="Gardelito Mascot" class="w-full h-full object-contain drop-shadow-xl">
-        <!-- Puntito rojo de notificación -->
-        <span class="absolute top-1 right-1 flex h-4 w-4">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
-        </span>
-    </button>
+    <!-- CHATBOT DE GARDELITO (CON ENVOLTORIO PARA EVITAR EL FOOTER) -->
+    <div class="fixed bottom-6 left-6 md:bottom-8 md:left-8 z-[60] pointer-events-none" style="transform: translateY(calc(-1 * var(--footer-offset, 0px)));">
+        <button id="gardelito-btn" class="pointer-events-auto w-16 h-16 md:w-24 md:h-24 flex items-center justify-center rounded-full shadow-2xl transition-transform duration-300 hover:scale-110 focus:outline-none cursor-pointer p-0 bg-transparent border-none">
+            <img src="https://lh3.googleusercontent.com/d/1LgeiyrcW5XUCVL7zTTaolamBgVG1uCTg" alt="Gardelito Mascot" class="w-full h-full object-contain drop-shadow-xl">
+            <!-- Puntito rojo de notificación -->
+            <span class="absolute top-1 right-1 md:top-2 md:right-2 flex h-4 w-4 md:h-5 md:w-5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-4 w-4 md:h-5 md:w-5 bg-red-500 border-2 border-white"></span>
+            </span>
+        </button>
+    </div>
 
-    <!-- VENTANA DEL CHATBOT -->
-    <div id="gardelito-chat" class="fixed bottom-24 left-0 right-0 mx-auto md:bottom-28 md:left-8 md:right-auto md:mx-0 w-[92vw] max-w-[380px] md:w-[85vw] md:max-w-[340px] h-[80vh] max-h-[600px] md:h-[500px] md:max-h-[65vh] bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-[60] flex flex-col border-2 border-event-blue overflow-hidden transition-all duration-300 transform origin-bottom md:origin-bottom-left scale-0 opacity-0 pointer-events-none">
-        <!-- Header -->
-        <div class="bg-event-maroon text-white p-4 flex justify-between items-center shrink-0 border-b border-white/10">
-            <div class="flex items-center gap-3">
-                <img src="https://lh3.googleusercontent.com/d/1LgeiyrcW5XUCVL7zTTaolamBgVG1uCTg" class="w-12 h-12 object-contain drop-shadow-sm">
-                <div>
-                    <h4 class="font-display uppercase tracking-tight leading-none text-lg">Gardelito</h4>
-                    <span class="text-[10px] text-event-gold uppercase tracking-widest font-bold flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> En línea
-                    </span>
+    <!-- VENTANA DEL CHATBOT (CON ENVOLTORIO) -->
+    <div class="fixed bottom-24 left-0 w-full md:bottom-32 md:left-8 md:w-auto z-[60] pointer-events-none flex justify-center md:block" style="transform: translateY(calc(-1 * var(--footer-offset, 0px)));">
+        <div id="gardelito-chat" class="pointer-events-auto w-[92vw] max-w-[380px] md:w-[85vw] md:max-w-[340px] h-[80vh] max-h-[600px] md:h-[500px] md:max-h-[calc(100vh-280px)] bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col border-2 border-event-blue overflow-hidden transition-all duration-300 transform origin-bottom md:origin-bottom-left scale-0 opacity-0">
+            <!-- Header -->
+            <div class="bg-event-maroon text-white p-4 flex justify-between items-center shrink-0 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <img src="https://lh3.googleusercontent.com/d/1LgeiyrcW5XUCVL7zTTaolamBgVG1uCTg" class="w-12 h-12 object-contain drop-shadow-sm">
+                    <div>
+                        <h4 class="font-display uppercase tracking-tight leading-none text-lg">Gardelito</h4>
+                        <span class="text-[10px] text-event-gold uppercase tracking-widest font-bold flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> En línea
+                        </span>
+                    </div>
                 </div>
+                <button id="close-chat" class="pointer-events-auto text-white/70 hover:text-white transition-colors p-1 bg-white/5 rounded-full hover:bg-white/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
             </div>
-            <button id="close-chat" class="text-white/70 hover:text-white transition-colors p-1 bg-white/5 rounded-full hover:bg-white/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            </button>
-        </div>
-        
-        <!-- Mensajes -->
-        <div id="chat-messages" class="flex-grow p-4 overflow-y-auto bg-gray-50/50 flex flex-col gap-4 custom-scrollbar text-sm">
-            <!-- Los mensajes y burbujas se inyectan acá vía JS -->
-        </div>
+            
+            <!-- Mensajes -->
+            <div id="chat-messages" class="pointer-events-auto flex-grow p-4 overflow-y-auto bg-gray-50/50 flex flex-col gap-4 custom-scrollbar text-sm">
+                <!-- Los mensajes y burbujas se inyectan acá vía JS -->
+            </div>
 
-        <!-- Input Area -->
-        <div class="p-3 bg-white border-t border-gray-100 flex gap-2 shrink-0 items-center">
-            <input type="text" id="chat-input" placeholder="Escribí acá..." class="flex-grow bg-gray-100/80 rounded-full pl-4 pr-2 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-event-blue/30 font-medium text-gray-700">
-            <button id="chat-send" class="w-11 h-11 bg-event-blue text-white rounded-full flex items-center justify-center hover:bg-event-maroon transition-colors shrink-0 shadow-md hover:scale-105">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-ml-0.5 mt-0.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            </button>
+            <!-- Input Area -->
+            <div class="pointer-events-auto p-3 bg-white border-t border-gray-100 flex gap-2 shrink-0 items-center">
+                <input type="text" id="chat-input" placeholder="Escribí acá..." class="flex-grow bg-gray-100/80 rounded-full pl-4 pr-2 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-event-blue/30 font-medium text-gray-700">
+                <button id="chat-send" class="w-11 h-11 bg-event-blue text-white rounded-full flex items-center justify-center hover:bg-event-maroon transition-colors shrink-0 shadow-md hover:scale-105">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-ml-0.5 mt-0.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- BOTÓN DE VOLVER ARRIBA -->
-    <button id="back-to-top" class="fixed bottom-24 right-6 md:bottom-28 md:right-8 bg-event-gold text-event-maroon p-3 rounded-full shadow-2xl transition-all duration-300 translate-y-24 opacity-0 z-50 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-event-gold/50 cursor-pointer" aria-label="Volver arriba">
-        <i data-lucide="arrow-up"></i>
-    </button>
+    <!-- BOTÓN DE VOLVER ARRIBA (CON ENVOLTORIO) -->
+    <div class="fixed bottom-24 right-6 md:bottom-28 md:right-8 z-50 pointer-events-none" style="transform: translateY(calc(-1 * var(--footer-offset, 0px)));">
+        <button id="back-to-top" class="pointer-events-auto bg-event-gold text-event-maroon p-3 rounded-full shadow-2xl transition-all duration-300 translate-y-24 opacity-0 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-event-gold/50 cursor-pointer" aria-label="Volver arriba">
+            <i data-lucide="arrow-up"></i>
+        </button>
+    </div>
 
-    <footer class="relative z-20 bg-event-maroon py-12 text-white/40 text-center border-t border-white/5">
+    <footer id="main-footer" class="relative z-20 bg-event-maroon py-12 text-white/40 text-center border-t border-white/5">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex items-center gap-3">
@@ -1381,6 +1389,7 @@
         function procesarScroll() {
             const currentScroll = window.scrollY;
 
+            // Transparencia del nav
             if (navbar) {
                 if (currentScroll > 50) {
                     navbar.classList.add('bg-event-maroon/80', 'py-4', 'shadow-2xl', 'backdrop-blur-lg');
@@ -1396,6 +1405,19 @@
             }
 
             if (scrollGradient) scrollGradient.style.opacity = Math.min(currentScroll / 100, 1);
+
+            // Lógica para detener los botones flotantes antes del footer
+            const footer = document.getElementById('main-footer');
+            if (footer) {
+                const footerRect = footer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                if (footerRect.top < windowHeight) {
+                    const offset = windowHeight - footerRect.top;
+                    document.documentElement.style.setProperty('--footer-offset', `${offset}px`);
+                } else {
+                    document.documentElement.style.setProperty('--footer-offset', `0px`);
+                }
+            }
 
             if (backToTop) {
                 if (currentScroll > 500) backToTop.classList.remove('translate-y-24', 'opacity-0');
@@ -1541,7 +1563,6 @@
         let chatOpen = false;
         let botRole = null; // 'participante' o 'sponsor'
 
-        // Base de conocimientos de Gardelito actualizada con TODO el contenido de la web
         const knowledgeBase = [
             { keys: ["registro", "registrar", "registrarme", "cuenta", "sesion", "iniciar"], text: "Para registrarte, hacé clic en 'Iniciar sesión' y luego seleccioná la opción 'Regístrate'. Allí vas a tener que completar tus datos personales (nombre completo, mail, DNI y celular) y crear una contraseña. Al finalizar, te enviaremos un correo con un código de verificación. Una vez que valides tu cuenta con ese código, ¡ya podés iniciar sesión con normalidad!" },
             { keys: ["anotar", "inscribir", "inscripcion", "anoto", "participar", "jugar"], text: "¡Fácil, rey! Entrá a este link y llená el <a href='https://forms.gle/VC9WNUZxbsNEakkd9' target='_blank' class='text-event-blue font-bold hover:underline'>formulario de inscripción</a>. Después nosotros te chiflamos para el pago. Tenés tiempo hasta el 08/05." },
@@ -1569,7 +1590,6 @@
                 gardelitoChat.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
                 gardelitoChat.classList.add('scale-100', 'opacity-100');
                 
-                // Si es la primera vez que se abre
                 if(chatMessages.children.length === 0) {
                     addMessage('bot', '¡Qué hacés, fiera! 🧉 Soy Gardelito, la mascota oficial de la Copa Sol de Mayo. Decime, ¿Venís a transpirar la camiseta o querés sumar tu marca como sponsor?');
                     appendOptions([
@@ -1597,7 +1617,6 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Función para generar opciones dinámicas y aleatorias sin repetir la última
         function getNextOptions(role, excludeText, count = 3) {
             if (!role) {
                 return [
@@ -1632,17 +1651,11 @@
                 ];
             }
 
-            // Filtramos la opción que acaba de tocar el usuario para no mostrarla de nuevo
             let filteredPool = pool.filter(item => item.text !== excludeText);
-
-            // Mezclamos el array aleatoriamente
             filteredPool = filteredPool.sort(() => 0.5 - Math.random());
-
-            // Devolvemos la cantidad solicitada
             return filteredPool.slice(0, count);
         }
 
-        // Agrega las opciones de burbujas dentro de los mensajes estilo CARPi
         function appendOptions(replies) {
             if (!replies || replies.length === 0) return;
             
@@ -1651,7 +1664,6 @@
             
             replies.forEach(reply => {
                 const btn = document.createElement('button');
-                // Estilo "River/CARPi" (borde outline que se rellena al pasar el mouse)
                 btn.className = 'bg-white border border-event-maroon text-event-maroon hover:bg-event-maroon hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-colors w-full text-center shadow-sm option-btn';
                 btn.innerText = reply.text;
                 btn.onclick = () => {
@@ -1667,7 +1679,6 @@
         function processUserMessage(msgText, skipUserMsgRendering = false) {
             if(!msgText.trim()) return;
             
-            // Eliminamos chips/burbujas anteriores para que desaparezcan de la pantalla al hacer clic
             document.querySelectorAll('.chat-options-container').forEach(el => el.remove());
             
             if(!skipUserMsgRendering) {
@@ -1675,11 +1686,9 @@
                 if(msgText === chatInput.value) chatInput.value = '';
             }
             
-            // Simulamos delay del bot
             setTimeout(() => {
                 const cleanMsg = msgText.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 
-                // Cambiar el contexto (botRole) dinámicamente
                 const isSponsorMsg = ["sponsor", "marca", "sponsoreo", "patrocinio", "auspiciar", "planes", "plan"].some(k => cleanMsg.includes(k));
                 const isPlayerMsg = ["jugar", "participar", "jugador", "anotar", "inscribir", "inscribirme", "torneo", "formato", "partido", "pareja", "costo", "precio", "premios", "ganador"].some(k => cleanMsg.includes(k));
 
@@ -1691,7 +1700,6 @@
 
                 let foundMatch = false;
 
-                // Casos especiales para el saludo inicial desde los botones
                 if (msgText === 'Quiero jugar 🎾') {
                     addMessage('bot', '¡Esa es la actitud, papá! 🚀 ¿Qué duda tenés sobre el torneo?');
                     foundMatch = true;
@@ -1712,13 +1720,11 @@
                     addMessage('bot', 'Che, me mataste con esa fiera... 🤔 Escribimelo de otra forma o pegale una leída a la web que ahí está toda la data. Si no, tocá el botón de WhatsApp y los pibes te responden al toque.');
                 }
 
-                // Generamos y mostramos nuevas burbujas dinámicamente sin repetir la actual
                 appendOptions(getNextOptions(botRole, msgText, 3));
 
             }, 800);
         }
 
-        // Listeners del chat
         if (gardelitoBtn) gardelitoBtn.addEventListener('click', toggleChat);
         if (closeChatBtn) closeChatBtn.addEventListener('click', toggleChat);
         
