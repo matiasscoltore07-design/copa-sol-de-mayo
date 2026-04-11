@@ -1613,21 +1613,86 @@
         function openTermsModal() { document.getElementById('terms-modal').classList.remove('hidden'); document.getElementById('terms-modal').classList.add('flex'); }
         function closeTermsModal() { document.getElementById('terms-modal').classList.add('hidden'); document.getElementById('terms-modal').classList.remove('flex'); }
 
-        // Carrusel
+        // --- CARRUSEL INFINITO CON DRAG & SWIPE ---
         const track = document.getElementById('carousel-track');
-        if (track) {
+        const carouselContainer = document.getElementById('carousel-container');
+        
+        if (track && carouselContainer) {
             const group = track.querySelector('.carousel-group');
-            track.appendChild(group.cloneNode(true)); track.appendChild(group.cloneNode(true)); 
-            let trans = 0, isHover = false;
+            
+            // Clonamos el grupo varias veces para asegurar que nunca se vea vacío, incluso en monitores ultra anchos o al arrastrar muy rápido
+            track.appendChild(group.cloneNode(true)); 
+            track.appendChild(group.cloneNode(true)); 
+            track.appendChild(group.cloneNode(true)); 
+            
+            let isDragging = false;
+            let isHover = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationId;
+            
+            // Calculamos el ancho exacto de un solo grupo original para hacer el corte milimétrico
+            let groupWidth = group.offsetWidth;
+            window.addEventListener('resize', () => { groupWidth = group.offsetWidth; });
+
             const animate = () => {
-                if (!isHover) trans -= 0.8;
-                if (trans <= -(track.scrollWidth / 2)) trans += (track.scrollWidth / 2);
-                track.style.transform = `translateX(${trans}px)`;
-                requestAnimationFrame(animate);
+                // Mover automáticamente solo si no se está arrastrando ni el mouse está encima
+                if (!isDragging && !isHover) {
+                    currentTranslate -= 0.8; 
+                }
+                
+                // Efecto de Bucle Infinito Perfecto (hacia ambos lados)
+                if (currentTranslate <= -groupWidth) {
+                    currentTranslate += groupWidth;
+                    prevTranslate += groupWidth; // Mantiene el anclaje del arrastre sincronizado
+                } else if (currentTranslate > 0) {
+                    currentTranslate -= groupWidth;
+                    prevTranslate -= groupWidth;
+                }
+
+                track.style.transform = `translateX(${currentTranslate}px)`;
+                animationId = requestAnimationFrame(animate);
             };
-            track.parentElement.onmouseenter = () => isHover = true;
-            track.parentElement.onmouseleave = () => isHover = false;
-            animate();
+
+            // Eventos de Arrastre (Mouse - Desktop)
+            const dragStart = (e) => {
+                isDragging = true;
+                carouselContainer.classList.add('cursor-grabbing');
+                carouselContainer.classList.remove('cursor-grab');
+                startPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+            };
+
+            const dragMove = (e) => {
+                if (!isDragging) return;
+                const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                const delta = currentPosition - startPos;
+                currentTranslate = prevTranslate + delta;
+            };
+
+            const dragEnd = () => {
+                isDragging = false;
+                carouselContainer.classList.remove('cursor-grabbing');
+                carouselContainer.classList.add('cursor-grab');
+                prevTranslate = currentTranslate;
+            };
+
+            carouselContainer.addEventListener('mousedown', dragStart);
+            carouselContainer.addEventListener('mousemove', dragMove);
+            carouselContainer.addEventListener('mouseup', dragEnd);
+            carouselContainer.addEventListener('mouseleave', () => {
+                isHover = false;
+                dragEnd();
+            });
+            carouselContainer.addEventListener('mouseenter', () => isHover = true);
+
+            // Eventos Táctiles (Celulares y Tablets)
+            carouselContainer.addEventListener('touchstart', dragStart, {passive: true});
+            carouselContainer.addEventListener('touchmove', dragMove, {passive: true});
+            carouselContainer.addEventListener('touchend', dragEnd);
+
+            // Iniciar el bucle de animación
+            requestAnimationFrame(animate);
         }
 
         // Counter
