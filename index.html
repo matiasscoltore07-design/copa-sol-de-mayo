@@ -1294,13 +1294,18 @@
         }
 
         function focusDniInput() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const promptDiv = document.getElementById('dni-prompt');
+            
+            // Scrollear dinámicamente para que el recuadro quede centrado en la pantalla
+            promptDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Le damos 500ms para que termine el scroll suave antes de iluminar y hacer focus
             setTimeout(() => {
-                const promptDiv = document.getElementById('dni-prompt');
                 promptDiv.classList.add('ring-2', 'ring-event-gold', 'scale-105', 'transition-all', 'duration-300');
                 document.getElementById('user-dni-input').focus();
+                
                 setTimeout(() => promptDiv.classList.remove('ring-2', 'ring-event-gold', 'scale-105'), 1500);
-            }, 300);
+            }, 500);
         }
 
         async function activateBenefit() {
