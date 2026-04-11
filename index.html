@@ -766,6 +766,12 @@
                         <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
                         <input type="password" id="login-pass" placeholder="Contraseña" required class="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 focus:border-event-blue focus:ring-2 outline-none font-medium">
                     </div>
+                    <div class="flex items-center gap-3 mt-2 mb-2 px-1">
+                        <input type="checkbox" id="login-remember" class="w-4 h-4 text-event-maroon bg-gray-100 border-gray-300 rounded focus:ring-event-maroon cursor-pointer" checked>
+                        <label for="login-remember" class="text-sm text-gray-600 font-medium cursor-pointer select-none">
+                            Mantener sesión iniciada
+                        </label>
+                    </div>
                     <button type="submit" class="w-full bg-event-maroon text-event-gold hover:bg-event-gold hover:text-event-maroon font-black py-4 rounded-xl uppercase tracking-widest transition-colors mt-2 shadow-lg">Ingresar</button>
                 </form>
                 <p class="text-center mt-6 text-gray-500 font-medium">¿No tienes cuenta? <button onclick="switchAuth('signup')" class="text-event-blue font-black hover:underline">Regístrate</button></p>
@@ -1000,6 +1006,10 @@
 
         // --- ESTADO GLOBAL Y VARIABLES ---
         let currentUser = null; 
+        try {
+            const saved = localStorage.getItem('copaUser') || sessionStorage.getItem('copaUser');
+            if (saved) currentUser = JSON.parse(saved);
+        } catch(e) {}
         let pendingUser = null;
         const scriptURL = 'https://script.google.com/macros/s/AKfycbx7_3PVPlCdBBD85uH9KoxNJUXWGN-4Q7KVWvxMzBKzrBy3Pce5z29Wk1JJ7ygM6mZEVA/exec'; 
 
@@ -1010,6 +1020,9 @@
             userGreeting: document.getElementById('user-greeting'),
             menu: document.getElementById('mobile-menu')
         };
+
+        // Inicializar UI de autenticación si hay sesión guardada
+        updateAuthUI();
 
         // --- BASE DE DATOS LOCAL DE BENEFICIOS ---
         const benefitsData = [
@@ -1130,6 +1143,7 @@
 
                 if (text === "Exito") {
                     currentUser.dni = input; 
+                    saveUserState();
                     checkDniStatus(); 
                 } else {
                     alert("Hubo un problema al guardar tu DNI. Inténtalo de nuevo.");
@@ -1142,6 +1156,12 @@
         }
 
         // Helpers para gestionar beneficios reclamados integrados a la BD
+        function saveUserState() {
+            if (!currentUser) return;
+            if (localStorage.getItem('copaUser')) localStorage.setItem('copaUser', JSON.stringify(currentUser));
+            else if (sessionStorage.getItem('copaUser')) sessionStorage.setItem('copaUser', JSON.stringify(currentUser));
+        }
+
         function getClaimedBenefits() {
             return currentUser?.claimed || [];
         }
@@ -1311,6 +1331,7 @@
                     if (cleanDbText === "YaRegistrado") {
                         // El usuario ya lo canjeó antes (probablemente en tus pruebas anteriores)
                         markBenefitAsClaimed(brandIdSafe);
+                        saveUserState();
                         renderBenefitsList(); 
                         closeBenefitModal();
                         
@@ -1334,6 +1355,7 @@
                 
                 // 3. Si todo sale bien: actualizamos Local, cerramos modal, abrimos éxito y refrescamos la lista
                 markBenefitAsClaimed(brandIdSafe);
+                saveUserState();
                 renderBenefitsList(); 
                 closeBenefitModal();
                 
@@ -1396,6 +1418,14 @@
                         dni: parts[2] || null,
                         claimed: claimedDB // Extraído directamente desde la DB!
                     };
+                    
+                    if (document.getElementById('login-remember').checked) {
+                        localStorage.setItem('copaUser', JSON.stringify(currentUser));
+                        sessionStorage.removeItem('copaUser');
+                    } else {
+                        sessionStorage.setItem('copaUser', JSON.stringify(currentUser));
+                        localStorage.removeItem('copaUser');
+                    }
                     
                     hideAuthError();
                     updateAuthUI();
@@ -1499,7 +1529,13 @@
             }
         }
 
-        function handleLogout() { currentUser = null; updateAuthUI(); navigateTo('home'); }
+        function handleLogout() { 
+            currentUser = null; 
+            localStorage.removeItem('copaUser');
+            sessionStorage.removeItem('copaUser');
+            updateAuthUI(); 
+            navigateTo('home'); 
+        }
 
         function updateAuthUI() {
             if (UI.userGreeting) UI.userGreeting.innerText = currentUser ? currentUser.name.split(' ')[0] : 'Jugador';
