@@ -721,14 +721,7 @@
                         <h3 class="text-lg font-bold text-white uppercase tracking-wider mb-4">Catálogo de Marcas</h3>
                         
                         <div id="benefits-list" class="flex flex-col gap-3 relative">
-                            <div id="benefits-locker" class="absolute inset-[-10px] z-10 bg-[#0a0a0a]/70 backdrop-blur-[3px] flex items-center justify-center rounded-2xl transition-opacity duration-500">
-                                <div class="bg-[#1A1A1A] text-white text-sm font-medium px-6 py-4 rounded-xl flex items-center gap-3 shadow-2xl border border-white/10 max-w-[80%] text-center">
-                                    <div class="bg-event-maroon p-2 rounded-full text-event-gold shrink-0">
-                                        <i data-lucide="lock" class="w-5 h-5"></i> 
-                                    </div>
-                                    Generá tu Carnet Digital a la izquierda para destrabar estos descuentos.
-                                </div>
-                            </div>
+                            <!-- Los beneficios se renderizan aquí dinámicamente -->
                         </div>
                     </div>
                 </div>
@@ -898,6 +891,23 @@
             </p>
             <button onclick="closeSuccessModal()" class="w-full bg-[#2a2a2a] text-white border border-white/10 font-bold py-3.5 rounded-xl text-sm hover:bg-[#3a3a3a] transition-colors">
                 Entendido
+            </button>
+        </div>
+    </div>
+
+    <!-- Nuevo Modal de Aviso DNI (Falta Carnet) -->
+    <div id="dni-warning-modal" class="fixed inset-0 z-[130] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeDniWarningModal()"></div>
+        <div class="bg-[#1C1C1E] rounded-[1.5rem] w-[90%] max-w-[400px] relative z-10 shadow-2xl border border-event-gold/30 flex flex-col items-center text-center p-8">
+            <div class="w-16 h-16 bg-event-gold/10 text-event-gold rounded-full flex items-center justify-center mb-6 border border-event-gold/20">
+                <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-white font-bold text-xl mb-3">¡Falta tu Carnet!</h3>
+            <p class="text-white/70 text-[15px] leading-relaxed mb-6 font-medium">
+                Debes ingresar tu DNI para generar tu Carnet Digital y acceder a los beneficios.
+            </p>
+            <button onclick="closeDniWarningModal(); focusDniInput();" class="w-full bg-event-gold text-event-maroon font-black py-3.5 rounded-xl uppercase tracking-widest text-xs hover:bg-white transition-colors">
+                Completar DNI
             </button>
         </div>
     </div>
@@ -1081,21 +1091,18 @@
         function checkDniStatus() {
             const promptDiv = document.getElementById('dni-prompt');
             const carnetDiv = document.getElementById('carnet-visual');
-            const lockerDiv = document.getElementById('benefits-locker');
             
             renderBenefitsList(); 
 
             if (currentUser && currentUser.dni) {
                 promptDiv.classList.add('hidden');
                 carnetDiv.classList.remove('hidden');
-                lockerDiv.classList.add('opacity-0', 'pointer-events-none');
                 
                 document.getElementById('carnet-name').innerText = currentUser.name;
                 document.getElementById('carnet-dni').innerText = currentUser.dni;
             } else {
                 promptDiv.classList.remove('hidden');
                 carnetDiv.classList.add('hidden');
-                lockerDiv.classList.remove('opacity-0', 'pointer-events-none');
             }
         }
 
@@ -1150,7 +1157,7 @@
 
         function renderBenefitsList() {
             const container = document.getElementById('benefits-list');
-            container.querySelectorAll('.benefit-card').forEach(card => card.remove());
+            container.innerHTML = ''; // Limpiamos la lista para re-renderizar
             
             const claimed = getClaimedBenefits();
             
@@ -1175,7 +1182,7 @@
                         </div>
                     </div>
                 `;
-                document.getElementById('benefits-locker').insertAdjacentHTML('beforebegin', cardHTML);
+                container.insertAdjacentHTML('beforeend', cardHTML);
             });
         }
 
@@ -1250,7 +1257,34 @@
             document.getElementById('success-modal').classList.remove('flex');
         }
 
+        function openDniWarningModal() {
+            document.getElementById('dni-warning-modal').classList.remove('hidden');
+            document.getElementById('dni-warning-modal').classList.add('flex');
+        }
+
+        function closeDniWarningModal() {
+            document.getElementById('dni-warning-modal').classList.add('hidden');
+            document.getElementById('dni-warning-modal').classList.remove('flex');
+        }
+
+        function focusDniInput() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                const promptDiv = document.getElementById('dni-prompt');
+                promptDiv.classList.add('ring-2', 'ring-event-gold', 'scale-105', 'transition-all', 'duration-300');
+                document.getElementById('user-dni-input').focus();
+                setTimeout(() => promptDiv.classList.remove('ring-2', 'ring-event-gold', 'scale-105'), 1500);
+            }, 300);
+        }
+
         async function activateBenefit() {
+            // Verificación DNI antes de proceder
+            if (!currentUser || !currentUser.dni) {
+                closeBenefitModal();
+                openDniWarningModal();
+                return;
+            }
+
             const btn = document.getElementById('bm-action-btn');
             const brandName = document.getElementById('bm-title').innerText;
             
