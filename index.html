@@ -856,10 +856,17 @@
             </div>
             <div class="p-6 overflow-y-auto max-h-[55vh] custom-scrollbar text-[13px] flex flex-col gap-6">
                 <div><span class="text-white font-bold">Categoría:</span> <span id="bm-category" class="text-white/60 ml-1">--</span></div>
+                
                 <div>
                     <span class="text-white font-bold mb-3 block text-sm">Días disponibles:</span>
                     <div id="bm-days" class="flex flex-wrap gap-2"></div>
                 </div>
+                
+                <div id="bm-schedule-container" class="hidden mt-4">
+                    <span class="text-white font-bold block text-sm mb-1">Horarios:</span>
+                    <p id="bm-schedule" class="text-white/70 text-[13px]">--</p>
+                </div>
+
                 <div>
                     <h4 id="bm-discount" class="text-brand-yellow text-lg font-bold tracking-tight mb-2">--</h4>
                     <p class="text-white font-bold mb-2">Medio de pago: <span id="bm-payment" class="font-normal text-white/60">--</span></p>
@@ -872,13 +879,11 @@
                 <div class="pt-4 border-t border-white/10">
                     <div class="flex justify-between items-center mb-3">
                         <span class="text-white font-bold">Locales adheridos:</span>
-                        <span class="text-white/60 text-xs font-bold">(1 local)</span>
+                        <span id="bm-locations-count" class="text-white/60 text-xs font-bold">(1 local)</span>
                     </div>
-                    <div class="relative">
-                        <i data-lucide="search" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 w-4 h-4"></i>
-                        <input type="text" placeholder="Buscar local" disabled class="w-full bg-transparent border border-white/30 rounded-lg px-3 py-2 text-white outline-none cursor-not-allowed placeholder:text-white/40">
+                    <div id="bm-locations-list" class="flex flex-col gap-2">
+                        <!-- Locations dynamically inserted -->
                     </div>
-                    <p class="text-center text-white/40 mt-6 text-xs">No se encontraron sucursales.</p>
                 </div>
             </div>
             <div class="p-6 pt-2 bg-[#1C1C1E]">
@@ -1033,16 +1038,20 @@
         // --- BASE DE DATOS LOCAL DE BENEFICIOS ---
         const benefitsData = [
             {
-                id: 'tiendasportclub',
-                name: 'TIENDA SPORTCLUB',
-                desc: 'Ecommerce productos oficiales SportClub.',
-                category: 'Deportes > Otros',
-                discount: '15% OFF',
-                days: ['L', 'M', 'X', 'J', 'V', 'S', 'D', 'Feriados'], 
-                payment: 'Efectivo',
-                terms: '15% Off abonando por transferencia. Envío sin cargo en compras superiores a $180.000 por transacción. No acumulable con otras promociones vigentes.\n(Cupón: Noaplicacodigo)',
-                link: 'https://tiendasportclub.com.ar',
-                logo: 'https://lh3.googleusercontent.com/d/1EJXQBtPd_CIwIPIMDJF66xcqSCedPM9f',
+                id: 'jrbarbercuts',
+                name: 'JR BARBER CUTS',
+                desc: 'Servicio de peluquería y barbería.',
+                category: 'Estética > Barbería',
+                discount: '20% OFF',
+                days: ['L', 'M', 'X', 'J', 'V', 'S'], 
+                schedule: '10am a 20pm',
+                payment: 'Transferencia o Efectivo',
+                terms: '20% Off en corte de pelo para caballeros y niños. Descuento válido para un (1) corte.',
+                link: '',
+                locations: [ 
+                    { address: 'Alberti 545, C1223, CABA.', mapUrl: 'https://maps.app.goo.gl/Bbn7DkQZAyiuQPqe6' }
+                ],
+                logo: 'https://lh3.googleusercontent.com/d/1Uzsb-cDrh7VupXIrvnQ2BYLk262SYwJL',
                 databaseURL: 'https://script.google.com/macros/s/AKfycbzDoosYxZ43o4wPZaIlysLieKefUna7XxZI8qQOWF-uV4f9CHWpllbGE6Icu9xceV-b/exec'
             },
             {
@@ -1194,8 +1203,8 @@
                 const cardHTML = `
                     <div class="benefit-card bg-[#1A1A1A] rounded-xl px-5 py-4 flex items-center gap-5 border border-white/5 shadow-lg transition-transform hover:-translate-y-1 relative">
                         ${badgeHTML}
-                        <div class="w-20 h-20 bg-white rounded-lg flex items-center justify-center p-2 shrink-0">
-                            <img src="${brand.logo}" alt="${brand.name}" class="max-w-full max-h-full object-contain">
+                        <div class="w-20 h-20 flex items-center justify-center shrink-0">
+                            <img src="${brand.logo}" alt="${brand.name}" class="w-full h-full object-contain drop-shadow-lg">
                         </div>
                         <div class="flex-grow flex flex-col justify-center">
                             <h3 class="text-white font-bold uppercase tracking-wide text-[15px] leading-none ${isClaimed ? 'pr-16' : ''}">${brand.name}</h3>
@@ -1228,7 +1237,14 @@
             document.getElementById('bm-payment').innerText = brand.payment;
             document.getElementById('bm-terms').innerText = brand.terms;
             
-            if(brand.link) {
+            if (brand.schedule) {
+                document.getElementById('bm-schedule-container').classList.remove('hidden');
+                document.getElementById('bm-schedule').innerText = brand.schedule;
+            } else {
+                document.getElementById('bm-schedule-container').classList.add('hidden');
+            }
+
+            if (brand.link) {
                 document.getElementById('bm-link-container').classList.remove('hidden');
                 document.getElementById('bm-link-container').classList.add('flex'); 
                 document.getElementById('bm-link').innerText = brand.link;
@@ -1253,6 +1269,27 @@
                 chip.innerText = day.label;
                 daysContainer.appendChild(chip);
             });
+
+            const locContainer = document.getElementById('bm-locations-list');
+            locContainer.innerHTML = '';
+            if (brand.locations && brand.locations.length > 0) {
+                document.getElementById('bm-locations-count').innerText = `(${brand.locations.length} local${brand.locations.length > 1 ? 'es' : ''})`;
+                brand.locations.forEach(loc => {
+                    locContainer.innerHTML += `
+                        <a href="${loc.mapUrl}" target="_blank" class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-event-gold"></i>
+                                <span class="text-white/80 text-xs font-medium">${loc.address}</span>
+                            </div>
+                            <i data-lucide="external-link" class="w-4 h-4 text-white/40 group-hover:text-event-gold transition-colors"></i>
+                        </a>
+                    `;
+                });
+            } else {
+                document.getElementById('bm-locations-count').innerText = `(0 locales)`;
+                locContainer.innerHTML = `<p class="text-center text-white/40 mt-4 text-xs">No se encontraron sucursales.</p>`;
+            }
+            lucide.createIcons();
 
             const actionBtn = document.getElementById('bm-action-btn');
             const claimed = getClaimedBenefits();
