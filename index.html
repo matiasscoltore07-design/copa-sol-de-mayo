@@ -877,7 +877,7 @@
                     <a id="bm-link" href="#" target="_blank" class="text-[#4DA3FF] hover:underline ml-1 break-all">--</a>
                 </div>
                 <div class="pt-4 border-t border-white/10">
-                    <div class="flex justify-between items-center mb-3">
+                    <div id="bm-locations-header" class="flex justify-between items-center mb-3">
                         <span class="text-white font-bold">Locales adheridos:</span>
                         <span id="bm-locations-count" class="text-white/60 text-xs font-bold">(1 local)</span>
                     </div>
@@ -1055,16 +1055,18 @@
                 databaseURL: 'https://script.google.com/macros/s/AKfycbzDoosYxZ43o4wPZaIlysLieKefUna7XxZI8qQOWF-uV4f9CHWpllbGE6Icu9xceV-b/exec'
             },
             {
-                id: 'southcolors',
-                name: 'SOUTHCOLORS',
-                desc: 'Pinturería automotor.',
-                category: 'Automotor > Pinturas',
-                discount: '15% OFF',
-                days: ['L', 'M', 'X', 'J', 'V', 'S'],
-                payment: 'Efectivo',
-                terms: '15% Off abonando en efectivo. No acumulable con otras promociones vigentes en el local.',
+                id: 'tiendamateba',
+                name: 'TIENDA MATE BA',
+                desc: 'Tienda de Mates y Accesorios.',
+                category: 'Cultura > Mates y Accesorios',
+                discount: '10% OFF',
+                days: ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
+                payment: 'Transferencia o Depósito Bancario',
+                terms: '10% Off en todo el catálogo publicado en la tienda.\nContactá a @tiendamate.ba por Instagram y consultá su catálogo disponible.\nRecuerda enviarles tu "Carnet Digital" para canjear el beneficio.',
                 link: '',
-                logo: 'https://lh3.googleusercontent.com/d/1LNhe3XcE6TWa5LMKO5hUJQxluecjJxc1',
+                locations: [],
+                instagram: 'https://www.instagram.com/tiendamate.ba?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+                logo: 'https://lh3.googleusercontent.com/d/1KGMNp3z0L4XbpYeig_grU7VMUM0918o_',
                 databaseURL: 'https://script.google.com/macros/s/AKfycbzR7osEWzxv487nsQjhwAbTHjC745fBg97mag89fanGHCQ1BIXWAnxyw75lbYtoRPzMVg/exec'
             },
             {
@@ -1271,8 +1273,12 @@
             });
 
             const locContainer = document.getElementById('bm-locations-list');
+            const locHeader = document.getElementById('bm-locations-header');
             locContainer.innerHTML = '';
+            
             if (brand.locations && brand.locations.length > 0) {
+                locHeader.classList.remove('hidden');
+                locHeader.classList.add('flex');
                 document.getElementById('bm-locations-count').innerText = `(${brand.locations.length} local${brand.locations.length > 1 ? 'es' : ''})`;
                 brand.locations.forEach(loc => {
                     locContainer.innerHTML += `
@@ -1286,8 +1292,8 @@
                     `;
                 });
             } else {
-                document.getElementById('bm-locations-count').innerText = `(0 locales)`;
-                locContainer.innerHTML = `<p class="text-center text-white/40 mt-4 text-xs">No se encontraron sucursales.</p>`;
+                locHeader.classList.add('hidden');
+                locHeader.classList.remove('flex');
             }
 
             // Agregamos el botón de Instagram si existe el dato
