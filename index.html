@@ -22,6 +22,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1EJXQBtPd_CIwIPIMDJF66xcqSCedPM9f">
     
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,6 +43,11 @@
                         'event-dark': '#1A1A1A',
                         'event-darker': '#121212',
                         'brand-yellow': '#FFD700',
+                        'maroon': '#370606',
+                        'lightblue': '#74acdf',
+                        'yellow': '#f3b20e',
+                        'green': '#3b8264',
+                        'dark': '#1a1a1a',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -74,6 +83,7 @@
         input[type="number"] {
             -moz-appearance: textfield;
         }
+        .glass { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body class="bg-white text-gray-900 font-sans bg-grid">
@@ -98,6 +108,7 @@
                 <a href="#ofrecemos" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Propuesta</a>
                 <a href="#sponsors" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Sponsors</a>
                 <a href="#contacto" onclick="navigateTo('home')" class="nav-link hover:text-event-gold transition-colors">Contacto</a>
+                <a href="#fixture" onclick="navigateTo('fixture'); return false;" class="nav-link hover:text-event-gold transition-colors" id="nav-fixture-desktop">Torneo</a>
                 <a href="#equipo" onclick="navigateTo('equipo'); return false;" class="nav-link bg-[#3b8264] text-white px-4 py-2 xl:px-5 xl:py-2.5 rounded-xl font-black hover:bg-white hover:text-[#3b8264] transition-all shadow-md whitespace-nowrap" id="nav-equipo-desktop">Equipo</a>
                 <a href="#casos" onclick="navigateTo('casos'); return false;" class="nav-link bg-event-blue text-white px-4 py-2 xl:px-5 xl:py-2.5 rounded-xl font-black hover:bg-white hover:text-event-blue transition-all shadow-md whitespace-nowrap" id="nav-casos-desktop">Casos de Éxito</a>
                 <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="bg-event-gold text-event-maroon px-4 py-2 xl:px-6 xl:py-2.5 rounded-xl font-black hover:bg-white transition-all shadow-md whitespace-nowrap">Inscribirse</a>
@@ -132,6 +143,7 @@
         <a href="#ofrecemos" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Propuesta</a>
         <a href="#sponsors" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Sponsors</a>
         <a href="#contacto" onclick="navigateTo('home')" class="mobile-link hover:text-event-gold transition-colors">Contacto</a>
+        <a href="#fixture" onclick="navigateTo('fixture'); return false;" class="mobile-link hover:text-event-gold transition-colors">Torneo</a>
         <a href="#equipo" onclick="navigateTo('equipo'); return false;" class="mobile-link bg-[#3b8264] text-white px-8 py-3 rounded-2xl font-black shadow-lg whitespace-nowrap">Equipo</a>
         <a href="#casos" onclick="navigateTo('casos'); return false;" class="mobile-link bg-event-blue text-white px-8 py-3 rounded-2xl font-black shadow-lg whitespace-nowrap">Casos de Éxito</a>
         <a href="https://forms.gle/VC9WNUZxbsNEakkd9" target="_blank" class="mobile-link bg-event-gold text-event-maroon px-10 py-4 rounded-2xl font-black shadow-lg whitespace-nowrap mb-4">Inscribirse</a>
@@ -660,6 +672,11 @@
         </section>
     </div>
 
+    <!-- ==================== VISTA: FIXTURE (REACT) ==================== -->
+    <div id="view-fixture" class="spa-view hidden relative z-20 bg-[#370606] min-h-screen pt-48 md:pt-56 pb-24 flex-col">
+        <div id="react-root-fixture" class="w-full flex-grow"></div>
+    </div>
+
     <!-- ==================== VISTA: BENEFICIOS (NUEVO DISEÑO) ==================== -->
     <div id="view-beneficios" class="spa-view hidden relative z-20 bg-[#0a0a0a] min-h-screen pt-48 md:pt-56 pb-24 flex-col">
         <section class="flex-grow">
@@ -1089,7 +1106,8 @@
             home: document.getElementById('view-home'),
             equipo: document.getElementById('view-equipo'),
             casos: document.getElementById('view-casos'),
-            beneficios: document.getElementById('view-beneficios')
+            beneficios: document.getElementById('view-beneficios'),
+            fixture: document.getElementById('view-fixture')
         };
 
         function navigateTo(target) {
@@ -1104,6 +1122,7 @@
             views.equipo.classList.add('hidden'); views.equipo.classList.remove('flex');
             views.casos.classList.add('hidden'); views.casos.classList.remove('flex');
             views.beneficios.classList.add('hidden'); views.beneficios.classList.remove('flex');
+            views.fixture.classList.add('hidden'); views.fixture.classList.remove('flex');
 
             if (target === 'home') {
                 views.home.style.display = 'block';
@@ -1661,7 +1680,7 @@
         }
 
         function updateActiveNavLinks() {
-            let current = ['casos', 'beneficios', 'equipo'].find(id => !document.getElementById(`view-${id}`).classList.contains('hidden')) || '';
+            let current = ['casos', 'beneficios', 'equipo', 'fixture'].find(id => !document.getElementById(`view-${id}`).classList.contains('hidden')) || '';
             if (!current) {
                 document.querySelectorAll('section[id]').forEach(s => { if (s.offsetHeight > 0 && window.pageYOffset >= (s.offsetTop - 200)) current = s.id; });
             }
@@ -1669,6 +1688,7 @@
                 link.classList.remove('text-event-gold');
                 if ((link.id === 'nav-casos-desktop' && current === 'casos') || 
                     (link.id === 'nav-equipo-desktop' && current === 'equipo') || 
+                    (link.id === 'nav-fixture-desktop' && current === 'fixture') || 
                     (link.getAttribute('href') === `#${current}`)) {
                     link.classList.add('text-event-gold');
                 }
@@ -1874,6 +1894,812 @@
                 showOptions(getNextOptions(chat.role, txt, 3));
             }, 800);
         }
+    </script>
+
+    <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // --- ICONOS ---
+    const Icon = ({d, size=24, ...p}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d={d}/></svg>;
+    const Play = (p) => <Icon d="M5 3l14 9-14 9V3z" {...p}/>;
+    const Pause = (p) => <svg width={p.size||24} height={p.size||24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>;
+    const RotateCcw = (p) => <Icon d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10M1 4v6h6" {...p}/>;
+    const Monitor = (p) => <svg width={p.size||24} height={p.size||24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>;
+    const Lock = (p) => <svg width={p.size||24} height={p.size||24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>;
+    const Trophy = (p) => <Icon d="M8 21h8M12 17v4M7 4h10M17 4v7a5 5 0 0 1-5 5h0a5 5 0 0 1-5-5V4M3 4h4v5a2 2 0 0 1-2 2H3V4zm18 0h-4v5a2 2 0 0 0 2 2h2V4z" {...p}/>;
+    const Users = (p) => <Icon d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm14 14v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" {...p}/>;
+    const List = (p) => <Icon d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" {...p}/>;
+    const ChevronLeft = (p) => <Icon d="M15 18l-6-6 6-6" {...p}/>;
+    const CircleIcon = ({size=24, fill="none"}) => <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>;
+    const Smartphone = (p) => <svg width={p.size||24} height={p.size||24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>;
+    const Plus = (p) => <svg width={p.size||24} height={p.size||24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>;
+    const Minus = (p) => <svg width={p.size||24} height={p.size||24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><line x1="5" y1="12" x2="19" y2="12"/></svg>;
+
+    // --- CONFIGURACIÓN ---
+    const COLORS = {
+      maroon: '#370606',
+      lightblue: '#74acdf',
+      yellow: '#f3b20e',
+      white: '#ffffff',
+      green: '#3b8264',
+      darkOverlay: 'rgba(0, 0, 0, 0.4)',
+      lightOverlay: 'rgba(255, 255, 255, 0.1)',
+    };
+
+    const LOGO_URL = "https://lh3.googleusercontent.com/d/1EJXQBtPd_CIwIPIMDJF66xcqSCedPM9f";
+    const LOGO_RIGHT_URL = "https://lh3.googleusercontent.com/d/1QtxDc5uvR08Gi3ETQ9Lp0j9cJPzDPCMg";
+    const COPA_IMG_URL = "https://lh3.googleusercontent.com/d/1LgeiyrcW5XUCVL7zTTaolamBgVG1uCTg";
+
+    // Generar Partidos Base
+    const SCHEDULE = [
+      { id: 'm1', c: 1, t1: 'A1', t2: 'A2' }, { id: 'm2', c: 1, t1: 'A1', t2: 'A3' }, { id: 'm3', c: 1, t1: 'A1', t2: 'A4' }, { id: 'm4', c: 1, t1: 'B1', t2: 'B2' }, { id: 'm5', c: 1, t1: 'C1', t2: 'C2' },
+      { id: 'm6', c: 2, t1: 'A3', t2: 'A4' }, { id: 'm7', c: 2, t1: 'A2', t2: 'A4' }, { id: 'm8', c: 2, t1: 'A2', t2: 'A3' }, { id: 'm9', c: 2, t1: 'B3', t2: 'B4' }, { id: 'm10', c: 2, t1: 'C3', t2: 'C4' },
+      { id: 'm11', c: 3, t1: 'B1', t2: 'B3' }, { id: 'm12', c: 3, t1: 'B2', t2: 'B4' }, { id: 'm13', c: 3, t1: 'B1', t2: 'B4' }, { id: 'm14', c: 3, t1: 'C1', t2: 'C3' },
+      { id: 'm15', c: 4, t1: 'B2', t2: 'B3' }, { id: 'm16', c: 4, t1: 'C2', t2: 'C4' }, { id: 'm17', c: 4, t1: 'C1', t2: 'C4' }, { id: 'm18', c: 4, t1: 'C2', t2: 'C3' },
+    ];
+
+    const PLAYOFF_SCHEDULE = [
+      { id: 'q1', c: 1, type: 'Q', title: 'Cuartos de Final 1', t1: null, t2: null },
+      { id: 'q2', c: 2, type: 'Q', title: 'Cuartos de Final 2', t1: null, t2: null },
+      { id: 'q3', c: 3, type: 'Q', title: 'Cuartos de Final 3', t1: null, t2: null },
+      { id: 'q4', c: 4, type: 'Q', title: 'Cuartos de Final 4', t1: null, t2: null },
+      { id: 's1', c: 1, type: 'S', title: 'Semifinal 1', t1: null, t2: null },
+      { id: 's2', c: 2, type: 'S', title: 'Semifinal 2', t1: null, t2: null },
+      { id: 'f1', c: 1, type: 'F', title: 'Gran Final', t1: null, t2: null }
+    ];
+
+    const INITIAL_DATA = {
+      teams: {
+        A1: { id: 'A1', name: 'PAREJA A1', group: 'A' }, A2: { id: 'A2', name: 'PAREJA A2', group: 'A' }, A3: { id: 'A3', name: 'PAREJA A3', group: 'A' }, A4: { id: 'A4', name: 'PAREJA A4', group: 'A' },
+        B1: { id: 'B1', name: 'PAREJA B1', group: 'B' }, B2: { id: 'B2', name: 'PAREJA B2', group: 'B' }, B3: { id: 'B3', name: 'PAREJA B3', group: 'B' }, B4: { id: 'B4', name: 'PAREJA B4', group: 'B' },
+        C1: { id: 'C1', name: 'PAREJA C1', group: 'C' }, C2: { id: 'C2', name: 'PAREJA C2', group: 'C' }, C3: { id: 'C3', name: 'PAREJA C3', group: 'C' }, C4: { id: 'C4', name: 'PAREJA C4', group: 'C' },
+      },
+      matches: [...SCHEDULE, ...PLAYOFF_SCHEDULE].reduce((acc, m) => {
+        acc[m.id] = { ...m, status: 'pending', score: { t1Games: 0, t2Games: 0, t1Pts: '0', t2Pts: '0', serving: 1, time: 0, isRunning: false } };
+        return acc;
+      }, {}),
+      liveCourts: { 1: null, 2: null, 3: null, 4: null },
+      isSetupComplete: false
+    };
+
+    function App() {
+      const [view, setView] = useState('HOME');
+      const [hubTab, setHubTab] = useState('FIXTURE');
+      const [selectedCourt, setSelectedCourt] = useState(null);
+      const [selectedMatch, setSelectedMatch] = useState(null);
+      const [passInput, setPassInput] = useState('');
+      const [dialog, setDialog] = useState(null);
+      const [data, setData] = useState(() => {
+        const saved = localStorage.getItem('padel_system_data');
+        return saved ? JSON.parse(saved) : INITIAL_DATA;
+      });
+
+      useEffect(() => {
+        const handleStorage = (e) => { 
+          if (e.key === 'padel_system_data') setData(JSON.parse(e.newValue)); 
+        };
+        window.addEventListener('storage', handleStorage);
+        return () => window.removeEventListener('storage', handleStorage);
+      }, []);
+
+      useEffect(() => {
+        if (view !== 'VEEDOR_CONTROL' || !selectedMatch) return;
+        
+        const interval = setInterval(() => {
+          updateData(d => {
+            if (d.matches[selectedMatch] && d.matches[selectedMatch].score.isRunning) {
+              d.matches[selectedMatch].score.time += 1;
+            }
+            return d;
+          });
+        }, 1000);
+        return () => clearInterval(interval);
+      }, [view, selectedMatch]);
+
+      const formatTime = (s) => `${Math.floor(s/60).toString().padStart(2,'0')}:${(s%60).toString().padStart(2,'0')}`;
+      
+      const updateData = (updater) => {
+        setData(prev => {
+          try {
+            const raw = localStorage.getItem('padel_system_data');
+            const latest = raw ? JSON.parse(raw) : prev;
+            const next = updater(latest);
+            localStorage.setItem('padel_system_data', JSON.stringify(next));
+            return next;
+          } catch (e) {
+            console.error("Error sincronizando estado local:", e);
+            return prev;
+          }
+        });
+      };
+      
+      const updateScore = (mId, scoreUpdater) => {
+        updateData(d => {
+          if(d.matches[mId]) d.matches[mId].score = scoreUpdater(d.matches[mId].score);
+          return d;
+        });
+      };
+
+      const getZonesStats = () => {
+        const stats = {};
+        Object.values(data.teams).forEach(t => stats[t.id] = { ...t, pts:0, pj:0, pg:0, pp:0, sf:0, sc:0, gf:0, gc:0 });
+        
+        Object.values(data.matches).forEach(m => {
+          if (m.status === 'finished' && !m.type) {
+            const s = m.score;
+            stats[m.t1].pj++; stats[m.t2].pj++;
+            stats[m.t1].gf += s.t1Games; stats[m.t1].gc += s.t2Games;
+            stats[m.t2].gf += s.t2Games; stats[m.t2].gc += s.t1Games;
+            
+            if (s.t1Games > s.t2Games) { stats[m.t1].pts+=2; stats[m.t1].pg++; stats[m.t2].pts+=1; stats[m.t2].pp++; }
+            else if (s.t2Games > s.t1Games) { stats[m.t2].pts+=2; stats[m.t2].pg++; stats[m.t1].pts+=1; stats[m.t1].pp++; }
+          }
+        });
+        return stats;
+      };
+
+      const confirmAction = (msg, action) => setDialog({ message: msg, onConfirm: action, isAlert: false });
+      const showAlert = (msg) => setDialog({ message: msg, onConfirm: null, isAlert: true });
+
+      const handleLogin = () => {
+        if(passInput === 'Evento12') { setView('ORG_DASH'); setPassInput(''); } 
+        else showAlert('Clave incorrecta');
+      };
+
+      const DialogOverlay = () => dialog ? (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="bg-[#1a1a1a] border border-white/20 p-6 md:p-8 rounded-2xl max-w-md w-full shadow-2xl text-center">
+            <p className="text-xl font-bold text-white mb-8">{dialog.message}</p>
+            <div className="flex justify-center gap-4">
+              {!dialog.isAlert && <button onClick={() => setDialog(null)} className="px-6 py-3 rounded-xl font-bold text-gray-300 bg-white/10 hover:bg-white/20 transition-colors uppercase text-sm">Cancelar</button>}
+              <button onClick={() => { if(dialog.onConfirm) dialog.onConfirm(); setDialog(null); }} className="px-6 py-3 rounded-xl font-bold text-black bg-[#f3b20e] hover:brightness-110 transition-all uppercase text-sm">{dialog.isAlert ? 'Entendido' : 'Confirmar'}</button>
+            </div>
+          </div>
+        </div>
+      ) : null;
+
+      const BracketMatch = ({ matchData }) => {
+        const m = matchData;
+        const t1 = m && m.t1 ? data.teams[m.t1] : null;
+        const t2 = m && m.t2 ? data.teams[m.t2] : null;
+        const isLive = m && m.status === 'active';
+        const isFinished = m && m.status === 'finished';
+
+        return (
+          <div className={`bg-black/60 p-3 rounded-xl border-2 flex flex-col relative w-full h-[80px] justify-center transition-all ${isLive ? 'border-green shadow-[0_0_15px_rgba(59,130,100,0.5)] scale-105 z-20' : isFinished ? 'border-gray-600' : 'border-white/10'}`}>
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-[11px] md:text-xs font-bold uppercase truncate pr-2 text-white">{t1 ? t1.name : 'Por definir'}</span>
+              <span className={`font-black text-sm ${isFinished && m.score.t1Games > m.score.t2Games ? 'text-yellow' : 'text-lightblue'}`}>{m && m.status !== 'pending' ? m.score.t1Games : '-'}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-[11px] md:text-xs font-bold uppercase truncate pr-2 text-white">{t2 ? t2.name : 'Por definir'}</span>
+              <span className={`font-black text-sm ${isFinished && m.score.t2Games > m.score.t1Games ? 'text-yellow' : 'text-lightblue'}`}>{m && m.status !== 'pending' ? m.score.t2Games : '-'}</span>
+            </div>
+            {isLive && <span className="absolute -top-3 -right-3 bg-green text-black text-[9px] font-black px-2 py-0.5 rounded-full animate-pulse z-30">EN VIVO</span>}
+          </div>
+        );
+      };
+
+      // --- VISTAS ---
+      if (view === 'HOME') {
+        return (
+          <div className="flex flex-col items-center justify-center p-6 text-white text-center w-full flex-grow">
+            <h1 className="text-5xl md:text-7xl font-black uppercase text-yellow mb-2 tracking-tighter">Panel Central</h1>
+            <p className="text-xl tracking-widest text-lightblue mb-12">SISTEMA DE GESTIÓN EN VIVO</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl">
+              <button onClick={() => setView('HUB')} className="glass p-10 rounded-3xl hover:border-lightblue hover:scale-105 transition-all flex flex-col items-center">
+                <Trophy size={50} className="text-lightblue mb-4" />
+                <h2 className="text-2xl font-bold">Ver Torneo</h2>
+                <p className="text-sm text-gray-400 mt-2">Fixture, Zonas y Resultados</p>
+              </button>
+              
+              <button onClick={() => setView('COURT_SELECT')} className="glass p-10 rounded-3xl hover:border-yellow hover:scale-105 transition-all flex flex-col items-center">
+                <Monitor size={50} className="text-yellow mb-4" />
+                <h2 className="text-2xl font-bold">Pantalla Pública</h2>
+                <p className="text-sm text-gray-400 mt-2">Visor para Canchas (LED)</p>
+              </button>
+
+              <button onClick={() => setView('PASS')} className="glass p-10 rounded-3xl hover:border-green hover:scale-105 transition-all flex flex-col items-center">
+                <Lock size={50} className="text-green mb-4" />
+                <h2 className="text-2xl font-bold">Organizadores</h2>
+                <p className="text-sm text-gray-400 mt-2">Sorteo y Panel de Veedor</p>
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      if (view === 'PASS') {
+        return (
+          <div className="flex flex-col items-center justify-center p-6 text-white relative w-full flex-grow">
+            <button onClick={() => setView('HOME')} className="absolute top-6 left-6 flex items-center hover:text-lightblue"><ChevronLeft /> Inicio</button>
+            <div className="glass p-12 rounded-3xl w-full max-w-md text-center shadow-2xl">
+              <Lock size={40} className="mx-auto mb-6 text-green" />
+              <h2 className="text-2xl font-bold uppercase mb-6">Acceso Restringido</h2>
+              <input type="password" placeholder="Contraseña" value={passInput} 
+                onChange={e=>setPassInput(e.target.value)} 
+                onKeyDown={e => e.key === 'Enter' && handleLogin()}
+                className="w-full bg-black/50 border border-white/20 p-4 rounded-xl text-center text-xl mb-6 focus:border-green outline-none" />
+              <button onClick={handleLogin} className="w-full bg-green text-white font-bold py-4 rounded-xl hover:bg-green/80 uppercase">Ingresar</button>
+            </div>
+            <DialogOverlay />
+          </div>
+        );
+      }
+
+      if (view === 'ORG_DASH') {
+        return (
+          <div className="p-6 text-white max-w-6xl mx-auto w-full">
+            <div className="flex justify-between items-center mb-10 border-b border-white/10 pb-6">
+              <button onClick={() => setView('HOME')} className="flex items-center bg-white/10 p-2 rounded hover:bg-white/20"><ChevronLeft /> Salir</button>
+              <h1 className="text-3xl font-black uppercase text-green">Panel de Organización</h1>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="glass p-8 rounded-3xl">
+                <Users size={40} className="text-lightblue mb-4" />
+                <h2 className="text-2xl font-bold mb-2">1. Configuración y Sorteo</h2>
+                <p className="text-gray-400 mb-6">Asignación de nombres a las parejas y grupos.</p>
+                <button onClick={() => setView('SETUP')} className="w-full bg-lightblue text-black font-bold py-3 rounded-xl uppercase">Editar Parejas</button>
+              </div>
+
+              <div className={`glass p-8 rounded-3xl ${!data.isSetupComplete ? 'opacity-50 pointer-events-none' : ''}`}>
+                <Smartphone size={40} className="text-yellow mb-4" />
+                <h2 className="text-2xl font-bold mb-2">2. Control de Canchas</h2>
+                <p className="text-gray-400 mb-6">Asignar partidos y controlar puntaje (Veedores).</p>
+                <div className="grid grid-cols-2 gap-4">
+                  {[1,2,3,4].map(c => (
+                    <button key={c} onClick={() => { setSelectedCourt(c); setView('VEEDOR_MATCH_SELECT'); }} className="bg-yellow/20 border border-yellow text-yellow font-bold py-3 rounded-xl hover:bg-yellow hover:text-black transition-colors">
+                      CANCHA {c}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* BOTÓN PARA REINICIAR TORNEO COMPLETO */}
+            <div className="mt-12 text-center border-t border-white/10 pt-8">
+              <button 
+                onClick={() => {
+                  confirmAction("⚠️ ADVERTENCIA CRÍTICA: ¿Estás absolutamente seguro de que deseas borrar todos los resultados y reiniciar el torneo desde cero? Esta acción borrará todas las zonas y partidos.", () => {
+                    const resetData = JSON.parse(JSON.stringify(INITIAL_DATA));
+                    setData(resetData);
+                    localStorage.setItem('padel_system_data', JSON.stringify(resetData));
+                    showAlert("El torneo ha sido reiniciado con éxito.");
+                  });
+                }}
+                className="bg-maroon text-white font-bold py-3 px-8 rounded-xl border border-red-500 hover:bg-red-900 transition-colors uppercase tracking-wider shadow-[0_0_15px_rgba(200,0,0,0.5)]"
+              >
+                Reiniciar Torneo Completo
+              </button>
+            </div>
+            <DialogOverlay />
+          </div>
+        );
+      }
+
+      if (view === 'SETUP') {
+        return (
+          <div className="p-6 text-white max-w-6xl mx-auto pb-24 w-full">
+            <div className="flex justify-between items-center mb-10">
+              <button onClick={() => setView('ORG_DASH')} className="flex items-center bg-white/10 p-2 rounded hover:bg-white/20"><ChevronLeft /> Volver</button>
+              <h1 className="text-3xl font-black uppercase text-lightblue">Sorteo de Parejas</h1>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {['A', 'B', 'C'].map(g => (
+                <div key={g} className="glass p-6 rounded-2xl">
+                  <h2 className="text-2xl font-bold text-yellow mb-4 border-b border-white/10 pb-2">GRUPO {g}</h2>
+                  {[1,2,3,4].map(n => {
+                    const tid = `${g}${n}`;
+                    return (
+                      <div key={tid} className="mb-4">
+                        <label className="text-xs text-gray-400 font-bold ml-2">Pareja {tid}</label>
+                        <input value={data.teams[tid].name} 
+                          onChange={e => updateData(d => { d.teams[tid].name = e.target.value.toUpperCase(); return d; })}
+                          className="w-full bg-black/50 border border-white/20 p-3 rounded-lg mt-1 outline-none focus:border-lightblue uppercase" />
+                      </div>
+                    )
+                  })}
+                </div>
+              ))}
+            </div>
+            
+            <div className="fixed bottom-0 left-0 w-full bg-black/90 p-6 border-t border-white/10 flex justify-center z-50">
+              <button onClick={() => { updateData(d => { d.isSetupComplete = true; return d;}); setView('ORG_DASH'); }} className="bg-green text-white font-black text-xl py-4 px-12 rounded-xl uppercase hover:scale-105 transition-transform">
+                Confirmar Grupos e Iniciar Torneo
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      if (view === 'VEEDOR_MATCH_SELECT') {
+        const matchesForCourt = Object.values(data.matches).filter(m => m.c === selectedCourt);
+        return (
+          <div className="p-6 text-white max-w-4xl mx-auto w-full">
+            <div className="flex justify-between items-center mb-8">
+              <button onClick={() => setView('ORG_DASH')} className="flex items-center bg-white/10 p-2 rounded hover:bg-white/20"><ChevronLeft /> Volver</button>
+              <h1 className="text-3xl font-black uppercase text-yellow">Cancha {selectedCourt} - Partidos</h1>
+            </div>
+
+            <div className="space-y-4">
+              {matchesForCourt.map(m => {
+                if (!m.t1 || !m.t2) return (
+                  <div key={m.id} className="glass p-6 rounded-2xl flex opacity-50 justify-center">
+                    <p className="uppercase font-bold text-gray-400">({m.title}) A la espera de clasificación</p>
+                  </div>
+                );
+
+                const t1 = data.teams[m.t1];
+                const t2 = data.teams[m.t2];
+                const isLive = data.liveCourts[selectedCourt] === m.id;
+                const matchTitle = m.type ? m.title : `GRUPO ${t1.group}`;
+                
+                return (
+                  <div key={m.id} className={`glass p-6 rounded-2xl flex flex-col md:flex-row justify-between items-center ${isLive ? 'border-green shadow-[0_0_15px_rgba(59,130,100,0.5)]' : ''}`}>
+                    <div className="flex-1 text-center md:text-left mb-4 md:mb-0">
+                      <span className={`text-xs px-2 py-1 rounded font-bold ${m.type ? 'bg-yellow/20 text-yellow' : 'bg-white/10 text-gray-300'}`}>{matchTitle}</span>
+                      <h3 className="text-xl font-bold mt-2 uppercase">{t1.name} <span className="text-yellow text-sm mx-2">VS</span> {t2.name}</h3>
+                      {m.status === 'finished' && <p className="text-sm text-gray-400 mt-1">Resultado: {m.score.t1Games} - {m.score.t2Games}</p>}
+                    </div>
+                    
+                    <div className="w-full md:w-auto">
+                      {m.status === 'finished' ? (
+                        <span className="block text-center bg-white/5 text-gray-500 py-3 px-6 rounded-xl font-bold">FINALIZADO</span>
+                      ) : isLive ? (
+                        <button onClick={() => { setSelectedMatch(m.id); setView('VEEDOR_CONTROL'); }} className="w-full bg-green text-white font-bold py-3 px-6 rounded-xl animate-pulse">
+                          RETOMAR CONTROL
+                        </button>
+                      ) : (
+                        <button onClick={() => {
+                          updateData(d => { d.liveCourts[selectedCourt] = m.id; d.matches[m.id].status = 'active'; return d; });
+                          setSelectedMatch(m.id); setView('VEEDOR_CONTROL');
+                        }} className="w-full bg-lightblue text-black font-bold py-3 px-6 rounded-xl hover:bg-white">
+                          TRANSMITIR Y CONTROLAR
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        );
+      }
+
+      if (view === 'VEEDOR_CONTROL') {
+        const match = data.matches[selectedMatch];
+        const t1 = data.teams[match.t1];
+        const t2 = data.teams[match.t2];
+        const sc = match.score;
+
+        const isTieBreak = sc.t1Games === 5 && sc.t2Games === 5;
+
+        const setPts = (teamKey, pt) => {
+          updateScore(selectedMatch, s => {
+            let ns = { ...s };
+            ns[teamKey] = pt;
+
+            if (s.t1Games === 5 && s.t2Games === 5) {
+              let p1 = parseInt(ns.t1Pts) || 0;
+              let p2 = parseInt(ns.t2Pts) || 0;
+              
+              if (p1 >= 7 && p1 - p2 >= 2) {
+                ns.t1Games = 6; ns.t1Pts = '0'; ns.t2Pts = '0';
+              } else if (p2 >= 7 && p2 - p1 >= 2) {
+                ns.t2Games = 6; ns.t1Pts = '0'; ns.t2Pts = '0';
+              }
+            }
+            return ns;
+          });
+        };
+
+        const setGame = (teamKey, delta) => {
+          updateScore(selectedMatch, s => {
+            let ns = { ...s };
+            let tKey = teamKey === 't1Pts' ? 't1Games' : 't2Games';
+            
+            if (delta > 0 && (ns.t1Games >= 6 || ns.t2Games >= 6)) return ns;
+
+            ns[tKey] += delta;
+            ns.t1Pts = '0'; ns.t2Pts = '0';
+            
+            if(ns[tKey] < 0) ns[tKey] = 0;
+            if(ns[tKey] > 6) ns[tKey] = 6;
+            
+            return ns;
+          });
+        };
+
+        const endMatch = () => {
+          confirmAction("¿Seguro que deseas finalizar el partido? Se guardará el resultado.", () => {
+            updateData(d => {
+              d.matches[selectedMatch].status = 'finished';
+              d.matches[selectedMatch].score.isRunning = false;
+              if (d.liveCourts[selectedCourt] === selectedMatch) d.liveCourts[selectedCourt] = null;
+
+              const m = d.matches[selectedMatch];
+              const winnerId = m.score.t1Games > m.score.t2Games ? m.t1 : (m.score.t2Games > m.score.t1Games ? m.t2 : null);
+
+              if (m.type === 'Q' && winnerId) {
+                if (m.id === 'q1' || m.id === 'q2') d.matches['s1'][m.id === 'q1' ? 't1' : 't2'] = winnerId;
+                if (m.id === 'q3' || m.id === 'q4') d.matches['s2'][m.id === 'q3' ? 't1' : 't2'] = winnerId;
+              } else if (m.type === 'S' && winnerId) {
+                d.matches['f1'][m.id === 's1' ? 't1' : 't2'] = winnerId;
+              } else if (!m.type) {
+                const groupMs = Object.values(d.matches).filter(x => !x.type);
+                if (groupMs.every(x => x.status === 'finished') && !d.matches['q1'].t1) {
+                  const st = {};
+                  Object.values(d.teams).forEach(t => st[t.id] = { ...t, pts:0, gf:0, gc:0 });
+                  groupMs.forEach(x => {
+                      const s = x.score;
+                      st[x.t1].gf += s.t1Games; st[x.t1].gc += s.t2Games;
+                      st[x.t2].gf += s.t2Games; st[x.t2].gc += s.t1Games;
+                      if(s.t1Games > s.t2Games){ st[x.t1].pts+=2; st[x.t2].pts+=1; }
+                      else if(s.t2Games > s.t1Games){ st[x.t2].pts+=2; st[x.t1].pts+=1; }
+                  });
+                  const getG = (g) => Object.values(st).filter(t=>t.group===g).sort((a,b)=>b.pts-a.pts || (b.gf-b.gc)-(a.gf-a.gc));
+                  const gA = getG('A'); const gB = getG('B'); const gC = getG('C');
+                  const thirds = [gA[2], gB[2], gC[2]].sort((a,b)=>b.pts-a.pts || (b.gf-b.gc)-(a.gf-a.gc));
+                  
+                  d.matches['q1'].t1 = gA[0].id; d.matches['q1'].t2 = thirds[1].id; 
+                  d.matches['q2'].t1 = gB[0].id; d.matches['q2'].t2 = gC[1].id;     
+                  d.matches['q3'].t1 = gC[0].id; d.matches['q3'].t2 = gA[1].id;     
+                  d.matches['q4'].t1 = gB[1].id; d.matches['q4'].t2 = thirds[0].id; 
+                }
+              }
+              return d;
+            });
+            setView('VEEDOR_MATCH_SELECT');
+          });
+        };
+
+        const TeamPanel = ({ tObj, gameKey, ptKey, num }) => (
+          <div className="glass p-6 rounded-3xl space-y-6">
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <h2 className="text-2xl font-black uppercase truncate pr-4">{tObj.name}</h2>
+              <button onClick={() => updateScore(selectedMatch, s => ({...s, serving: num}))} className={`p-3 rounded-full ${sc.serving === num ? 'bg-yellow text-black scale-110' : 'bg-white/10'}`}>
+                <CircleIcon size={20} fill={sc.serving===num?"currentColor":"none"} />
+              </button>
+            </div>
+            
+            <div>
+              <div className="flex items-center mb-2">
+                <p className="text-xs uppercase font-bold text-gray-400">Puntos en juego</p>
+                {isTieBreak && <span className="ml-3 text-[10px] font-bold bg-yellow text-black px-2 py-0.5 rounded-sm uppercase tracking-widest animate-pulse">Tie-Break Activo</span>}
+              </div>
+              
+              {isTieBreak ? (
+                <div className="flex items-center justify-between bg-black/40 p-2 rounded-xl border border-yellow/50">
+                  <button onClick={() => setPts(ptKey, String(Math.max(0, parseInt(sc[ptKey] || 0) - 1)))} className="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"><Minus size={24}/></button>
+                  <span className="text-5xl font-black text-yellow">{sc[ptKey]}</span>
+                  <button onClick={() => setPts(ptKey, String(parseInt(sc[ptKey] || 0) + 1))} className="p-4 bg-green rounded-lg hover:brightness-110 transition-all shadow-lg"><Plus size={24}/></button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-5 gap-2">
+                  {['0','15','30','40'].map(p => (
+                    <button key={p} onClick={()=>setPts(ptKey, p)} className={`py-4 rounded-xl font-black text-xl border ${sc[ptKey] === p ? 'bg-lightblue text-black border-lightblue' : 'border-white/20 text-white hover:bg-white/10'}`}>{p}</button>
+                  ))}
+                  <button onClick={()=>setGame(ptKey, 1)} className="py-4 rounded-xl font-black text-sm border border-yellow text-yellow hover:bg-yellow hover:text-black">ORO</button>
+                </div>
+              )}
+            </div>
+
+            <div className="bg-black/40 p-4 rounded-2xl flex flex-col items-center">
+              <span className="text-xs uppercase text-gray-500 font-bold mb-2">Games</span>
+              <div className="flex items-center justify-between w-full px-8">
+                <button onClick={()=>setGame(ptKey, -1)} className="p-3 bg-white/5 rounded-xl hover:bg-white/10"><Minus size={20}/></button>
+                <span className="text-6xl font-black text-lightblue">{sc[gameKey]}</span>
+                <button onClick={()=>setGame(ptKey, 1)} className="p-3 bg-green rounded-xl hover:brightness-110"><Plus size={20}/></button>
+              </div>
+            </div>
+          </div>
+        );
+
+        return (
+          <div className="p-4 md:p-8 text-white bg-dark w-full rounded-2xl">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 max-w-6xl mx-auto">
+              <div className="flex items-center">
+                <button onClick={() => setView('VEEDOR_MATCH_SELECT')} className="p-3 bg-white/10 rounded-xl mr-4"><ChevronLeft /></button>
+                <div><h1 className="text-2xl font-black uppercase text-green">Cancha {selectedCourt}</h1><p className="text-xs text-gray-400">Control: {match.type ? match.title : `Grupo ${t1.group}`}</p></div>
+              </div>
+              
+              <div className="flex items-center space-x-4 glass p-3 rounded-2xl">
+                <span className="text-3xl font-mono font-black w-24 text-center text-white">{formatTime(sc.time)}</span>
+                <button onClick={() => updateScore(selectedMatch, s => ({...s, isRunning: !s.isRunning}))} className={`p-3 rounded-xl ${sc.isRunning ? 'bg-maroon' : 'bg-green'}`}>
+                  {sc.isRunning ? <Pause /> : <Play />}
+                </button>
+                <button onClick={() => updateScore(selectedMatch, s => ({...s, time: 0, isRunning: false}))} className="p-3 bg-white/10 rounded-xl"><RotateCcw /></button>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-2 mt-4 md:mt-0">
+                <button onClick={() => {
+                  confirmAction("¿Seguro que deseas reiniciar los puntos y el tiempo de ESTE partido a cero?", () => {
+                    updateScore(selectedMatch, s => ({
+                      ...s, t1Games: 0, t2Games: 0, t1Pts: '0', t2Pts: '0', serving: 1, time: 0, isRunning: false
+                    }));
+                  });
+                }} className="bg-yellow/10 text-yellow font-bold py-3 px-4 rounded-xl border border-yellow/50 hover:bg-yellow hover:text-black transition-colors text-xs md:text-sm uppercase">
+                  Reiniciar Partido
+                </button>
+                <button onClick={endMatch} className="bg-maroon text-white font-bold py-3 px-6 rounded-xl hover:brightness-125 border border-red-500 uppercase text-xs md:text-sm">
+                  Finalizar Partido
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+              <TeamPanel tObj={t1} gameKey="t1Games" ptKey="t1Pts" num={1} />
+              <TeamPanel tObj={t2} gameKey="t2Games" ptKey="t2Pts" num={2} />
+            </div>
+            <DialogOverlay />
+          </div>
+        );
+      }
+
+      if (view === 'COURT_SELECT') {
+        return (
+          <div className="flex flex-col items-center justify-center p-6 text-white text-center relative w-full flex-grow">
+            <button onClick={() => setView('HOME')} className="absolute top-6 left-6 flex items-center hover:text-lightblue"><ChevronLeft /> Inicio</button>
+            <h2 className="text-3xl font-bold mb-10 uppercase tracking-widest text-yellow">Pantalla Gigante (LED)</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl">
+              {[1, 2, 3, 4].map(n => (
+                <button key={n} onClick={() => { setSelectedCourt(n); setView('PUBLIC_LED'); }} className="glass py-16 rounded-3xl hover:scale-105 transition-transform hover:border-lightblue">
+                  <span className="block text-sm text-gray-400 uppercase mb-2">Cancha</span>
+                  <span className="text-7xl font-black">{n}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      if (view === 'PUBLIC_LED') {
+        const mId = data.liveCourts[selectedCourt];
+        const match = mId ? data.matches[mId] : null;
+        
+        return (
+          <div className="flex flex-col justify-between overflow-hidden flex-grow w-full" style={{ backgroundColor: COLORS.maroon, color: COLORS.white }}>
+            <div className="relative flex items-center justify-between p-4 bg-black/50 min-h-[100px]">
+              <div className="flex-1 pl-4 z-10"><img src={LOGO_URL} className="h-16 md:h-20 object-contain drop-shadow-xl" /></div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-0 pointer-events-none">
+                <h1 className="text-4xl md:text-5xl font-black uppercase tracking-widest">CANCHA <span className="text-[#f3b20e]">{selectedCourt}</span></h1>
+                {match && <p className="text-lg uppercase font-bold text-[#74acdf] tracking-widest mt-1">EN VIVO</p>}
+              </div>
+              <div className="flex-1 pr-4 z-10 flex justify-end"><img src={LOGO_RIGHT_URL} className="h-16 md:h-20 object-contain drop-shadow-xl" /></div>
+            </div>
+
+            <div className="flex-1 flex flex-col items-center justify-center p-4">
+              {!match ? (
+                <div className="text-center opacity-50">
+                  <Monitor size={64} className="mx-auto mb-4" />
+                  <h2 className="text-3xl font-bold uppercase tracking-widest">Esperando Partido</h2>
+                </div>
+              ) : (
+                <div className="w-full max-w-7xl rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/20">
+                  <div className="flex bg-black/80 text-xs md:text-sm font-bold text-gray-400 uppercase tracking-widest p-2">
+                    <div className="flex-1 px-4">Jugadores</div>
+                    <div className="w-12 text-center">SRV</div>
+                    <div className="w-24 md:w-32 text-center">GAMES</div>
+                    <div className="w-32 md:w-40 text-center text-white">PUNTOS</div>
+                  </div>
+                  {[1, 2].map(n => {
+                    const tKey = `t${n}`;
+                    const team = data.teams[match[tKey]];
+                    const sc = match.score;
+                    return (
+                      <div key={n} className={`flex items-stretch bg-black/20 backdrop-blur-sm ${n===1?'border-b border-white/10':''}`}>
+                        <div className="flex-1 p-4 md:p-8 flex items-center border-r border-white/10 overflow-hidden">
+                          <span className="text-2xl md:text-5xl font-bold uppercase truncate">{team.name}</span>
+                        </div>
+                        <div className="w-12 flex items-center justify-center border-r border-white/10">
+                          {sc.serving === n && <div className="w-4 h-4 md:w-6 md:h-6 bg-[#f3b20e] rounded-full shadow-[0_0_10px_#f3b20e]"></div>}
+                        </div>
+                        <div className="w-24 md:w-32 flex items-center justify-center text-5xl md:text-7xl font-black text-[#74acdf] border-r border-white/10">{sc[`${tKey}Games`]}</div>
+                        <div className="w-32 md:w-40 flex items-center justify-center text-5xl md:text-7xl font-black bg-white/10">{sc[`${tKey}Pts`]}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+
+            <div className="bg-black/60 p-6 flex justify-between items-center border-t border-white/10">
+              <button onClick={() => setView('COURT_SELECT')} className="opacity-30 hover:opacity-100 transition-opacity"><Monitor size={30} /></button>
+              {match && (
+                <div className="flex items-center space-x-4">
+                  <span className="text-xl font-bold uppercase tracking-widest text-[#f3b20e]">MATCH TIME</span>
+                  <span className="text-5xl font-mono font-black">{formatTime(match.score.time)}</span>
+                </div>
+              )}
+              <div className="w-10"></div>
+            </div>
+          </div>
+        );
+      }
+
+      if (view === 'HUB') {
+        const stats = getZonesStats();
+        
+        return (
+          <div className="text-white pb-10 w-full" style={{ backgroundColor: COLORS.maroon }}>
+            <div className="bg-black/50 p-6 flex items-center justify-between sticky top-24 md:top-32 z-40 backdrop-blur-md border-b border-white/10">
+              <button onClick={() => setView('HOME')} className="p-2 hover:bg-white/10 rounded-lg"><ChevronLeft size={28} /></button>
+              <h1 className="text-xl md:text-2xl font-black uppercase tracking-widest text-yellow">Copa Sol de Mayo</h1>
+              <div className="w-10"></div>
+            </div>
+
+            <div className="flex justify-center mt-6 mb-8 px-4">
+              <div className="glass flex rounded-xl p-1 max-w-md w-full">
+                {['FIXTURE', 'ZONAS', 'CUADRO'].map(tab => (
+                  <button key={tab} onClick={() => setHubTab(tab)} className={`flex-1 py-2 text-sm font-bold uppercase rounded-lg transition-colors ${hubTab === tab ? 'bg-lightblue text-black' : 'text-gray-400 hover:text-white'}`}>
+                    {tab}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="max-w-6xl mx-auto px-4">
+              {hubTab === 'FIXTURE' && (
+                <div className="space-y-6">
+                  {['A', 'B', 'C'].map(groupLetter => {
+                    const groupMatches = Object.values(data.matches).filter(m => !m.type && data.teams[m.t1].group === groupLetter);
+                    return (
+                      <div key={groupLetter} className="mb-8">
+                        <h3 className="text-xl font-bold text-yellow mb-4 border-b border-yellow/30 pb-2">GRUPO {groupLetter}</h3>
+                        <div className="space-y-4">
+                          {groupMatches.map(m => {
+                            const t1 = data.teams[m.t1]; 
+                            const t2 = data.teams[m.t2];
+                            const isLive = m.status === 'active';
+                            return (
+                              <div key={m.id} className={`glass p-4 rounded-xl flex flex-col items-center justify-between border-l-4 ${isLive?'border-l-green bg-green/10':m.status==='finished'?'border-l-gray-500':'border-l-yellow'}`}>
+                                <div className="flex w-full justify-between items-center mb-2">
+                                  <span className="bg-black/50 text-xs px-2 py-1 rounded text-gray-300 font-bold">CANCHA {m.c}</span>
+                                  {isLive ? (
+                                    <span className="text-green animate-pulse text-xs border border-green px-2 py-1 rounded-full font-bold">EN VIVO</span>
+                                  ) : m.status === 'finished' ? (
+                                    <span className="text-gray-400 text-xs font-bold">FINALIZADO</span>
+                                  ) : (
+                                    <span className="text-yellow text-xs font-bold">PENDIENTE</span>
+                                  )}
+                                </div>
+                                <div className="flex items-center justify-between w-full text-lg font-black uppercase">
+                                  <span className="text-right flex-1 truncate">{t1.name}</span>
+                                  <span className="mx-4 text-yellow text-xs">VS</span>
+                                  <span className="text-left flex-1 truncate">{t2.name}</span>
+                                </div>
+                                
+                                <div className="mt-3 w-full bg-black/40 rounded-lg p-2 flex justify-center text-sm font-bold">
+                                  {isLive ? (
+                                    <div className="flex gap-4 text-lightblue">
+                                      <span>Games: {m.score.t1Games} - {m.score.t2Games}</span>
+                                      <span>Pts: {m.score.t1Pts} - {m.score.t2Pts}</span>
+                                    </div>
+                                  ) : m.status === 'finished' ? (
+                                    <span className="text-white">Resultado Final: {m.score.t1Games} - {m.score.t2Games}</span>
+                                  ) : (
+                                    <span className="text-gray-500">A la espera</span>
+                                  )}
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+
+              {hubTab === 'ZONAS' && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {['A', 'B', 'C'].map(g => {
+                    const groupTeams = Object.values(stats).filter(t => t.group === g).sort((a,b) => b.pts - a.pts || (b.gf-b.gc) - (a.gf-a.gc));
+                    return (
+                      <div key={g} className="glass rounded-2xl overflow-hidden">
+                        <div className="bg-yellow text-black font-black p-3 text-center text-lg uppercase">ZONA {g}</div>
+                        <div className="p-4 overflow-x-auto">
+                          <table className="w-full text-sm text-left">
+                            <thead>
+                              <tr className="text-gray-400 border-b border-white/10">
+                                <th className="pb-2">Pareja</th>
+                                <th className="pb-2 text-center" title="Partidos Jugados">PJ</th>
+                                <th className="pb-2 text-center text-green" title="Partidos Ganados">PG</th>
+                                <th className="pb-2 text-center text-red-400" title="Partidos Perdidos">PP</th>
+                                <th className="pb-2 text-center" title="Games a Favor">GF</th>
+                                <th className="pb-2 text-center" title="Games en Contra">GC</th>
+                                <th className="pb-2 text-center" title="Diferencia de Games">DIF</th>
+                                <th className="pb-2 text-center" title="Puntos">PTS</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {groupTeams.map((t, i) => (
+                                <tr key={t.id} className={`border-b border-white/5 ${i<2 ? 'text-white' : 'text-gray-400'}`}>
+                                  <td className="py-3 font-bold uppercase truncate max-w-[100px]">{t.name}</td>
+                                  <td className="py-3 text-center">{t.pj}</td>
+                                  <td className="py-3 text-center text-green">{t.pg}</td>
+                                  <td className="py-3 text-center text-red-400">{t.pp}</td>
+                                  <td className="py-3 text-center">{t.gf}</td>
+                                  <td className="py-3 text-center">{t.gc}</td>
+                                  <td className="py-3 text-center">{t.gf - t.gc}</td>
+                                  <td className="py-3 text-center font-black text-lightblue">{t.pts}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+
+              {hubTab === 'CUADRO' && (
+                <div className="w-full overflow-x-auto pb-8">
+                  <div className="min-w-[900px] flex justify-between items-center w-full h-[500px] relative px-4 glass rounded-3xl p-8 mt-8">
+                    
+                    <div className="flex flex-col justify-between h-[400px] w-48 relative z-10">
+                      <span className="absolute -top-8 w-full text-center text-lightblue font-black uppercase tracking-widest text-sm">Cuartos</span>
+                      <BracketMatch matchData={data.matches['q1']} />
+                      <BracketMatch matchData={data.matches['q2']} />
+                    </div>
+
+                    <div className="w-8 md:w-12 h-[400px] relative z-0">
+                      <div className="absolute top-[40px] bottom-[50%] right-0 w-full border-r-2 border-t-2 border-white/20 rounded-tr-xl"></div>
+                      <div className="absolute top-[50%] bottom-[40px] right-0 w-full border-r-2 border-b-2 border-white/20 rounded-br-xl"></div>
+                    </div>
+
+                    <div className="flex flex-col justify-center h-[400px] w-48 relative z-10 px-2">
+                      <span className="absolute -top-8 w-full text-center text-yellow font-black uppercase tracking-widest text-sm">Semifinal</span>
+                      <BracketMatch matchData={data.matches['s1']} />
+                    </div>
+
+                    <div className="flex-1 h-[400px] relative z-0">
+                      <div className="absolute top-[50%] left-0 right-0 border-t-2 border-white/20"></div>
+                    </div>
+
+                    <div className="flex flex-col justify-center items-center h-[400px] w-64 relative z-10 px-4">
+                      <span className="absolute -top-8 w-full text-center text-green font-black uppercase tracking-widest text-xl">FINAL</span>
+                      <img src={COPA_IMG_URL} alt="Copa Sol de Mayo" className="h-40 object-contain drop-shadow-[0_0_25px_rgba(243,178,14,0.6)] mb-6" />
+                      <BracketMatch matchData={data.matches['f1']} />
+                    </div>
+
+                    <div className="flex-1 h-[400px] relative z-0">
+                      <div className="absolute top-[50%] left-0 right-0 border-t-2 border-white/20"></div>
+                    </div>
+
+                    <div className="flex flex-col justify-center h-[400px] w-48 relative z-10 px-2">
+                      <span className="absolute -top-8 w-full text-center text-yellow font-black uppercase tracking-widest text-sm">Semifinal</span>
+                      <BracketMatch matchData={data.matches['s2']} />
+                    </div>
+
+                    <div className="w-8 md:w-12 h-[400px] relative z-0">
+                      <div className="absolute top-[40px] bottom-[50%] left-0 w-full border-l-2 border-t-2 border-white/20 rounded-tl-xl"></div>
+                      <div className="absolute top-[50%] bottom-[40px] left-0 w-full border-l-2 border-b-2 border-white/20 rounded-bl-xl"></div>
+                    </div>
+
+                    <div className="flex flex-col justify-between h-[400px] w-48 relative z-10">
+                      <span className="absolute -top-8 w-full text-center text-lightblue font-black uppercase tracking-widest text-sm">Cuartos</span>
+                      <BracketMatch matchData={data.matches['q3']} />
+                      <BracketMatch matchData={data.matches['q4']} />
+                    </div>
+
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      }
+
+      return null;
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('react-root-fixture'));
+    root.render(<App />);
     </script>
 </body>
 </html>
