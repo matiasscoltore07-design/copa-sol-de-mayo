@@ -22,6 +22,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1EJXQBtPd_CIwIPIMDJF66xcqSCedPM9f">
     
+    <!-- Firebase SDK para Tiempo Real -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -56,7 +60,7 @@
                 }
             }
         }
-    </script>
+    </script> 
     <style type="text/tailwindcss">
         .bg-grid { background-image: radial-gradient(circle, #00000010 1px, transparent 1px); background-size: 30px 30px; }
         .btn-hover-effect { @apply relative overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95; }
@@ -1897,6 +1901,19 @@
     </script>
 
     <script type="text/babel">
+    // --- FIREBASE SETUP ---
+    const firebaseConfig = {
+      apiKey: "AIzaSyAVr1L9xpxeD-85_7TJiyiENyQ9KIjZY-E",
+      authDomain: "copa-sol-de-mayo.firebaseapp.com",
+      databaseURL: "https://copa-sol-de-mayo-default-rtdb.firebaseio.com",
+      projectId: "copa-sol-de-mayo",
+      storageBucket: "copa-sol-de-mayo.firebasestorage.app",
+      messagingSenderId: "1098950359463",
+      appId: "1:1098950359463:web:f4c157c437d5358dffde82"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     const { useState, useEffect } = React;
 
     // --- ICONOS ---
@@ -1969,17 +1986,15 @@
       const [selectedMatch, setSelectedMatch] = useState(null);
       const [passInput, setPassInput] = useState('');
       const [dialog, setDialog] = useState(null);
-      const [data, setData] = useState(() => {
-        const saved = localStorage.getItem('padel_system_data');
-        return saved ? JSON.parse(saved) : INITIAL_DATA;
-      });
+      const [data, setData] = useState(INITIAL_DATA);
 
       useEffect(() => {
-        const handleStorage = (e) => { 
-          if (e.key === 'padel_system_data') setData(JSON.parse(e.newValue)); 
-        };
-        window.addEventListener('storage', handleStorage);
-        return () => window.removeEventListener('storage', handleStorage);
+        const ref = db.ref('torneo_actual');
+        ref.on('value', (snapshot) => {
+          const val = snapshot.val();
+          if (val) setData(val);
+        });
+        return () => ref.off();
       }, []);
 
       useEffect(() => {
@@ -2001,13 +2016,11 @@
       const updateData = (updater) => {
         setData(prev => {
           try {
-            const raw = localStorage.getItem('padel_system_data');
-            const latest = raw ? JSON.parse(raw) : prev;
-            const next = updater(latest);
-            localStorage.setItem('padel_system_data', JSON.stringify(next));
+            const next = updater(prev);
+            db.ref('torneo_actual').set(next);
             return next;
           } catch (e) {
-            console.error("Error sincronizando estado local:", e);
+            console.error("Error actualizando Firebase:", e);
             return prev;
           }
         });
@@ -2164,8 +2177,7 @@
                 onClick={() => {
                   confirmAction("⚠️ ADVERTENCIA CRÍTICA: ¿Estás absolutamente seguro de que deseas borrar todos los resultados y reiniciar el torneo desde cero? Esta acción borrará todas las zonas y partidos.", () => {
                     const resetData = JSON.parse(JSON.stringify(INITIAL_DATA));
-                    setData(resetData);
-                    localStorage.setItem('padel_system_data', JSON.stringify(resetData));
+                db.ref('torneo_actual').set(resetData);
                     showAlert("El torneo ha sido reiniciado con éxito.");
                   });
                 }}
