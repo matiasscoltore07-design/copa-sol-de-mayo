@@ -1987,6 +1987,7 @@
       const [passInput, setPassInput] = useState('');
       const [dialog, setDialog] = useState(null);
       const [data, setData] = useState(INITIAL_DATA);
+      const [bulkInput, setBulkInput] = useState('');
 
       useEffect(() => {
         const ref = db.ref('torneo_actual');
@@ -2196,6 +2197,33 @@
       }
 
       if (view === 'SETUP') {
+        const handleSortear = () => {
+          let names = bulkInput.split('\n').map(n => n.trim()).filter(n => n);
+          if (names.length === 0) {
+             showAlert("Por favor, ingresá al menos un nombre en la lista para sortear.");
+             return;
+          }
+          // Rellenar si faltan, recortar si sobran
+          while(names.length < 12) names.push(`PAREJA ${names.length + 1}`);
+          names = names.slice(0, 12);
+          
+          // Mezclar aleatoriamente (Fisher-Yates Shuffle)
+          for (let i = names.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [names[i], names[j]] = [names[j], names[i]];
+          }
+          
+          // Asignar a los grupos
+          updateData(d => {
+              const keys = ['A1','A2','A3','A4','B1','B2','B3','B4','C1','C2','C3','C4'];
+              keys.forEach((k, i) => {
+                  d.teams[k].name = names[i].toUpperCase();
+              });
+              return d;
+          });
+          showAlert("¡Sorteo realizado con éxito!");
+        };
+
         return (
           <div className="p-6 text-white max-w-6xl mx-auto pb-24 w-full">
             <div className="flex justify-between items-center mb-10">
@@ -2203,23 +2231,39 @@
               <h1 className="text-3xl font-black uppercase text-lightblue">Sorteo de Parejas</h1>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {['A', 'B', 'C'].map(g => (
-                <div key={g} className="glass p-6 rounded-2xl">
-                  <h2 className="text-2xl font-bold text-yellow mb-4 border-b border-white/10 pb-2">GRUPO {g}</h2>
-                  {[1,2,3,4].map(n => {
-                    const tid = `${g}${n}`;
-                    return (
-                      <div key={tid} className="mb-4">
-                        <label className="text-xs text-gray-400 font-bold ml-2">Pareja {tid}</label>
-                        <input value={data.teams[tid].name} 
-                          onChange={e => updateData(d => { d.teams[tid].name = e.target.value.toUpperCase(); return d; })}
-                          className="w-full bg-black/50 border border-white/20 p-3 rounded-lg mt-1 outline-none focus:border-lightblue uppercase" />
-                      </div>
-                    )
-                  })}
-                </div>
-              ))}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              <div className="glass p-6 rounded-2xl lg:col-span-1 flex flex-col">
+                <h2 className="text-xl font-bold text-white mb-2">Lista de Equipos</h2>
+                <p className="text-xs text-gray-400 mb-4">Pegá los 12 nombres (uno por línea).</p>
+                <textarea 
+                  value={bulkInput} 
+                  onChange={e => setBulkInput(e.target.value)}
+                  className="w-full bg-black/50 border border-white/20 p-3 rounded-lg flex-grow outline-none focus:border-lightblue resize-none text-sm mb-4 h-64"
+                  placeholder={"Ej:\nJuan y Pedro\nMaría y Ana\n..."}
+                ></textarea>
+                <button onClick={handleSortear} className="w-full bg-yellow text-black font-black py-3 rounded-xl uppercase hover:bg-white transition-colors">
+                  Sortear Grupos
+                </button>
+              </div>
+
+              <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
+                {['A', 'B', 'C'].map(g => (
+                  <div key={g} className="glass p-6 rounded-2xl">
+                    <h2 className="text-2xl font-bold text-yellow mb-4 border-b border-white/10 pb-2">GRUPO {g}</h2>
+                    {[1,2,3,4].map(n => {
+                      const tid = `${g}${n}`;
+                      return (
+                        <div key={tid} className="mb-4">
+                          <label className="text-xs text-gray-400 font-bold ml-2">Pareja {tid}</label>
+                          <input value={data.teams[tid].name} 
+                            onChange={e => updateData(d => { d.teams[tid].name = e.target.value.toUpperCase(); return d; })}
+                            className="w-full bg-black/50 border border-white/20 p-3 rounded-lg mt-1 outline-none focus:border-lightblue uppercase font-bold text-sm" />
+                        </div>
+                      )
+                    })}
+                  </div>
+                ))}
+              </div>
             </div>
             
             <div className="fixed bottom-0 left-0 w-full bg-black/90 p-6 border-t border-white/10 flex justify-center z-50">
