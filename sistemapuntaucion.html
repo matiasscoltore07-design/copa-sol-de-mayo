@@ -87,13 +87,13 @@
     ];
 
     const PLAYOFF_SCHEDULE = [
-      { id: 'q1', c: 1, type: 'Q', title: 'Cuartos de Final 1', t1: null, t2: null },
-      { id: 'q2', c: 2, type: 'Q', title: 'Cuartos de Final 2', t1: null, t2: null },
-      { id: 'q3', c: 3, type: 'Q', title: 'Cuartos de Final 3', t1: null, t2: null },
-      { id: 'q4', c: 4, type: 'Q', title: 'Cuartos de Final 4', t1: null, t2: null },
-      { id: 's1', c: 1, type: 'S', title: 'Semifinal 1', t1: null, t2: null },
-      { id: 's2', c: 2, type: 'S', title: 'Semifinal 2', t1: null, t2: null },
-      { id: 'f1', c: 1, type: 'F', title: 'Gran Final', t1: null, t2: null }
+      { id: 'q1', c: 1, type: 'Q', title: 'Cuartos de Final 1', t1: "", t2: "" },
+      { id: 'q2', c: 2, type: 'Q', title: 'Cuartos de Final 2', t1: "", t2: "" },
+      { id: 'q3', c: 3, type: 'Q', title: 'Cuartos de Final 3', t1: "", t2: "" },
+      { id: 'q4', c: 4, type: 'Q', title: 'Cuartos de Final 4', t1: "", t2: "" },
+      { id: 's1', c: 1, type: 'S', title: 'Semifinal 1', t1: "", t2: "" },
+      { id: 's2', c: 2, type: 'S', title: 'Semifinal 2', t1: "", t2: "" },
+      { id: 'f1', c: 1, type: 'F', title: 'Gran Final', t1: "", t2: "" }
     ];
 
     const INITIAL_DATA = {
@@ -106,7 +106,7 @@
         acc[m.id] = { ...m, status: 'pending', score: { t1Games: 0, t2Games: 0, t1Pts: '0', t2Pts: '0', serving: 1, time: 0, isRunning: false } };
         return acc;
       }, {}),
-      liveCourts: { 1: null, 2: null, 3: null, 4: null },
+      liveCourts: { 1: "", 2: "", 3: "", 4: "" },
       isSetupComplete: false
     };
 
@@ -124,7 +124,10 @@
         const ref = db.ref('torneo_actual');
         ref.on('value', (snapshot) => {
           const val = snapshot.val();
-          if (val) setData(val);
+          if (val) {
+            val.liveCourts = val.liveCourts || { 1: "", 2: "", 3: "", 4: "" };
+            setData(val);
+          }
           else ref.set(INITIAL_DATA); // Si la base está vacía, subimos el estado inicial
         });
         return () => ref.off();
@@ -151,7 +154,8 @@
       const updateData = (updater) => {
         setData(prev => {
           try {
-            const next = updater(prev);
+            const clone = JSON.parse(JSON.stringify(prev));
+            const next = updater(clone);
             db.ref('torneo_actual').set(next); // Subimos el cambio a la nube al instante
             return next;
           } catch (e) {
@@ -384,7 +388,7 @@
 
                 const t1 = data.teams[m.t1];
                 const t2 = data.teams[m.t2];
-                const isLive = data.liveCourts[selectedCourt] === m.id;
+                const isLive = data.liveCourts && data.liveCourts[selectedCourt] === m.id;
                 const matchTitle = m.type ? m.title : `GRUPO ${t1.group}`;
                 
                 return (
@@ -404,7 +408,12 @@
                         </button>
                       ) : (
                         <button onClick={() => {
-                          updateData(d => { d.liveCourts[selectedCourt] = m.id; d.matches[m.id].status = 'active'; return d; });
+                          updateData(d => { 
+                            if(!d.liveCourts) d.liveCourts = { 1: "", 2: "", 3: "", 4: "" };
+                            d.liveCourts[selectedCourt] = m.id; 
+                            d.matches[m.id].status = 'active'; 
+                            return d; 
+                          });
                           setSelectedMatch(m.id); setView('VEEDOR_CONTROL');
                         }} className="w-full bg-lightblue text-black font-bold py-3 px-6 rounded-xl hover:bg-white">
                           TRANSMITIR Y CONTROLAR
@@ -475,10 +484,10 @@
             updateData(d => {
               d.matches[selectedMatch].status = 'finished';
               d.matches[selectedMatch].score.isRunning = false;
-              if (d.liveCourts[selectedCourt] === selectedMatch) d.liveCourts[selectedCourt] = null;
+              if (d.liveCourts && d.liveCourts[selectedCourt] === selectedMatch) d.liveCourts[selectedCourt] = "";
 
               const m = d.matches[selectedMatch];
-              const winnerId = m.score.t1Games > m.score.t2Games ? m.t1 : (m.score.t2Games > m.score.t1Games ? m.t2 : null);
+              const winnerId = m.score.t1Games > m.score.t2Games ? m.t1 : (m.score.t2Games > m.score.t1Games ? m.t2 : "");
 
               // Auto-avance en el Cuadro de Eliminación
               if (m.type === 'Q' && winnerId) {
@@ -617,7 +626,7 @@
       }
 
       if (view === 'PUBLIC_LED') {
-        const mId = data.liveCourts[selectedCourt];
+        const mId = data.liveCourts ? data.liveCourts[selectedCourt] : null;
         const match = mId ? data.matches[mId] : null;
         
         return (
