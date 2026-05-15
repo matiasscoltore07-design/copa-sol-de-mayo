@@ -1962,6 +1962,7 @@
       { id: 'q4', c: 4, type: 'Q', title: 'Cuartos de Final 4', t1: "", t2: "" },
       { id: 's1', c: 1, type: 'S', title: 'Semifinal 1', t1: "", t2: "" },
       { id: 's2', c: 2, type: 'S', title: 'Semifinal 2', t1: "", t2: "" },
+      { id: 't1', c: 2, type: 'T', title: 'Tercer Puesto', t1: "", t2: "" },
       { id: 'f1', c: 1, type: 'F', title: 'Gran Final', t1: "", t2: "" }
     ];
 
@@ -2005,11 +2006,15 @@
         if (view !== 'VEEDOR_CONTROL' || !selectedMatch) return;
         
         const interval = setInterval(() => {
-          updateData(d => {
-            if (d.matches[selectedMatch] && d.matches[selectedMatch].score.isRunning) {
-              d.matches[selectedMatch].score.time += 1;
+          setData(prev => {
+            if (prev.matches[selectedMatch] && prev.matches[selectedMatch].score.isRunning) {
+              const clone = JSON.parse(JSON.stringify(prev));
+              clone.matches[selectedMatch].score.time += 1;
+              // IMPORTANTE: Escribimos SOLO el tiempo
+              db.ref(`torneo_actual/matches/${selectedMatch}/score/time`).set(clone.matches[selectedMatch].score.time);
+              return clone;
             }
-            return d;
+            return prev;
           });
         }, 1000);
         return () => clearInterval(interval);
@@ -2032,15 +2037,25 @@
       };
       
       const updateScore = (mId, scoreUpdater) => {
-        updateData(d => {
-          if(d.matches[mId]) d.matches[mId].score = scoreUpdater(d.matches[mId].score);
-          return d;
+        setData(prev => {
+          try {
+            const clone = JSON.parse(JSON.stringify(prev));
+            if(clone.matches[mId]) {
+              clone.matches[mId].score = scoreUpdater(clone.matches[mId].score);
+              // Escribimos SOLO el score de este partido
+              db.ref(`torneo_actual/matches/${mId}/score`).set(clone.matches[mId].score);
+            }
+            return clone;
+          } catch (e) {
+            console.error("Error actualizando score:", e);
+            return prev;
+          }
         });
       };
 
       const getZonesStats = () => {
         const stats = {};
-        Object.values(data.teams).forEach(t => stats[t.id] = { ...t, pts:0, pj:0, pg:0, pp:0, sf:0, sc:0, gf:0, gc:0 });
+        Object.values(data.teams).forEach(t => stats[t.id] = { ...t, pj:0, pg:0, pp:0, sf:0, sc:0, gf:0, gc:0 });
         
         Object.values(data.matches).forEach(m => {
           if (m.status === 'finished' && !m.type) {
@@ -2049,8 +2064,8 @@
             stats[m.t1].gf += s.t1Games; stats[m.t1].gc += s.t2Games;
             stats[m.t2].gf += s.t2Games; stats[m.t2].gc += s.t1Games;
             
-            if (s.t1Games > s.t2Games) { stats[m.t1].pts+=2; stats[m.t1].pg++; stats[m.t2].pts+=1; stats[m.t2].pp++; }
-            else if (s.t2Games > s.t1Games) { stats[m.t2].pts+=2; stats[m.t2].pg++; stats[m.t1].pts+=1; stats[m.t1].pp++; }
+            if (s.t1Games > s.t2Games) { stats[m.t1].pg++; stats[m.t2].pp++; }
+            else if (s.t2Games > s.t1Games) { stats[m.t2].pg++; stats[m.t1].pp++; }
           }
         });
         return stats;
@@ -2352,9 +2367,9 @@
               let p2 = parseInt(ns.t2Pts) || 0;
               
               if (p1 >= 7 && p1 - p2 >= 2) {
-                ns.t1Games = 6; ns.t1Pts = '0'; ns.t2Pts = '0';
+                ns.t1Games = 6; ns.t1Pts = '0'; ns.t2Pts = '0'; ns.serving = ns.serving === 1 ? 2 : 1;
               } else if (p2 >= 7 && p2 - p1 >= 2) {
-                ns.t2Games = 6; ns.t1Pts = '0'; ns.t2Pts = '0';
+                ns.t2Games = 6; ns.t1Pts = '0'; ns.t2Pts = '0'; ns.serving = ns.serving === 1 ? 2 : 1;
               }
             }
             return ns;
@@ -2369,7 +2384,8 @@
             if (delta > 0 && (ns.t1Games >= 6 || ns.t2Games >= 6)) return ns;
 
             ns[tKey] += delta;
-            ns.t1Pts = '0'; ns.t2Pts = '0';
+            // Reseteamos puntos y cambiamos el saque automáticamente al sumar un game
+            if (delta > 0) { ns.t1Pts = '0'; ns.t2Pts = '0'; ns.serving = ns.serving === 1 ? 2 : 1; }
             
             if(ns[tKey] < 0) ns[tKey] = 0;
             if(ns[tKey] > 6) ns[tKey] = 6;
@@ -2392,22 +2408,24 @@
                 if (m.id === 'q1' || m.id === 'q2') d.matches['s1'][m.id === 'q1' ? 't1' : 't2'] = winnerId;
                 if (m.id === 'q3' || m.id === 'q4') d.matches['s2'][m.id === 'q3' ? 't1' : 't2'] = winnerId;
               } else if (m.type === 'S' && winnerId) {
+                const loserId = winnerId === m.t1 ? m.t2 : m.t1;
                 d.matches['f1'][m.id === 's1' ? 't1' : 't2'] = winnerId;
+                d.matches['t1'][m.id === 's1' ? 't1' : 't2'] = loserId;
               } else if (!m.type) {
                 const groupMs = Object.values(d.matches).filter(x => !x.type);
                 if (groupMs.every(x => x.status === 'finished') && !d.matches['q1'].t1) {
                   const st = {};
-                  Object.values(d.teams).forEach(t => st[t.id] = { ...t, pts:0, gf:0, gc:0 });
+                  Object.values(d.teams).forEach(t => st[t.id] = { ...t, pg:0, pp:0, gf:0, gc:0 });
                   groupMs.forEach(x => {
                       const s = x.score;
                       st[x.t1].gf += s.t1Games; st[x.t1].gc += s.t2Games;
                       st[x.t2].gf += s.t2Games; st[x.t2].gc += s.t1Games;
-                      if(s.t1Games > s.t2Games){ st[x.t1].pts+=2; st[x.t2].pts+=1; }
-                      else if(s.t2Games > s.t1Games){ st[x.t2].pts+=2; st[x.t1].pts+=1; }
+                      if(s.t1Games > s.t2Games){ st[x.t1].pg++; st[x.t2].pp++; }
+                      else if(s.t2Games > s.t1Games){ st[x.t2].pg++; st[x.t1].pp++; }
                   });
-                  const getG = (g) => Object.values(st).filter(t=>t.group===g).sort((a,b)=>b.pts-a.pts || (b.gf-b.gc)-(a.gf-a.gc));
+                  const getG = (g) => Object.values(st).filter(t=>t.group===g).sort((a,b)=>b.pg-a.pg || (b.gf-b.gc)-(a.gf-a.gc));
                   const gA = getG('A'); const gB = getG('B'); const gC = getG('C');
-                  const thirds = [gA[2], gB[2], gC[2]].sort((a,b)=>b.pts-a.pts || (b.gf-b.gc)-(a.gf-a.gc));
+                  const thirds = [gA[2], gB[2], gC[2]].sort((a,b)=>b.pg-a.pg || (b.gf-b.gc)-(a.gf-a.gc));
                   
                   d.matches['q1'].t1 = gA[0].id; d.matches['q1'].t2 = thirds[1].id; 
                   d.matches['q2'].t1 = gB[0].id; d.matches['q2'].t2 = gC[1].id;     
@@ -2587,6 +2605,9 @@
 
       if (view === 'HUB') {
         const stats = getZonesStats();
+        const allGroups = ['A', 'B', 'C'].map(g => Object.values(stats).filter(t => t.group === g).sort((a,b) => b.pg - a.pg || (b.gf-b.gc) - (a.gf-a.gc)));
+        const thirds = [allGroups[0][2], allGroups[1][2], allGroups[2][2]].filter(Boolean).sort((a,b) => b.pg - a.pg || (b.gf-b.gc) - (a.gf-a.gc));
+        const bestThirdsIds = thirds.slice(0, 2).map(t => t.id);
         
         return (
           <div className="text-white pb-10 w-full" style={{ backgroundColor: COLORS.maroon }}>
@@ -2661,8 +2682,8 @@
 
               {hubTab === 'ZONAS' && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {['A', 'B', 'C'].map(g => {
-                    const groupTeams = Object.values(stats).filter(t => t.group === g).sort((a,b) => b.pts - a.pts || (b.gf-b.gc) - (a.gf-a.gc));
+                  {['A', 'B', 'C'].map((g, idx) => {
+                    const groupTeams = allGroups[idx];
                     return (
                       <div key={g} className="glass rounded-2xl overflow-hidden">
                         <div className="bg-yellow text-black font-black p-3 text-center text-lg uppercase">ZONA {g}</div>
@@ -2677,22 +2698,26 @@
                                 <th className="pb-2 text-center" title="Games a Favor">GF</th>
                                 <th className="pb-2 text-center" title="Games en Contra">GC</th>
                                 <th className="pb-2 text-center" title="Diferencia de Games">DIF</th>
-                                <th className="pb-2 text-center" title="Puntos">PTS</th>
                               </tr>
                             </thead>
                             <tbody>
-                              {groupTeams.map((t, i) => (
-                                <tr key={t.id} className={`border-b border-white/5 ${i<2 ? 'text-white' : 'text-gray-400'}`}>
-                                  <td className="py-3 font-bold uppercase truncate max-w-[100px]">{t.name}</td>
-                                  <td className="py-3 text-center">{t.pj}</td>
-                                  <td className="py-3 text-center text-green">{t.pg}</td>
-                                  <td className="py-3 text-center text-red-400">{t.pp}</td>
-                                  <td className="py-3 text-center">{t.gf}</td>
-                                  <td className="py-3 text-center">{t.gc}</td>
-                                  <td className="py-3 text-center">{t.gf - t.gc}</td>
-                                  <td className="py-3 text-center font-black text-lightblue">{t.pts}</td>
-                                </tr>
-                              ))}
+                              {groupTeams.map((t, i) => {
+                                const isBestThird = i === 2 && bestThirdsIds.includes(t.id);
+                                const textColor = i < 2 ? 'text-white' : isBestThird ? 'text-lightblue' : 'text-gray-400';
+                                return (
+                                  <tr key={t.id} className={`border-b border-white/5 ${textColor}`}>
+                                  <td className="py-3 font-bold uppercase truncate max-w-[140px]" title={isBestThird ? "Clasifica como Mejor Tercero" : ""}>
+                                    {t.name} {isBestThird && <span className="ml-1 text-lightblue">★</span>}
+                                  </td>
+                                    <td className="py-3 text-center">{t.pj}</td>
+                                    <td className="py-3 text-center text-green">{t.pg}</td>
+                                    <td className="py-3 text-center text-red-400">{t.pp}</td>
+                                    <td className="py-3 text-center">{t.gf}</td>
+                                    <td className="py-3 text-center">{t.gc}</td>
+                                    <td className="py-3 text-center font-black">{t.gf - t.gc}</td>
+                                  </tr>
+                                )
+                              })}
                             </tbody>
                           </table>
                         </div>
@@ -2704,7 +2729,7 @@
 
               {hubTab === 'CUADRO' && (
                 <div className="w-full overflow-x-auto pb-8">
-                  <div className="min-w-[900px] flex justify-between items-center w-full h-[500px] relative px-4 glass rounded-3xl p-8 mt-8">
+                  <div className="min-w-[900px] flex justify-between items-start w-full relative px-4 md:px-8 glass rounded-3xl pt-16 pb-32 md:pb-36 mt-8">
                     
                     <div className="flex flex-col justify-between h-[400px] w-48 relative z-10">
                       <span className="absolute -top-8 w-full text-center text-lightblue font-black uppercase tracking-widest text-sm">Cuartos</span>
@@ -2724,16 +2749,23 @@
 
                     <div className="flex-1 h-[400px] relative z-0">
                       <div className="absolute top-[50%] left-0 right-0 border-t-2 border-white/20"></div>
+                      <div className="absolute top-[50%] left-[50%] -right-4 h-[256px] md:h-[272px] border-l-2 border-b-2 border-white/20 rounded-bl-xl"></div>
                     </div>
 
                     <div className="flex flex-col justify-center items-center h-[400px] w-64 relative z-10 px-4">
                       <span className="absolute -top-8 w-full text-center text-green font-black uppercase tracking-widest text-xl">FINAL</span>
-                      <img src={COPA_IMG_URL} alt="Copa Sol de Mayo" className="h-40 object-contain drop-shadow-[0_0_25px_rgba(243,178,14,0.6)] mb-6" />
+                      <img src={COPA_IMG_URL} alt="Copa Sol de Mayo" className="h-32 md:h-40 object-contain drop-shadow-[0_0_25px_rgba(243,178,14,0.6)] mb-4 md:mb-6" />
                       <BracketMatch matchData={data.matches['f1']} />
+                      
+                      <div className="absolute -bottom-24 md:-bottom-28 w-full px-4">
+                        <span className="w-full text-center block text-[#f3b20e] font-black uppercase tracking-widest text-[10px] mb-1">3er Puesto</span>
+                        <BracketMatch matchData={data.matches['t1']} />
+                      </div>
                     </div>
 
                     <div className="flex-1 h-[400px] relative z-0">
                       <div className="absolute top-[50%] left-0 right-0 border-t-2 border-white/20"></div>
+                      <div className="absolute top-[50%] right-[50%] -left-4 h-[256px] md:h-[272px] border-r-2 border-b-2 border-white/20 rounded-br-xl"></div>
                     </div>
 
                     <div className="flex flex-col justify-center h-[400px] w-48 relative z-10 px-2">
